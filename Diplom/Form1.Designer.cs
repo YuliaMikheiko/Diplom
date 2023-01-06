@@ -48,6 +48,8 @@ namespace WindowsFormsApp2
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -173,25 +175,6 @@ namespace WindowsFormsApp2
         }
 
         #endregion
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ntDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn smenaDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn studentsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn semiweekDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn disciplineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kursDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kafDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pairscountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn verbosekontsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn inlistDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nagrlistDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn setinoneaudDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn isonlineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn iszaochDataGridViewCheckBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn afobuchDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource scheduleRowBindingSource;
-        private System.Windows.Forms.BindingSource dataBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;

@@ -138,26 +138,26 @@ namespace WindowsFormsApp2
             }
             else
             {
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column9")
-                {
-                    int type = 1;
-                    ModalWindows teachers = new ModalWindows(type, this, e.RowIndex);
-                    teachers.Show();
-                }
+                if (dataGridView1.Columns[e.ColumnIndex].Name== "Column9")
+            {
+                int type = 1; 
+                ModalWindows teachers = new ModalWindows(type, this, e.RowIndex);
+                teachers.Show();
+            }
 
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column10")
-                {
-                    int type = 2;
-                    ModalWindows groups = new ModalWindows(type, this, e.RowIndex);
-                    groups.Show();
-                }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Column10")
+            {
+                int type = 2;
+                ModalWindows groups = new ModalWindows(type, this, e.RowIndex);
+                groups.Show();
+            }
 
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column11")
-                {
-                    int type = 3;
-                    ModalWindows auditorys = new ModalWindows(type, this, e.RowIndex);
-                    auditorys.Show();
-                }
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Column11")
+            {
+                int type = 3;
+                ModalWindows auditorys = new ModalWindows(type, this, e.RowIndex);
+                auditorys.Show();
+            }
             }
         }
 

@@ -34,13 +34,13 @@
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Choice = new System.Windows.Forms.Button();
             this.GroupsDGV = new System.Windows.Forms.DataGridView();
+            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AuditorysDVG = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.TeachersDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GroupsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AuditorysDVG)).BeginInit();
@@ -48,6 +48,8 @@
             // 
             // TeachersDGV
             // 
+            this.TeachersDGV.AllowUserToAddRows = false;
+            this.TeachersDGV.AllowUserToDeleteRows = false;
             this.TeachersDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.TeachersDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column7,
@@ -88,6 +90,8 @@
             // 
             // GroupsDGV
             // 
+            this.GroupsDGV.AllowUserToAddRows = false;
+            this.GroupsDGV.AllowUserToDeleteRows = false;
             this.GroupsDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.GroupsDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column4,
@@ -99,8 +103,26 @@
             this.GroupsDGV.TabIndex = 2;
             this.GroupsDGV.Visible = false;
             // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "";
+            this.Column4.Name = "Column4";
+            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "id";
+            this.Column5.Name = "Column5";
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Шифр группы";
+            this.Column6.Name = "Column6";
+            // 
             // AuditorysDVG
             // 
+            this.AuditorysDVG.AllowUserToAddRows = false;
+            this.AuditorysDVG.AllowUserToDeleteRows = false;
             this.AuditorysDVG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AuditorysDVG.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -127,22 +149,6 @@
             // 
             this.Column3.HeaderText = "Номер аудитории";
             this.Column3.Name = "Column3";
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "";
-            this.Column4.Name = "Column4";
-            this.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "id";
-            this.Column5.Name = "Column5";
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Шифр группы";
-            this.Column6.Name = "Column6";
             // 
             // ModalWindows
             // 
