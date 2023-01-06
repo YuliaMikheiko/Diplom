@@ -15,17 +15,16 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+        string path;
         public Data data { get; set; }
         public Form1()
         {
             InitializeComponent();
         }
-        string path;
 
         private void ReadData(string path)
         {
             data = JsonSerializer.Deserialize<Data>(File.ReadAllText(path));
-            Console.WriteLine();
             var nagr = data.nagr;
             dataGridView1.RowCount = nagr.Length;
             dataGridView1.ColumnCount = 11;
@@ -43,13 +42,17 @@ namespace WindowsFormsApp2
 
                 for (int k = 0; k < nagr[i].teachers.Length; k++)
                     dataGridView1.Rows[i].Cells[2].Value += nagr[i].teachers[k].ToString() + " ";
+                
                 for (int k = 0; k < nagr[i].sub_groups.Length; k++)
                     dataGridView1.Rows[i].Cells[4].Value += nagr[i].sub_groups[k].ToString() + " ";
+                
                 for (int k = 0; k < nagr[i].auds.Length; k++)
                     dataGridView1.Rows[i].Cells[6].Value += nagr[i].auds[k].ToString() + " ";
 
                 dataGridView1.Rows[i].Cells[8].Value = nagr[i].discipline.ToString();
+                
                 dataGridView1.Rows[i].Cells[9].Value = nagr[i].verbose_konts.ToString();
+
                 if (nagr[i].is_online == 1)
                     dataGridView1.Rows[i].Cells[10].Value = true;
                 else
@@ -59,25 +62,20 @@ namespace WindowsFormsApp2
 
         private void SaveData()
         {
-            int v = 0;
             if (path == null)
             {
                 MessageBox.Show(
                 "Откройте файл",
                 "Сообщение",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.DefaultDesktopOnly);
+                MessageBoxIcon.Information);
             }
             else
             {
                 var nagr = data.nagr;
 
-
                 for (int i = 0; i < nagr.Length; i++)
                 {
-                    v = 0;
                     nagr[i].h = Convert.ToInt32(dataGridView1.Rows[i].Cells[0].Value);
                     if (dataGridView1.Rows[i].Cells[1].Value.Equals("Лекционное занятие"))
                         nagr[i].nt = 1;
@@ -86,7 +84,6 @@ namespace WindowsFormsApp2
                     else
                         nagr[i].nt = 3;
 
-
                     for (int j = 0; j < dataGridView1.Rows[i].Cells[2].Value.ToString().Split().Length-1; j++)
                     {
                         if (dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j] != "")
@@ -94,16 +91,22 @@ namespace WindowsFormsApp2
                         else break;
                     }
 
-                  
+                    for (int j = 0; j < dataGridView1.Rows[i].Cells[4].Value.ToString().Split().Length - 1; j++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j] != "")
+                            nagr[i].sub_groups[j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j]);
+                        else break;
+                    }
 
-                    //for (int k = 0; k < nagr[i].teachers.Length; k++)
-                    //    nagr[i].teachers[k] += dataGridView1.Rows[i].Cells[2].Value;
-                    //for (int k = 0; k < nagr[i].sub_groups.Length; k++)
-                    //    dataGridView1.Rows[i].Cells[4].Value += " " + nagr[i].sub_groups[k].ToString();
-                    //for (int k = 0; k < nagr[i].auds.Length; k++)
-                    //    dataGridView1.Rows[i].Cells[6].Value += " " + nagr[i].auds[k].ToString();
+                    for (int j = 0; j < dataGridView1.Rows[i].Cells[6].Value.ToString().Split().Length - 1; j++)
+                    {
+                        if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j] != "")
+                            nagr[i].auds[j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j]);
+                        else break;
+                    }
 
                     nagr[i].discipline = (string)dataGridView1.Rows[i].Cells[8].Value;
+                   
                     nagr[i].verbose_konts = (string)dataGridView1.Rows[i].Cells[9].Value;
 
                     if (dataGridView1.Rows[i].Cells[10].Value.Equals(true))
@@ -114,43 +117,48 @@ namespace WindowsFormsApp2
 
                 var jsonTextData = JsonSerializer.Serialize(data);
                 File.WriteAllText("base_data_out.schjson", jsonTextData);
+
                 MessageBox.Show(
                 "Сохранено",
                 "Сообщение",
                 MessageBoxButtons.OK,
-                MessageBoxIcon.Information,
-                MessageBoxDefaultButton.Button1,
-                MessageBoxOptions.DefaultDesktopOnly);
+                MessageBoxIcon.Information);
             }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name== "Column9")
+            if (path == null)
             {
-                int a = 1; 
-                ModalWindows teachers = new ModalWindows(a, this, e.RowIndex);
-                teachers.Show();
+                MessageBox.Show(
+                "Откройте файл",
+                "Сообщение",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
             }
-
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "Column10")
+            else
             {
-                int a = 2;
-                ModalWindows groups = new ModalWindows(a, this, e.RowIndex);
-                groups.Show();
-            }
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column9")
+                {
+                    int type = 1;
+                    ModalWindows teachers = new ModalWindows(type, this, e.RowIndex);
+                    teachers.Show();
+                }
 
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "Column11")
-            {
-                int a = 3;
-                ModalWindows auditorys = new ModalWindows(a, this, e.RowIndex);
-                auditorys.Show();
-            }
-        }
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column10")
+                {
+                    int type = 2;
+                    ModalWindows groups = new ModalWindows(type, this, e.RowIndex);
+                    groups.Show();
+                }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SaveData();
+                if (dataGridView1.Columns[e.ColumnIndex].Name == "Column11")
+                {
+                    int type = 3;
+                    ModalWindows auditorys = new ModalWindows(type, this, e.RowIndex);
+                    auditorys.Show();
+                }
+            }
         }
 
         private void Open_Click(object sender, EventArgs e)
@@ -162,6 +170,11 @@ namespace WindowsFormsApp2
             path = openFileDialog.FileName;
 
             ReadData(path);
+        }
+
+        private void Save_Click(object sender, EventArgs e)
+        {
+            SaveData();
         }
     }
 }

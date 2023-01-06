@@ -41,7 +41,7 @@ namespace WindowsFormsApp2
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
             this.Open = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -137,15 +137,15 @@ namespace WindowsFormsApp2
             this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // button1
+            // Save
             // 
-            this.button1.Location = new System.Drawing.Point(972, 130);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Сохранить ";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Save.Location = new System.Drawing.Point(972, 130);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 1;
+            this.Save.Text = "Сохранить ";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
             // Open
             // 
@@ -163,7 +163,7 @@ namespace WindowsFormsApp2
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 418);
             this.Controls.Add(this.Open);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -203,7 +203,7 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Column8;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Open;
         public System.Windows.Forms.DataGridView dataGridView1;
     }

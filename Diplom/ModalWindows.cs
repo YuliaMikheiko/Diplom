@@ -18,18 +18,18 @@ namespace WindowsFormsApp2
         Data data;
         Form1 f1;
         int row;
-        public ModalWindows(int a, Form1 f1, int row)
+        public ModalWindows(int type, Form1 f1, int row)
         {
             InitializeComponent();
-            type = a;
+            this.type = type;
             data = f1.data;
             this.f1 = f1;
             this.row = row;
-            if (a == 1)
+            if (type == 1)
             {
                 ReadTeachers();
             }
-            else if (a == 2)
+            else if (type == 2)
                 ReadGroups();
             else
                 ReadAuditorys();
@@ -37,17 +37,16 @@ namespace WindowsFormsApp2
 
         private void ReadTeachers()
         {
-
             TeachersDGV.Visible = true;
             GroupsDGV.Visible = false;
             AuditorysDVG.Visible = false;
 
             TeachersDGV.RowCount = data.teachers.Count;
             TeachersDGV.ColumnCount = 3;
+
             var i = 0;
             foreach(var teacher in data.teachers)
-            {
-                
+            { 
                 TeachersDGV.Rows[i].Cells[1].Value = teacher.Value.id;
                 TeachersDGV.Rows[i].Cells[2].Value = teacher.Value.name;
                 for(int j = 0; j < data.nagr[row].teachers.Length; j++)
@@ -70,6 +69,7 @@ namespace WindowsFormsApp2
 
             GroupsDGV.RowCount = data.sub_groups_info.Count;
             GroupsDGV.ColumnCount = 3;
+
             var i = 0;
             foreach (var groups in data.sub_groups_info)
             {
@@ -94,6 +94,7 @@ namespace WindowsFormsApp2
 
             AuditorysDVG.RowCount = data.auditories.Count;
             AuditorysDVG.ColumnCount = 3;
+
             var i = 0;
             foreach (var auditorys in data.auditories)
             {
