@@ -41,7 +41,7 @@ namespace WindowsFormsApp2
         public int nt { get; set; }
         public int?[] auds { get; set; }
         [JsonPropertyName("preps")] public int?[] teachers { get; set; }
-        [JsonPropertyName("sub-groups")] public int[] sub_groups { get; set; }
+        [JsonPropertyName("sub-groups")] public int?[] sub_groups { get; set; }
         public int[] fac { get; set; }
         public String[] owners { get; set; }
         public int smena { get; set; }

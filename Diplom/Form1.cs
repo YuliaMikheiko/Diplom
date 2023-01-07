@@ -134,22 +134,90 @@ namespace WindowsFormsApp2
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
                 {
                     int type = 1;
-                    ModalWindows teachers = new ModalWindows(type, this, e.RowIndex);
-                    teachers.Show();
+                    ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(type, e.RowIndex, data);
+
+                    if (teachers.ShowDialog() == DialogResult.OK)
+                    {
+                        List<int?> idsList = teachers.idsList;
+                        List<string> NameList = teachers.NameList;
+                        InformationDGV.Rows[e.RowIndex].Cells[2].Value = "";
+                        if (idsList.Count > 0)
+                        {
+                            data.nagr[e.RowIndex].teachers = idsList.ToArray();
+
+                            var value = "";
+                            foreach (var name in NameList)
+                            {
+                                value += name + " ";
+                            }
+                            InformationDGV.Rows[e.RowIndex].Cells[2].Value += value;
+                        }
+                        else
+                        {
+                            Array.Clear(data.nagr[e.RowIndex].teachers, 0, data.nagr[e.RowIndex].teachers.Length);
+                            InformationDGV.Rows[e.RowIndex].Cells[2].Value = "";
+                        }
+                    }
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
                 {
                     int type = 2;
-                    ModalWindows groups = new ModalWindows(type, this, e.RowIndex);
-                    groups.Show();
+                    ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, e.RowIndex, data);
+
+                    if (groups.ShowDialog() == DialogResult.OK)
+                    {
+                        List<int?> idsList = groups.idsList;
+                        List<string> TitleList = groups.TitleList;
+                        InformationDGV.Rows[e.RowIndex].Cells[4].Value = "";
+
+                        if (idsList.Count > 0)
+                        {
+                            data.nagr[e.RowIndex].sub_groups = idsList.ToArray();
+
+                            var value = "";
+                            foreach (var title in TitleList)
+                            {
+                                value += title + " ";
+                            }
+                            InformationDGV.Rows[e.RowIndex].Cells[4].Value += value;
+                        }
+                        else
+                        {
+                            Array.Clear(data.nagr[e.RowIndex].sub_groups, 0, data.nagr[e.RowIndex].sub_groups.Length);
+                            InformationDGV.Rows[e.RowIndex].Cells[4].Value = "";
+                        }
+                    }
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
                 {
                     int type = 3;
-                    ModalWindows auditorys = new ModalWindows(type, this, e.RowIndex);
-                    auditorys.Show();
+                    ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, e.RowIndex, data);
+
+                    if (auditorys.ShowDialog() == DialogResult.OK)
+                    {
+                        List<int?> idsList = auditorys.idsList;
+                        List<string> TitleList = auditorys.TitleList;
+                        InformationDGV.Rows[e.RowIndex].Cells[6].Value = "";
+
+                        if (idsList.Count > 0)
+                        {
+                            data.nagr[e.RowIndex].auds = idsList.ToArray();
+
+                            var value = "";
+                            foreach (var title in TitleList)
+                            {
+                                value += title + " ";
+                            }
+                            InformationDGV.Rows[e.RowIndex].Cells[6].Value += value;
+                        }
+                        else
+                        {
+                            Array.Clear(data.nagr[e.RowIndex].auds, 0, data.nagr[e.RowIndex].auds.Length);
+                            InformationDGV.Rows[e.RowIndex].Cells[6].Value = "";
+                        }
+                    }
                 }
             }
         }

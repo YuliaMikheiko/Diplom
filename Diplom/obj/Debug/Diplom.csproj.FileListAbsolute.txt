@@ -57,10 +57,10 @@ C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\bin\Debug\System.ValueTuple.x
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\Diplom.csproj.AssemblyReference.cache
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\Diplom.csproj.SuggestedBindingRedirects.cache
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.Form1.resources
-C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.ModalWindows.resources
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.Properties.Resources.resources
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\Diplom.csproj.GenerateResource.cache
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\Diplom.csproj.CoreCompileInputs.cache
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\Diplom.csproj.CopyComplete
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.exe
 C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.pdb
+C:\Users\Юлия\Desktop\Учеба\Diplom\Diplom\obj\Debug\WindowsFormsApp2.ItemsSelectorModalWindow.resources

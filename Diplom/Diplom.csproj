@@ -83,20 +83,22 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ModalWindows.cs">
+    <Compile Include="ItemsSelectorModalWindow.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModalWindows.Designer.cs">
-      <DependentUpon>ModalWindows.cs</DependentUpon>
+    <Compile Include="ItemsSelectorModalWindow.Designer.cs">
+      <DependentUpon>ItemsSelectorModalWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="JsonScheduleDataModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScheduleDataModel.cs" />
     <Compile Include="ScheduleJson.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModalWindows.resx">
-      <DependentUpon>ModalWindows.cs</DependentUpon>
+    <EmbeddedResource Include="ItemsSelectorModalWindow.resx">
+      <DependentUpon>ItemsSelectorModalWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

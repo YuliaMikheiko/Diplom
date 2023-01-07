@@ -165,7 +165,7 @@ namespace WindowsFormsApp2
             // OnlineColumn
             // 
             this.OnlineColumn.FillWeight = 110F;
-            this.OnlineColumn.HeaderText = "Занатие онлайн";
+            this.OnlineColumn.HeaderText = "Занятие онлайн";
             this.OnlineColumn.Name = "OnlineColumn";
             this.OnlineColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
