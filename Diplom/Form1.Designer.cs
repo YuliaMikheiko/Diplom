@@ -29,44 +29,44 @@ namespace WindowsFormsApp2
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.InformationDGV = new System.Windows.Forms.DataGridView();
             this.Save = new System.Windows.Forms.Button();
             this.Open = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.GroupsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AuditoriesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // InformationDGV
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column9,
-            this.Column4,
-            this.Column10,
-            this.Column5,
-            this.Column11,
-            this.Column6,
-            this.Column8});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(970, 418);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.InformationDGV.AllowUserToAddRows = false;
+            this.InformationDGV.AllowUserToDeleteRows = false;
+            this.InformationDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.InformationDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.HColumn,
+            this.NtColumn,
+            this.TeachersColumn,
+            this.TColumn,
+            this.GroupsColumn,
+            this.GColumn,
+            this.AuditoriesColumn,
+            this.AColumn,
+            this.DisciplineColumn,
+            this.OnlineColumn});
+            this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Left;
+            this.InformationDGV.Location = new System.Drawing.Point(0, 0);
+            this.InformationDGV.Name = "InformationDGV";
+            this.InformationDGV.Size = new System.Drawing.Size(970, 418);
+            this.InformationDGV.TabIndex = 0;
+            this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Save
             // 
@@ -88,82 +88,82 @@ namespace WindowsFormsApp2
             this.Open.UseVisualStyleBackColor = true;
             this.Open.Click += new System.EventHandler(this.Open_Click);
             // 
-            // Column1
+            // HColumn
             // 
-            this.Column1.HeaderText = "Количество часов";
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 120;
+            this.HColumn.HeaderText = "Количество часов";
+            this.HColumn.Name = "HColumn";
+            this.HColumn.Width = 120;
             // 
-            // Column2
+            // NtColumn
             // 
-            this.Column2.FillWeight = 110F;
-            this.Column2.HeaderText = "Тип занятия";
-            this.Column2.Items.AddRange(new object[] {
+            this.NtColumn.FillWeight = 110F;
+            this.NtColumn.HeaderText = "Тип занятия";
+            this.NtColumn.Items.AddRange(new object[] {
             "Лекционное занятие",
             "Практическое занятие",
             "Лабораторное занятие"});
-            this.Column2.Name = "Column2";
-            this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column2.Width = 120;
+            this.NtColumn.Name = "NtColumn";
+            this.NtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.NtColumn.Width = 120;
             // 
-            // Column3
+            // TeachersColumn
             // 
-            this.Column3.FillWeight = 110F;
-            this.Column3.HeaderText = "Преподаватель";
-            this.Column3.Name = "Column3";
-            this.Column3.Width = 120;
+            this.TeachersColumn.FillWeight = 110F;
+            this.TeachersColumn.HeaderText = "Преподаватель";
+            this.TeachersColumn.Name = "TeachersColumn";
+            this.TeachersColumn.Width = 120;
             // 
-            // Column9
+            // TColumn
             // 
-            this.Column9.HeaderText = "";
-            this.Column9.MinimumWidth = 25;
-            this.Column9.Name = "Column9";
-            this.Column9.Width = 25;
+            this.TColumn.HeaderText = "";
+            this.TColumn.MinimumWidth = 25;
+            this.TColumn.Name = "TColumn";
+            this.TColumn.Width = 25;
             // 
-            // Column4
+            // GroupsColumn
             // 
-            this.Column4.FillWeight = 110F;
-            this.Column4.HeaderText = "Список групп";
-            this.Column4.Name = "Column4";
-            this.Column4.Width = 120;
+            this.GroupsColumn.FillWeight = 110F;
+            this.GroupsColumn.HeaderText = "Список групп";
+            this.GroupsColumn.Name = "GroupsColumn";
+            this.GroupsColumn.Width = 120;
             // 
-            // Column10
+            // GColumn
             // 
-            this.Column10.HeaderText = " ";
-            this.Column10.MinimumWidth = 25;
-            this.Column10.Name = "Column10";
-            this.Column10.Width = 25;
+            this.GColumn.HeaderText = " ";
+            this.GColumn.MinimumWidth = 25;
+            this.GColumn.Name = "GColumn";
+            this.GColumn.Width = 25;
             // 
-            // Column5
+            // AuditoriesColumn
             // 
-            this.Column5.FillWeight = 110F;
-            this.Column5.HeaderText = "Список аудиторий";
-            this.Column5.Name = "Column5";
-            this.Column5.Width = 120;
+            this.AuditoriesColumn.FillWeight = 110F;
+            this.AuditoriesColumn.HeaderText = "Список аудиторий";
+            this.AuditoriesColumn.Name = "AuditoriesColumn";
+            this.AuditoriesColumn.Width = 120;
             // 
-            // Column11
+            // AColumn
             // 
-            this.Column11.HeaderText = " ";
-            this.Column11.MinimumWidth = 25;
-            this.Column11.Name = "Column11";
-            this.Column11.Width = 25;
+            this.AColumn.HeaderText = " ";
+            this.AColumn.MinimumWidth = 25;
+            this.AColumn.Name = "AColumn";
+            this.AColumn.Width = 25;
             // 
-            // Column6
+            // DisciplineColumn
             // 
-            this.Column6.FillWeight = 110F;
-            this.Column6.HeaderText = "Название дисциплин";
-            this.Column6.Name = "Column6";
-            this.Column6.Width = 120;
+            this.DisciplineColumn.FillWeight = 110F;
+            this.DisciplineColumn.HeaderText = "Название дисциплин";
+            this.DisciplineColumn.Name = "DisciplineColumn";
+            this.DisciplineColumn.Width = 120;
             // 
-            // Column8
+            // OnlineColumn
             // 
-            this.Column8.FillWeight = 110F;
-            this.Column8.HeaderText = "Занатие онлайн";
-            this.Column8.Name = "Column8";
-            this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Column8.Width = 120;
+            this.OnlineColumn.FillWeight = 110F;
+            this.OnlineColumn.HeaderText = "Занатие онлайн";
+            this.OnlineColumn.Name = "OnlineColumn";
+            this.OnlineColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.OnlineColumn.Width = 120;
             // 
             // Form1
             // 
@@ -172,10 +172,10 @@ namespace WindowsFormsApp2
             this.ClientSize = new System.Drawing.Size(1129, 418);
             this.Controls.Add(this.Open);
             this.Controls.Add(this.Save);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.InformationDGV);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,17 +183,17 @@ namespace WindowsFormsApp2
         #endregion
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Open;
-        public System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewComboBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewButtonColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewButtonColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewButtonColumn Column11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column8;
+        public System.Windows.Forms.DataGridView InformationDGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn NtColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeachersColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn TColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupsColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn GColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AuditoriesColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn AColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisciplineColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
     }
 }
 

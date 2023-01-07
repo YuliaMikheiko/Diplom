@@ -21,14 +21,14 @@ namespace WindowsFormsApp2
         public ModalWindows(int type, Form1 f1, int row)
         {
             InitializeComponent();
+
             this.type = type;
             data = f1.data;
             this.f1 = f1;
             this.row = row;
+
             if (type == 1)
-            {
                 ReadTeachers();
-            }
             else if (type == 2)
                 ReadGroups();
             else
@@ -137,13 +137,13 @@ namespace WindowsFormsApp2
                     {
                         value += l + " ";
                     }
-                    f1.dataGridView1.Rows[row].Cells[2].Value = value;
+                    f1.InformationDGV.Rows[row].Cells[2].Value = value;
                 }
                 else
                 {
                     Array.Clear(data.nagr[row].teachers, 0, data.nagr[row].teachers.Length);
                     var value = "";
-                    f1.dataGridView1.Rows[row].Cells[2].Value = value;
+                    f1.InformationDGV.Rows[row].Cells[2].Value = value;
                 }
             }
 
@@ -171,13 +171,13 @@ namespace WindowsFormsApp2
                     {
                         value += l + " ";
                     }
-                    f1.dataGridView1.Rows[row].Cells[4].Value = value;
+                    f1.InformationDGV.Rows[row].Cells[4].Value = value;
                 }
                 else
                 {
                     Array.Clear(data.nagr[row].sub_groups, 0, data.nagr[row].sub_groups.Length);
                     var value = "";
-                    f1.dataGridView1.Rows[row].Cells[4].Value = value;
+                    f1.InformationDGV.Rows[row].Cells[4].Value = value;
                 }
             }
 
@@ -204,16 +204,15 @@ namespace WindowsFormsApp2
                     {
                         value += l.ToString() + " ";
                     }
-                    f1.dataGridView1.Rows[row].Cells[6].Value = value;
+                    f1.InformationDGV.Rows[row].Cells[6].Value = value;
                 }
                 else
                 {
                     Array.Clear(data.nagr[row].auds, 0, data.nagr[row].auds.Length);
-                    var value = " ";
-                    f1.dataGridView1.Rows[row].Cells[6].Value = value;
+                    var value = "";
+                    f1.InformationDGV.Rows[row].Cells[6].Value = value;
                 }
             }
-
             this.Hide();
         }
     }
