@@ -141,6 +141,7 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
+                    Array.Clear(data.nagr[row].teachers, 0, data.nagr[row].teachers.Length);
                     var value = "";
                     f1.dataGridView1.Rows[row].Cells[2].Value = value;
                 }
@@ -174,6 +175,7 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
+                    Array.Clear(data.nagr[row].sub_groups, 0, data.nagr[row].sub_groups.Length);
                     var value = "";
                     f1.dataGridView1.Rows[row].Cells[4].Value = value;
                 }
@@ -206,7 +208,8 @@ namespace WindowsFormsApp2
                 }
                 else
                 {
-                    var value = "";
+                    Array.Clear(data.nagr[row].auds, 0, data.nagr[row].auds.Length);
+                    var value = " ";
                     f1.dataGridView1.Rows[row].Cells[6].Value = value;
                 }
             }

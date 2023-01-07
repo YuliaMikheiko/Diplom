@@ -57,7 +57,7 @@ namespace WindowsFormsApp2
                             dataGridView1.Rows[i].Cells[4].Value += groups.Value.title + " ";
                     }
                 }
-
+               // int n = nagr[i].auds.Length;
                 for (int k = 0; k < nagr[i].auds.Length; k++)
                 {
                     foreach (var auditori in data.auditories)
@@ -100,54 +100,54 @@ namespace WindowsFormsApp2
                     else
                         nagr[i].nt = 3;
 
-                    if (dataGridView1.Rows[i].Cells[2].Value != null)
-                    {
-                        for (int j = 0; j < dataGridView1.Rows[i].Cells[2].Value.ToString().Split().Length; j++)
-                        {
-                            if (dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j] != "")
-                            {
-                                foreach (var teacher in data.teachers)
-                                {
-                                    if (dataGridView1.Rows[i].Cells[2].Value.Equals(teacher.Value.name))
-                                        nagr[i].teachers[j] = teacher.Value.id;
-                                }
-                            }
-                            else break;
-                        }
-                    }
+                    //if (dataGridView1.Rows[i].Cells[2].Value != null)
+                    //{
+                    //    for (int j = 0; j < dataGridView1.Rows[i].Cells[2].Value.ToString().Split().Length; j++)
+                    //    {
+                    //        if (dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j] != "")
+                    //        {
+                    //            foreach (var teacher in data.teachers)
+                    //            {
+                    //                if (dataGridView1.Rows[i].Cells[2].Value.Equals(teacher.Value.name))
+                    //                    nagr[i].teachers[j] = teacher.Value.id;
+                    //            }
+                    //        }
+                    //        else break;
+                    //    }
+                    //}
 
 
-                    if (dataGridView1.Rows[i].Cells[4].Value != null)
-                    {
-                        for (int j = 0; j < dataGridView1.Rows[i].Cells[4].Value.ToString().Split().Length; j++)
-                        {
-                            if (dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j] != "")
-                            {
-                                foreach (var group in data.sub_groups_info)
-                                {
-                                    if (dataGridView1.Rows[i].Cells[4].Value.Equals(group.Value.title))
-                                        nagr[i].sub_groups[j] = group.Value.id;
-                                }
-                            }
-                            else break;
-                        }
-                    }
+                    //if (dataGridView1.Rows[i].Cells[4].Value != null)
+                    //{
+                    //    for (int j = 0; j < dataGridView1.Rows[i].Cells[4].Value.ToString().Split().Length; j++)
+                    //    {
+                    //        if (dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j] != "")
+                    //        {
+                    //            foreach (var group in data.sub_groups_info)
+                    //            {
+                    //                if (dataGridView1.Rows[i].Cells[4].Value.Equals(group.Value.title))
+                    //                    nagr[i].sub_groups[j] = group.Value.id;
+                    //            }
+                    //        }
+                    //        else break;
+                    //    }
+                    //}
 
-                    if (dataGridView1.Rows[i].Cells[6].Value != null)
-                    {
-                        for (int j = 0; j < dataGridView1.Rows[i].Cells[6].Value.ToString().Split().Length; j++)
-                        {
-                            if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j] != "")
-                            {
-                                foreach (var auditori in data.auditories)
-                                {
-                                    if (dataGridView1.Rows[i].Cells[6].Value.Equals(auditori.Value.title))
-                                        nagr[i].auds[j] = auditori.Value.id;
-                                }
-                            }
-                            else break;
-                        }
-                    }
+                    //if (dataGridView1.Rows[i].Cells[6].Value != null)
+                    //{
+                    //    for (int j = 0; j < dataGridView1.Rows[i].Cells[6].Value.ToString().Split().Length; j++)
+                    //    {
+                    //         if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j] == "")
+                    //        {
+                    //            foreach (var auditori in data.auditories)
+                    //            {
+                    //                if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j].Equals(auditori.Value.title))
+                    //                    nagr[i].auds[j] = auditori.Value.id;
+                    //            }
+                    //        }
+                    //       // else break;
+                    //    }
+                    //}
 
                     nagr[i].discipline = (string)dataGridView1.Rows[i].Cells[8].Value;
                    

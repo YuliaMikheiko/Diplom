@@ -64,15 +64,15 @@ namespace WindowsFormsApp2
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(918, 418);
+            this.dataGridView1.Size = new System.Drawing.Size(970, 418);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Save
             // 
-            this.Save.Location = new System.Drawing.Point(972, 130);
+            this.Save.Location = new System.Drawing.Point(998, 383);
             this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.Size = new System.Drawing.Size(119, 23);
             this.Save.TabIndex = 1;
             this.Save.Text = "Сохранить ";
             this.Save.UseVisualStyleBackColor = true;
@@ -80,9 +80,9 @@ namespace WindowsFormsApp2
             // 
             // Open
             // 
-            this.Open.Location = new System.Drawing.Point(972, 62);
+            this.Open.Location = new System.Drawing.Point(998, 344);
             this.Open.Name = "Open";
-            this.Open.Size = new System.Drawing.Size(75, 23);
+            this.Open.Size = new System.Drawing.Size(119, 23);
             this.Open.TabIndex = 2;
             this.Open.Text = "Открыть ";
             this.Open.UseVisualStyleBackColor = true;
@@ -92,9 +92,11 @@ namespace WindowsFormsApp2
             // 
             this.Column1.HeaderText = "Количество часов";
             this.Column1.Name = "Column1";
+            this.Column1.Width = 120;
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 110F;
             this.Column2.HeaderText = "Тип занятия";
             this.Column2.Items.AddRange(new object[] {
             "Лекционное занятие",
@@ -103,11 +105,14 @@ namespace WindowsFormsApp2
             this.Column2.Name = "Column2";
             this.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column2.Width = 120;
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 110F;
             this.Column3.HeaderText = "Преподаватель";
             this.Column3.Name = "Column3";
+            this.Column3.Width = 120;
             // 
             // Column9
             // 
@@ -118,8 +123,10 @@ namespace WindowsFormsApp2
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 110F;
             this.Column4.HeaderText = "Список групп";
             this.Column4.Name = "Column4";
+            this.Column4.Width = 120;
             // 
             // Column10
             // 
@@ -130,8 +137,10 @@ namespace WindowsFormsApp2
             // 
             // Column5
             // 
+            this.Column5.FillWeight = 110F;
             this.Column5.HeaderText = "Список аудиторий";
             this.Column5.Name = "Column5";
+            this.Column5.Width = 120;
             // 
             // Column11
             // 
@@ -142,15 +151,19 @@ namespace WindowsFormsApp2
             // 
             // Column6
             // 
+            this.Column6.FillWeight = 110F;
             this.Column6.HeaderText = "Название дисциплин";
             this.Column6.Name = "Column6";
+            this.Column6.Width = 120;
             // 
             // Column8
             // 
+            this.Column8.FillWeight = 110F;
             this.Column8.HeaderText = "Занатие онлайн";
             this.Column8.Name = "Column8";
             this.Column8.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Column8.Width = 120;
             // 
             // Form1
             // 
