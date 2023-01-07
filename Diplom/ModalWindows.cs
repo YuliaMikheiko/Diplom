@@ -116,6 +116,7 @@ namespace WindowsFormsApp2
             if (type == 1)
             {
                 List<int?> list = new List<int?>();
+                List<string> list1 = new List<string>();
                 foreach (DataGridViewRow rows in TeachersDGV.Rows)
                 {
                     if (rows.Cells[0].Value != null)
@@ -123,18 +124,24 @@ namespace WindowsFormsApp2
                         if ((bool)rows.Cells[0].Value)
                         {
                             list.Add((int)rows.Cells[1].Value);
+                            list1.Add(rows.Cells[2].Value.ToString());
                         }
                     }
-                    
                 }
-                if(list.Count > 0)
+                if (list.Count > 0)
                 {
                     data.nagr[row].teachers = list.ToArray();
+
                     var value = "";
-                    foreach(var l in list)
+                    foreach (var l in list1)
                     {
-                        value += l.ToString() + " ";
+                        value += l + " ";
                     }
+                    f1.dataGridView1.Rows[row].Cells[2].Value = value;
+                }
+                else
+                {
+                    var value = "";
                     f1.dataGridView1.Rows[row].Cells[2].Value = value;
                 }
             }
@@ -142,6 +149,7 @@ namespace WindowsFormsApp2
             if (type == 2)
             {
                 List<int> list = new List<int>();
+                List<string> list1 = new List<string>();
                 foreach (DataGridViewRow rows in GroupsDGV.Rows)
                 {
                     if (rows.Cells[0].Value != null)
@@ -149,6 +157,7 @@ namespace WindowsFormsApp2
                         if ((bool)rows.Cells[0].Value)
                         {
                             list.Add((int)rows.Cells[1].Value);
+                            list1.Add((string)rows.Cells[2].Value);
                         }
                     }
 
@@ -157,10 +166,15 @@ namespace WindowsFormsApp2
                 {
                     data.nagr[row].sub_groups = list.ToArray();
                     var value = "";
-                    foreach (var l in list)
+                    foreach (var l in list1)
                     {
-                        value += l.ToString() + " ";
+                        value += l + " ";
                     }
+                    f1.dataGridView1.Rows[row].Cells[4].Value = value;
+                }
+                else
+                {
+                    var value = "";
                     f1.dataGridView1.Rows[row].Cells[4].Value = value;
                 }
             }
@@ -168,6 +182,7 @@ namespace WindowsFormsApp2
             if (type == 3)
             {
                 List<int?> list = new List<int?>();
+                List<string> list1 = new List<string>();
                 foreach (DataGridViewRow rows in AuditorysDVG.Rows)
                 {
                     if (rows.Cells[0].Value != null)
@@ -175,6 +190,7 @@ namespace WindowsFormsApp2
                         if ((bool)rows.Cells[0].Value)
                         {
                             list.Add((int)rows.Cells[1].Value);
+                            list1.Add((string)rows.Cells[2].Value);
                         }
                     }
                 }
@@ -182,10 +198,15 @@ namespace WindowsFormsApp2
                 {
                     data.nagr[row].auds = list.ToArray();
                     var value = "";
-                    foreach (var l in list)
+                    foreach (var l in list1)
                     {
                         value += l.ToString() + " ";
                     }
+                    f1.dataGridView1.Rows[row].Cells[6].Value = value;
+                }
+                else
+                {
+                    var value = "";
                     f1.dataGridView1.Rows[row].Cells[6].Value = value;
                 }
             }

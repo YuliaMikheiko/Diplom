@@ -22,12 +22,12 @@ namespace WindowsFormsApp2
             InitializeComponent();
         }
 
-        private void ReadData(string path)
+        private void ReadData()
         {
             data = JsonSerializer.Deserialize<Data>(File.ReadAllText(path));
             var nagr = data.nagr;
             dataGridView1.RowCount = nagr.Length;
-            dataGridView1.ColumnCount = 11;
+            dataGridView1.ColumnCount = 10;
 
             for (int i = 0; i < nagr.Length; i++)
             {
@@ -41,22 +41,38 @@ namespace WindowsFormsApp2
                     dataGridView1.Rows[i].Cells[1].Value = Column2.Items[2];
 
                 for (int k = 0; k < nagr[i].teachers.Length; k++)
-                    dataGridView1.Rows[i].Cells[2].Value += nagr[i].teachers[k].ToString() + " ";
-                
+                {
+                    foreach (var teacher in data.teachers)
+                    {
+                        if (nagr[i].teachers[k] == teacher.Value.id)
+                            dataGridView1.Rows[i].Cells[2].Value += teacher.Value.name.ToString() + " ";
+                    }
+                }
+
                 for (int k = 0; k < nagr[i].sub_groups.Length; k++)
-                    dataGridView1.Rows[i].Cells[4].Value += nagr[i].sub_groups[k].ToString() + " ";
-                
+                {
+                    foreach (var groups in data.sub_groups_info)
+                    {
+                        if (nagr[i].sub_groups[k] == groups.Value.id)
+                            dataGridView1.Rows[i].Cells[4].Value += groups.Value.title + " ";
+                    }
+                }
+
                 for (int k = 0; k < nagr[i].auds.Length; k++)
-                    dataGridView1.Rows[i].Cells[6].Value += nagr[i].auds[k].ToString() + " ";
+                {
+                    foreach (var auditori in data.auditories)
+                    {
+                        if (nagr[i].auds[k] == auditori.Value.id)
+                            dataGridView1.Rows[i].Cells[6].Value += auditori.Value.title + " ";
+                    }
+                }
 
                 dataGridView1.Rows[i].Cells[8].Value = nagr[i].discipline.ToString();
-                
-                dataGridView1.Rows[i].Cells[9].Value = nagr[i].verbose_konts.ToString();
 
                 if (nagr[i].is_online == 1)
-                    dataGridView1.Rows[i].Cells[10].Value = true;
+                    dataGridView1.Rows[i].Cells[9].Value = true;
                 else
-                    dataGridView1.Rows[i].Cells[10].Value = false;
+                    dataGridView1.Rows[i].Cells[9].Value = false;                
             }
         }
 
@@ -84,32 +100,58 @@ namespace WindowsFormsApp2
                     else
                         nagr[i].nt = 3;
 
-                    for (int j = 0; j < dataGridView1.Rows[i].Cells[2].Value.ToString().Split().Length-1; j++)
+                    if (dataGridView1.Rows[i].Cells[2].Value != null)
                     {
-                        if (dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j] != "")
-                            nagr[i].teachers[j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j]);
-                        else break;
+                        for (int j = 0; j < dataGridView1.Rows[i].Cells[2].Value.ToString().Split().Length; j++)
+                        {
+                            if (dataGridView1.Rows[i].Cells[2].Value.ToString().Split()[j] != "")
+                            {
+                                foreach (var teacher in data.teachers)
+                                {
+                                    if (dataGridView1.Rows[i].Cells[2].Value.Equals(teacher.Value.name))
+                                        nagr[i].teachers[j] = teacher.Value.id;
+                                }
+                            }
+                            else break;
+                        }
                     }
 
-                    for (int j = 0; j < dataGridView1.Rows[i].Cells[4].Value.ToString().Split().Length - 1; j++)
+
+                    if (dataGridView1.Rows[i].Cells[4].Value != null)
                     {
-                        if (dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j] != "")
-                            nagr[i].sub_groups[j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j]);
-                        else break;
+                        for (int j = 0; j < dataGridView1.Rows[i].Cells[4].Value.ToString().Split().Length; j++)
+                        {
+                            if (dataGridView1.Rows[i].Cells[4].Value.ToString().Split()[j] != "")
+                            {
+                                foreach (var group in data.sub_groups_info)
+                                {
+                                    if (dataGridView1.Rows[i].Cells[4].Value.Equals(group.Value.title))
+                                        nagr[i].sub_groups[j] = group.Value.id;
+                                }
+                            }
+                            else break;
+                        }
                     }
 
-                    for (int j = 0; j < dataGridView1.Rows[i].Cells[6].Value.ToString().Split().Length - 1; j++)
+                    if (dataGridView1.Rows[i].Cells[6].Value != null)
                     {
-                        if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j] != "")
-                            nagr[i].auds[j] = Convert.ToInt32(dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j]);
-                        else break;
+                        for (int j = 0; j < dataGridView1.Rows[i].Cells[6].Value.ToString().Split().Length; j++)
+                        {
+                            if (dataGridView1.Rows[i].Cells[6].Value.ToString().Split()[j] != "")
+                            {
+                                foreach (var auditori in data.auditories)
+                                {
+                                    if (dataGridView1.Rows[i].Cells[6].Value.Equals(auditori.Value.title))
+                                        nagr[i].auds[j] = auditori.Value.id;
+                                }
+                            }
+                            else break;
+                        }
                     }
 
                     nagr[i].discipline = (string)dataGridView1.Rows[i].Cells[8].Value;
                    
-                    nagr[i].verbose_konts = (string)dataGridView1.Rows[i].Cells[9].Value;
-
-                    if (dataGridView1.Rows[i].Cells[10].Value.Equals(true))
+                    if (dataGridView1.Rows[i].Cells[9].Value.Equals(true))
                         nagr[i].is_online = 1;
                     else
                         nagr[i].is_online = 0;
@@ -169,7 +211,7 @@ namespace WindowsFormsApp2
                 return;
             path = openFileDialog.FileName;
 
-            ReadData(path);
+            ReadData();
         }
 
         private void Save_Click(object sender, EventArgs e)
