@@ -112,6 +112,7 @@ namespace WindowsFormsApp2
             this.TeachersColumn.FillWeight = 110F;
             this.TeachersColumn.HeaderText = "Преподаватель";
             this.TeachersColumn.Name = "TeachersColumn";
+            this.TeachersColumn.ReadOnly = true;
             this.TeachersColumn.Width = 120;
             // 
             // TColumn
@@ -119,6 +120,7 @@ namespace WindowsFormsApp2
             this.TColumn.HeaderText = "";
             this.TColumn.MinimumWidth = 25;
             this.TColumn.Name = "TColumn";
+            this.TColumn.ReadOnly = true;
             this.TColumn.Width = 25;
             // 
             // GroupsColumn
@@ -126,6 +128,7 @@ namespace WindowsFormsApp2
             this.GroupsColumn.FillWeight = 110F;
             this.GroupsColumn.HeaderText = "Список групп";
             this.GroupsColumn.Name = "GroupsColumn";
+            this.GroupsColumn.ReadOnly = true;
             this.GroupsColumn.Width = 120;
             // 
             // GColumn
@@ -133,6 +136,7 @@ namespace WindowsFormsApp2
             this.GColumn.HeaderText = " ";
             this.GColumn.MinimumWidth = 25;
             this.GColumn.Name = "GColumn";
+            this.GColumn.ReadOnly = true;
             this.GColumn.Width = 25;
             // 
             // AuditoriesColumn
@@ -140,6 +144,7 @@ namespace WindowsFormsApp2
             this.AuditoriesColumn.FillWeight = 110F;
             this.AuditoriesColumn.HeaderText = "Список аудиторий";
             this.AuditoriesColumn.Name = "AuditoriesColumn";
+            this.AuditoriesColumn.ReadOnly = true;
             this.AuditoriesColumn.Width = 120;
             // 
             // AColumn
@@ -147,6 +152,7 @@ namespace WindowsFormsApp2
             this.AColumn.HeaderText = " ";
             this.AColumn.MinimumWidth = 25;
             this.AColumn.Name = "AColumn";
+            this.AColumn.ReadOnly = true;
             this.AColumn.Width = 25;
             // 
             // DisciplineColumn
