@@ -15,19 +15,24 @@ namespace WindowsFormsApp2
 {
     public partial class Form1 : Form
     {
+       // private ScheduleDataModel activeScheduleDataModel;
         string path;
         public Data data { get; set; }
         public Form1()
         {
+            path = Properties.Settings.Default.path.ToString();
             InitializeComponent();
+            ReadData();
         }
 
         private void ReadData()
         {
+           // activeScheduleDataModel = new JsonScheduleDataModel(path);
             data = JsonSerializer.Deserialize<Data>(File.ReadAllText(path));
             var nagr = data.nagr;
             InformationDGV.RowCount = nagr.Length;
             InformationDGV.ColumnCount = 10;
+            InformationDGV.Rows[0].Cells[0].Selected = false;
 
             for (int i = 0; i < nagr.Length; i++)
             {
@@ -222,18 +227,20 @@ namespace WindowsFormsApp2
             }
         }
 
-        private void Open_Click(object sender, EventArgs e)
+        private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             InformationDGV.Rows.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
             path = openFileDialog.FileName;
+            Properties.Settings.Default.path = path;
+            Properties.Settings.Default.Save();
 
             ReadData();
         }
 
-        private void Save_Click(object sender, EventArgs e)
+        private void SaveMenuItem_Click(object sender, EventArgs e)
         {
             SaveData();
         }

@@ -29,9 +29,12 @@ namespace WindowsFormsApp2
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
-            this.Save = new System.Windows.Forms.Button();
-            this.Open = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +46,7 @@ namespace WindowsFormsApp2
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // InformationDGV
@@ -61,41 +65,53 @@ namespace WindowsFormsApp2
             this.AColumn,
             this.DisciplineColumn,
             this.OnlineColumn});
-            this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Left;
-            this.InformationDGV.Location = new System.Drawing.Point(0, 0);
+            this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
+            this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.InformationDGV.Location = new System.Drawing.Point(0, 24);
             this.InformationDGV.Name = "InformationDGV";
-            this.InformationDGV.Size = new System.Drawing.Size(970, 418);
+            this.InformationDGV.Size = new System.Drawing.Size(1129, 394);
             this.InformationDGV.TabIndex = 0;
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Save
+            // menuStrip1
             // 
-            this.Save.Location = new System.Drawing.Point(998, 383);
-            this.Save.Name = "Save";
-            this.Save.Size = new System.Drawing.Size(119, 23);
-            this.Save.TabIndex = 1;
-            this.Save.Text = "Сохранить ";
-            this.Save.UseVisualStyleBackColor = true;
-            this.Save.Click += new System.EventHandler(this.Save_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuItem,
+            this.SaveMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1129, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // Open
+            // OpenMenuItem
             // 
-            this.Open.Location = new System.Drawing.Point(998, 344);
-            this.Open.Name = "Open";
-            this.Open.Size = new System.Drawing.Size(119, 23);
-            this.Open.TabIndex = 2;
-            this.Open.Text = "Открыть ";
-            this.Open.UseVisualStyleBackColor = true;
-            this.Open.Click += new System.EventHandler(this.Open_Click);
+            this.OpenMenuItem.Name = "OpenMenuItem";
+            this.OpenMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.OpenMenuItem.Text = "Открыть";
+            this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.SaveMenuItem.Text = "Сохранить";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // HColumn
             // 
+            this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.HColumn.HeaderText = "Количество часов";
             this.HColumn.Name = "HColumn";
-            this.HColumn.Width = 120;
             // 
             // NtColumn
             // 
+            this.NtColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NtColumn.FillWeight = 110F;
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Items.AddRange(new object[] {
@@ -105,15 +121,14 @@ namespace WindowsFormsApp2
             this.NtColumn.Name = "NtColumn";
             this.NtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.NtColumn.Width = 120;
             // 
             // TeachersColumn
             // 
+            this.TeachersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.TeachersColumn.FillWeight = 110F;
             this.TeachersColumn.HeaderText = "Преподаватель";
             this.TeachersColumn.Name = "TeachersColumn";
             this.TeachersColumn.ReadOnly = true;
-            this.TeachersColumn.Width = 120;
             // 
             // TColumn
             // 
@@ -125,11 +140,11 @@ namespace WindowsFormsApp2
             // 
             // GroupsColumn
             // 
+            this.GroupsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.GroupsColumn.FillWeight = 110F;
             this.GroupsColumn.HeaderText = "Список групп";
             this.GroupsColumn.Name = "GroupsColumn";
             this.GroupsColumn.ReadOnly = true;
-            this.GroupsColumn.Width = 120;
             // 
             // GColumn
             // 
@@ -141,11 +156,11 @@ namespace WindowsFormsApp2
             // 
             // AuditoriesColumn
             // 
+            this.AuditoriesColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.AuditoriesColumn.FillWeight = 110F;
             this.AuditoriesColumn.HeaderText = "Список аудиторий";
             this.AuditoriesColumn.Name = "AuditoriesColumn";
             this.AuditoriesColumn.ReadOnly = true;
-            this.AuditoriesColumn.Width = 120;
             // 
             // AColumn
             // 
@@ -157,39 +172,44 @@ namespace WindowsFormsApp2
             // 
             // DisciplineColumn
             // 
+            this.DisciplineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.DisciplineColumn.FillWeight = 110F;
             this.DisciplineColumn.HeaderText = "Название дисциплин";
             this.DisciplineColumn.Name = "DisciplineColumn";
-            this.DisciplineColumn.Width = 120;
             // 
             // OnlineColumn
             // 
+            this.OnlineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.OnlineColumn.FillWeight = 110F;
             this.OnlineColumn.HeaderText = "Занятие онлайн";
             this.OnlineColumn.Name = "OnlineColumn";
             this.OnlineColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.OnlineColumn.Width = 120;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1129, 418);
-            this.Controls.Add(this.Open);
-            this.Controls.Add(this.Save);
             this.Controls.Add(this.InformationDGV);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Save;
-        private System.Windows.Forms.Button Open;
         public System.Windows.Forms.DataGridView InformationDGV;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.DataGridViewTextBoxColumn HColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn NtColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeachersColumn;

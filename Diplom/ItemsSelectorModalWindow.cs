@@ -21,6 +21,7 @@ namespace WindowsFormsApp2
         int type;
         Data data;
         int row;
+
         public ItemsSelectorModalWindow(int type, int row, Data data)
         {
             InitializeComponent();
@@ -38,23 +39,19 @@ namespace WindowsFormsApp2
 
         private void ReadTeachers()
         {
-            TeachersDGV.Visible = true;
-            GroupsDGV.Visible = false;
-            AuditorysDVG.Visible = false;
-
-            TeachersDGV.RowCount = data.teachers.Count;
-            TeachersDGV.ColumnCount = 3;
+            ItemsDGV.RowCount = data.teachers.Count;
+            ItemsDGV.ColumnCount = 3;
 
             var i = 0;
             foreach(var teacher in data.teachers)
             { 
-                TeachersDGV.Rows[i].Cells[1].Value = teacher.Value.id;
-                TeachersDGV.Rows[i].Cells[2].Value = teacher.Value.name;
+                ItemsDGV.Rows[i].Cells[1].Value = teacher.Value.id;
+                ItemsDGV.Rows[i].Cells[2].Value = teacher.Value.name;
                 for(int j = 0; j < data.nagr[row].teachers.Length; j++)
                 {
                     if (data.nagr[row].teachers[j] == teacher.Value.id)
                     {
-                        TeachersDGV.Rows[i].Cells[0].Value = true;
+                        ItemsDGV.Rows[i].Cells[0].Value = true;
                     }
                 }
                 i++;
@@ -64,23 +61,19 @@ namespace WindowsFormsApp2
 
         private void ReadGroups()
         {
-            TeachersDGV.Visible = false;
-            GroupsDGV.Visible = true;
-            AuditorysDVG.Visible = false;
-
-            GroupsDGV.RowCount = data.sub_groups_info.Count;
-            GroupsDGV.ColumnCount = 3;
+            ItemsDGV.RowCount = data.sub_groups_info.Count;
+            ItemsDGV.ColumnCount = 3;
 
             var i = 0;
             foreach (var groups in data.sub_groups_info)
             {
-                GroupsDGV.Rows[i].Cells[1].Value = groups.Value.id;
-                GroupsDGV.Rows[i].Cells[2].Value = groups.Value.title;
+                ItemsDGV.Rows[i].Cells[1].Value = groups.Value.id;
+                ItemsDGV.Rows[i].Cells[2].Value = groups.Value.title;
                 for (int j = 0; j < data.nagr[row].sub_groups.Length; j++)
                 {
                     if (data.nagr[row].sub_groups[j] == groups.Value.id)
                     {
-                        GroupsDGV.Rows[i].Cells[0].Value = true;
+                        ItemsDGV.Rows[i].Cells[0].Value = true;
                     }
                 }
                 i++;
@@ -89,23 +82,19 @@ namespace WindowsFormsApp2
 
         private void ReadAuditorys()
         {
-            TeachersDGV.Visible = false;
-            GroupsDGV.Visible = false;
-            AuditorysDVG.Visible = true;
-
-            AuditorysDVG.RowCount = data.auditories.Count;
-            AuditorysDVG.ColumnCount = 3;
+            ItemsDGV.RowCount = data.auditories.Count;
+            ItemsDGV.ColumnCount = 3;
 
             var i = 0;
             foreach (var auditorys in data.auditories)
             {
-                AuditorysDVG.Rows[i].Cells[1].Value = auditorys.Value.id;
-                AuditorysDVG.Rows[i].Cells[2].Value = auditorys.Value.title;
+                ItemsDGV.Rows[i].Cells[1].Value = auditorys.Value.id;
+                ItemsDGV.Rows[i].Cells[2].Value = auditorys.Value.title;
                 for (int j = 0; j < data.nagr[row].auds.Length; j++)
                 {
                     if (data.nagr[row].auds[j] == auditorys.Value.id)
                     {
-                        AuditorysDVG.Rows[i].Cells[0].Value = true;
+                        ItemsDGV.Rows[i].Cells[0].Value = true;
                     }
                 }
                 i++;
@@ -118,7 +107,7 @@ namespace WindowsFormsApp2
             {
                 idsList = new List<int?>();
                 NameList = new List<string>();
-                foreach (DataGridViewRow rows in TeachersDGV.Rows)
+                foreach (DataGridViewRow rows in ItemsDGV.Rows)
                 {
                     if (rows.Cells[0].Value != null)
                     {
@@ -135,7 +124,7 @@ namespace WindowsFormsApp2
             {
                 idsList = new List<int?>();
                 TitleList = new List<string>();
-                foreach (DataGridViewRow rows in GroupsDGV.Rows)
+                foreach (DataGridViewRow rows in ItemsDGV.Rows)
                 {
                     if (rows.Cells[0].Value != null)
                     {
@@ -153,7 +142,7 @@ namespace WindowsFormsApp2
             {
                 idsList = new List<int?>();
                 TitleList = new List<string>();
-                foreach (DataGridViewRow rows in AuditorysDVG.Rows)
+                foreach (DataGridViewRow rows in ItemsDGV.Rows)
                 {
                     if (rows.Cells[0].Value != null)
                     {
