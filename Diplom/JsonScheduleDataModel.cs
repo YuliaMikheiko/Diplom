@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,12 @@ namespace WindowsFormsApp2
 {
     internal class JsonScheduleDataModel : ScheduleDataModel
     {
+        public ScheduleRow[] nagruzka;
+        public Dictionary<int, Teacher> teacher;
+        public Dictionary<int, Auditory> auditory;
+        public Dictionary<int, SubGroup> subGroup;
+
+
         string _filePath = "";
         public Data data { get; set; }
 
@@ -18,18 +26,42 @@ namespace WindowsFormsApp2
             this._filePath = filePath;
         }
 
-        public virtual void Load()
+        public override void Load() 
         {
             this.data = JsonSerializer.Deserialize<Data>(File.ReadAllText(this._filePath));
         }
 
 
-        public virtual void Save()
+        public override void Save()
         {
+            data.nagr = Form1.nagr;
             var jsonTextData = JsonSerializer.Serialize(data);
             File.WriteAllText(this._filePath, jsonTextData);
         }
 
-        // ну и все остальные методы переопределяешь чтобы они данные отдавали
+        public override Dictionary<int, Teacher> GetTeachers()
+        {
+            teacher = data.teachers;
+            return teacher;
+        }
+
+        public override Dictionary<int, Auditory> GetAuditories()
+        {
+            auditory = data.auditories;
+            return auditory;
+        }
+
+        public override Dictionary<int, SubGroup> GetGroups()
+        {
+            subGroup = data.sub_groups_info;
+            return subGroup;
+        }
+
+        public override ScheduleRow[] GetNagruzka()
+        {
+            nagruzka = data.nagr;
+
+            return nagruzka;
+        }
     }
 }

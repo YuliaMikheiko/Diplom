@@ -33,7 +33,7 @@ namespace WindowsFormsApp2
             throw new NotImplementedException();
         }
 
-        public virtual Dictionary<int, Group> GetGroups()
+        public virtual Dictionary<int, SubGroup> GetGroups()
         {
             throw new NotImplementedException();
         }
@@ -43,7 +43,4 @@ namespace WindowsFormsApp2
             throw new NotImplementedException();
         }
     }
-
-
-    
 }
