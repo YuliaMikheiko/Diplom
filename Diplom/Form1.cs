@@ -28,22 +28,20 @@ namespace WindowsFormsApp2
             InitializeComponent();
 
             DataGridViewColumn HColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn NtColumn = new DataGridViewComboBoxColumn();
+            DataGridViewColumn nTDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
             DataGridViewColumn TeachersColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn GroupsColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn AuditoriesColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn DisciplineColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn OnlineColumn = new DataGridViewCheckBoxColumn();
 
-
             HColumn.DataPropertyName = "H";
-            NtColumn.DataPropertyName = "NT";
+            nTDataGridViewTextBoxColumn.DataPropertyName = "NT";
             TeachersColumn.DataPropertyName = "Teachers";
             GroupsColumn.DataPropertyName = "Sub_groups";
             AuditoriesColumn.DataPropertyName = "Auds";
             DisciplineColumn.DataPropertyName = "Discipline";
             OnlineColumn.DataPropertyName = "Is_online";
-
 
             path = Properties.Settings.Default.path.ToString();
 
@@ -51,14 +49,14 @@ namespace WindowsFormsApp2
                 ReadData();
 
 
-            //NtColumn.DataSource = new List<KeyValuePair<int, string>>
-            //{
-            //    new KeyValuePair<int, string>(1, "Лекционное занятие"),
-            //    new KeyValuePair<int, string>(2, "Практическое занятие"),
-            //    new KeyValuePair<int, string>(3, "Лабораторное занятие"),
-            //};
-            NtColumn.DisplayMember = "Value";
-            NtColumn.ValueMember = "Key";
+            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).DataSource = new List<KeyValuePair<int, string>>
+            {
+                new KeyValuePair<int, string>(1, "Лекционное занятие"),
+                new KeyValuePair<int, string>(2, "Практическое занятие"),
+                new KeyValuePair<int, string>(3, "Лабораторное занятие"),
+            };
+            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).DisplayMember = "Value";
+            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).ValueMember = "Key";
 
         }
 
@@ -71,44 +69,44 @@ namespace WindowsFormsApp2
             DAuditories = activeScheduleDataModel.GetAuditories();
             DSub_groups = activeScheduleDataModel.GetGroups();
 
-            //InformationDGV.RowCount = nagr.Length;
-            //InformationDGV.ColumnCount = 10;
-            //InformationDGV.Rows[0].Cells[0].Selected = false;
-
-            for (int i = 0; i < nagr.Length; i++)
+            InformationDGV.DataSource = nagr.Select(x => new ScheduleRowDataGridRowItem
             {
-                InformationDGV.Rows[i].Cells[0].Value = nagr[i].h;
-
-                InformationDGV.Rows[i].Cells[1].Value = nagr[i].nt;
-
-                InformationDGV.Rows[i].Cells[2].Value = String.Join(
+                H = x.h,
+                //NT = x.nt,
+                Teachers = String.Join(
                 ", ",
-                nagr[i].teachers
-                .Where(x => x.HasValue && DTeachers.ContainsKey(x.Value))
-                .Select(x => DTeachers[x.Value].name)
-                );
+                x.teachers
+                .Where(y => y.HasValue && DTeachers.ContainsKey(y.Value))
+                .Select(y => DTeachers[y.Value].name)
+                ),
 
-                InformationDGV.Rows[i].Cells[4].Value = String.Join(
+                Sub_groups = String.Join(
                 ", ",
-                nagr[i].sub_groups
-                .Where(x => x.HasValue && DSub_groups.ContainsKey(x.Value))
-                .Select(x => DSub_groups[x.Value].title)
-                );
+                x.sub_groups
+                .Where(y => y.HasValue && DSub_groups.ContainsKey(y.Value))
+                .Select(y => DSub_groups[y.Value].title)
+                ),
 
-                InformationDGV.Rows[i].Cells[6].Value = String.Join(
+                Auds = String.Join(
                 ", ",
-                nagr[i].auds
-                .Where(x => x.HasValue && DAuditories.ContainsKey(x.Value))
-                .Select(x => DAuditories[x.Value].title)
-                );
+                x.auds
+                .Where(y => y.HasValue && DAuditories.ContainsKey(y.Value))
+                .Select(y => DAuditories[y.Value].title)
+                ),
 
-                InformationDGV.Rows[i].Cells[8].Value = nagr[i].discipline.ToString();
+                Discipline = x.discipline,
+                Is_online = x.is_online.Equals(1),
+            }).ToList();
 
-                if (nagr[i].is_online == 1)
-                    InformationDGV.Rows[i].Cells[9].Value = true;
-                else
-                    InformationDGV.Rows[i].Cells[9].Value = false;
-            }
+
+            //InformationDGV.Rows[i].Cells[1].Value = nagr[i].nt;
+
+
+
+            //if (nagr[i].is_online == 1)
+            //    InformationDGV.Rows[i].Cells[9].Value = true;
+            //else
+            //    InformationDGV.Rows[i].Cells[9].Value = false;
         }
 
         private void SaveData()
@@ -269,7 +267,7 @@ namespace WindowsFormsApp2
     public class ScheduleRowDataGridRowItem
     {
         public int H { get; set; }
-        public List<string> NT { get; set; }
+        public int NT { get; set; }
         public string Teachers { get; set; }
         public string Sub_groups { get; set; }
         public string Auds { get; set; }
