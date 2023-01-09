@@ -112,6 +112,7 @@
     <None Include="base_data.schjson" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RowCheckedItem.datasource" />
+    <None Include="Properties\DataSources\ScheduleRowDataGridRowItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

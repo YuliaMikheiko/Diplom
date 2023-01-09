@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
@@ -16,26 +17,46 @@ namespace WindowsFormsApp2
     public partial class Form1 : Form
     {
         private ScheduleDataModel activeScheduleDataModel;
-        private ScheduleRow scheduleRow;
         public ScheduleRow[] nagr;
         string path;
         Dictionary<int, Teacher> DTeachers;
         Dictionary<int, Auditory> DAuditories;
         Dictionary<int, SubGroup> DSub_groups;
+
         public Form1()
         {
+            InitializeComponent();
+
+            DataGridViewColumn HColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn NtColumn = new DataGridViewComboBoxColumn();
+            DataGridViewColumn TeachersColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn GroupsColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn AuditoriesColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn DisciplineColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn OnlineColumn = new DataGridViewCheckBoxColumn();
+
+
+            HColumn.DataPropertyName = "H";
+            NtColumn.DataPropertyName = "NT";
+            TeachersColumn.DataPropertyName = "Teachers";
+            GroupsColumn.DataPropertyName = "Sub_groups";
+            AuditoriesColumn.DataPropertyName = "Auds";
+            DisciplineColumn.DataPropertyName = "Discipline";
+            OnlineColumn.DataPropertyName = "Is_online";
+
 
             path = Properties.Settings.Default.path.ToString();
-            InitializeComponent();
-            if (path != null | path !="")
+
+            if (path != null | path != "")
                 ReadData();
 
-            NtColumn.DataSource = new List<KeyValuePair<int, string>>
-            {
-                new KeyValuePair<int, string>(1, "Лекционное занятие"),
-                new KeyValuePair<int, string>(2, "Практическое занятие"),
-                new KeyValuePair<int, string>(3, "Лабораторное занятие"),
-            };
+
+            //NtColumn.DataSource = new List<KeyValuePair<int, string>>
+            //{
+            //    new KeyValuePair<int, string>(1, "Лекционное занятие"),
+            //    new KeyValuePair<int, string>(2, "Практическое занятие"),
+            //    new KeyValuePair<int, string>(3, "Лабораторное занятие"),
+            //};
             NtColumn.DisplayMember = "Value";
             NtColumn.ValueMember = "Key";
 
@@ -44,16 +65,15 @@ namespace WindowsFormsApp2
         private void ReadData()
         {
             activeScheduleDataModel = new JsonScheduleDataModel(path);
-            scheduleRow = new ScheduleRow();
             activeScheduleDataModel.Load();
             nagr = activeScheduleDataModel.GetNagruzka();
             DTeachers = activeScheduleDataModel.GetTeachers();
             DAuditories = activeScheduleDataModel.GetAuditories();
             DSub_groups = activeScheduleDataModel.GetGroups();
 
-            InformationDGV.RowCount = nagr.Length;
-            InformationDGV.ColumnCount = 10;
-            InformationDGV.Rows[0].Cells[0].Selected = false;
+            //InformationDGV.RowCount = nagr.Length;
+            //InformationDGV.ColumnCount = 10;
+            //InformationDGV.Rows[0].Cells[0].Selected = false;
 
             for (int i = 0; i < nagr.Length; i++)
             {
@@ -244,5 +264,16 @@ namespace WindowsFormsApp2
         {
             SaveData();
         }
+    }
+
+    public class ScheduleRowDataGridRowItem
+    {
+        public int H { get; set; }
+        public List<string> NT { get; set; }
+        public string Teachers { get; set; }
+        public string Sub_groups { get; set; }
+        public string Auds { get; set; }
+        public string Discipline { get; set; }
+        public bool Is_online { get; set; }
     }
 }
