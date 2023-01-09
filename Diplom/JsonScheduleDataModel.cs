@@ -34,7 +34,8 @@ namespace WindowsFormsApp2
 
         public override void Save()
         {
-            data.nagr = Form1.nagr;
+            Form1 f1 = new Form1();
+            data.nagr = f1.nagr;
             var jsonTextData = JsonSerializer.Serialize(data);
             File.WriteAllText(this._filePath, jsonTextData);
         }

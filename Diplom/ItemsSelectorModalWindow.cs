@@ -14,23 +14,30 @@ namespace WindowsFormsApp2
 {
     public partial class ItemsSelectorModalWindow : Form
     {
+
         public List<int?> idsList;
         public List<string> TitleList;
-        private ScheduleDataModel scheduleDataModel;
-        int type;
-        ScheduleRow[] nagr;
-        int row;
+
+        ScheduleRow nagr;
+       // int row;
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        internal ItemsSelectorModalWindow(int type, int row, ScheduleRow[] nagr, ScheduleDataModel scheduleDataModel)
+        internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
-            this.scheduleDataModel = scheduleDataModel;
+            DataGridViewColumn CheckColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn IdColumn = new DataGridViewTextBoxColumn();
+            DataGridViewColumn NameColumn = new DataGridViewTextBoxColumn();
+
+            CheckColumn.DataPropertyName = "Checked";
+            IdColumn.DataPropertyName = "Key";
+            NameColumn.DataPropertyName = "Value";
+
+
             InitializeComponent();
             this.nagr = nagr;
-            this.type = type;
-            this.row = row;
+
             teachers = scheduleDataModel.GetTeachers();
             auditories = scheduleDataModel.GetAuditories();
             sub_groups_info = scheduleDataModel.GetGroups();
@@ -45,122 +52,62 @@ namespace WindowsFormsApp2
 
         private void ReadTeachers()
         {
-            ItemsDGV.RowCount = teachers.Count;
-            ItemsDGV.ColumnCount = 3;
-
-            var i = 0;
-            foreach(var teacher in teachers)
-            { 
-                ItemsDGV.Rows[i].Cells[1].Value = teacher.Value.id;
-                ItemsDGV.Rows[i].Cells[2].Value = teacher.Value.name;
-                for(int j = 0; j < nagr[row].teachers.Length; j++)
-                {
-                    if (nagr[row].teachers[j] == teacher.Value.id)
-                    {
-                        ItemsDGV.Rows[i].Cells[0].Value = true;
-                    }
-                }
-                i++;
-            }
-            
+            ItemsDGV.DataSource = teachers.Select(x => new RowCheckedItem
+            {
+                Key = x.Key,
+                Value = x.Value.name,
+                Checked = nagr.teachers.Contains(x.Key),
+            }).OrderByDescending(x =>x.Checked).ToList();
         }
 
         private void ReadGroups()
         {
-            ItemsDGV.RowCount = sub_groups_info.Count;
-            ItemsDGV.ColumnCount = 3;
-
-            var i = 0;
-            foreach (var groups in sub_groups_info)
+            ItemsDGV.DataSource = sub_groups_info.Select(x => new RowCheckedItem
             {
-                ItemsDGV.Rows[i].Cells[1].Value = groups.Value.id;
-                ItemsDGV.Rows[i].Cells[2].Value = groups.Value.title;
-                for (int j = 0; j < nagr[row].sub_groups.Length; j++)
-                {
-                    if (nagr[row].sub_groups[j] == groups.Value.id)
-                    {
-                        ItemsDGV.Rows[i].Cells[0].Value = true;
-                    }
-                }
-                i++;
-            }
+                Key = x.Key,
+                Value = x.Value.title,
+                Checked = nagr.sub_groups.Contains(x.Key),
+            }).OrderByDescending(x => x.Checked).ToList();
         }
 
         private void ReadAuditorys()
         {
-            ItemsDGV.RowCount = auditories.Count;
-            ItemsDGV.ColumnCount = 3;
-
-            var i = 0;
-            foreach (var auditorys in auditories)
+            ItemsDGV.DataSource = auditories.Select(x => new RowCheckedItem
             {
-                ItemsDGV.Rows[i].Cells[1].Value = auditorys.Value.id;
-                ItemsDGV.Rows[i].Cells[2].Value = auditorys.Value.title;
-                for (int j = 0; j < nagr[row].auds.Length; j++)
-                {
-                    if (nagr[row].auds[j] == auditorys.Value.id)
-                    {
-                        ItemsDGV.Rows[i].Cells[0].Value = true;
-                    }
-                }
-                i++;
-            }
+                Key = x.Key,
+                Value = x.Value.title,
+                Checked = nagr.auds.Contains(x.Key),
+            }).OrderByDescending(x => x.Checked).ToList();
         }
 
         private void Choice_Click(object sender, EventArgs e)
         {
-            if (type == 1)
+            idsList = new List<int?>();
+            TitleList = new List<string>();
+
+            var items = (ItemsDGV.DataSource as List<RowCheckedItem>).Where(x => x.Checked);
+
+            foreach (DataGridViewRow rows in ItemsDGV.Rows)
             {
-                idsList = new List<int?>();
-                TitleList = new List<string>();
-                foreach (DataGridViewRow rows in ItemsDGV.Rows)
+                if (rows.Cells[0].Value != null)
                 {
-                    if (rows.Cells[0].Value != null)
+                    if ((bool)rows.Cells[0].Value)
                     {
-                        if ((bool)rows.Cells[0].Value)
-                        {
-                            idsList.Add((int)rows.Cells[1].Value);
-                            TitleList.Add(rows.Cells[2].Value.ToString());
-                        }
+                        idsList.Add((int)rows.Cells[1].Value);
                     }
                 }
             }
+            TitleList = items.Select(x => x.Value).ToList();
 
-            if (type == 2)
-            {
-                idsList = new List<int?>();
-                TitleList = new List<string>();
-                foreach (DataGridViewRow rows in ItemsDGV.Rows)
-                {
-                    if (rows.Cells[0].Value != null)
-                    {
-                        if ((bool)rows.Cells[0].Value)
-                        {
-                            idsList.Add((int)rows.Cells[1].Value);
-                            TitleList.Add((string)rows.Cells[2].Value);
-                        }
-                    }
 
-                }
-            }
-
-            if (type == 3)
-            {
-                idsList = new List<int?>();
-                TitleList = new List<string>();
-                foreach (DataGridViewRow rows in ItemsDGV.Rows)
-                {
-                    if (rows.Cells[0].Value != null)
-                    {
-                        if ((bool)rows.Cells[0].Value)
-                        {
-                            idsList.Add((int)rows.Cells[1].Value);
-                            TitleList.Add((string)rows.Cells[2].Value);
-                        }
-                    }
-                }
-            }
             this.DialogResult = DialogResult.OK;
         }
+    }
+
+    public class RowCheckedItem
+    {
+        public bool Checked { get; set; }
+        public int Key { get; set; }
+        public string Value { get; set; }
     }
 }

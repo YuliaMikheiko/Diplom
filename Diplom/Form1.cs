@@ -16,22 +16,35 @@ namespace WindowsFormsApp2
     public partial class Form1 : Form
     {
         private ScheduleDataModel activeScheduleDataModel;
-        public static ScheduleRow[] nagr;
+        private ScheduleRow scheduleRow;
+        public ScheduleRow[] nagr;
         string path;
         Dictionary<int, Teacher> DTeachers;
         Dictionary<int, Auditory> DAuditories;
         Dictionary<int, SubGroup> DSub_groups;
         public Form1()
         {
+
             path = Properties.Settings.Default.path.ToString();
             InitializeComponent();
-            ReadData();
+            if (path != null | path !="")
+                ReadData();
+
+            NtColumn.DataSource = new List<KeyValuePair<int, string>>
+            {
+                new KeyValuePair<int, string>(1, "Лекционное занятие"),
+                new KeyValuePair<int, string>(2, "Практическое занятие"),
+                new KeyValuePair<int, string>(3, "Лабораторное занятие"),
+            };
+            NtColumn.DisplayMember = "Value";
+            NtColumn.ValueMember = "Key";
 
         }
 
         private void ReadData()
         {
             activeScheduleDataModel = new JsonScheduleDataModel(path);
+            scheduleRow = new ScheduleRow();
             activeScheduleDataModel.Load();
             nagr = activeScheduleDataModel.GetNagruzka();
             DTeachers = activeScheduleDataModel.GetTeachers();
@@ -44,41 +57,30 @@ namespace WindowsFormsApp2
 
             for (int i = 0; i < nagr.Length; i++)
             {
-                InformationDGV.Rows[i].Cells[0].Value = nagr[i].h.ToString();
+                InformationDGV.Rows[i].Cells[0].Value = nagr[i].h;
 
-                if (nagr[i].nt == 1)
-                    InformationDGV.Rows[i].Cells[1].Value = NtColumn.Items[0];
-                else if (nagr[i].nt == 2)
-                    InformationDGV.Rows[i].Cells[1].Value = NtColumn.Items[1];
-                else
-                    InformationDGV.Rows[i].Cells[1].Value = NtColumn.Items[2];
+                InformationDGV.Rows[i].Cells[1].Value = nagr[i].nt;
 
-                for (int k = 0; k < nagr[i].teachers.Length; k++)
-                {
-                    foreach (var teacher in DTeachers)
-                    {
-                        if (nagr[i].teachers[k] == teacher.Value.id)
-                            InformationDGV.Rows[i].Cells[2].Value += teacher.Value.name.ToString() + " ";
-                    }
-                }
+                InformationDGV.Rows[i].Cells[2].Value = String.Join(
+                ", ",
+                nagr[i].teachers
+                .Where(x => x.HasValue && DTeachers.ContainsKey(x.Value))
+                .Select(x => DTeachers[x.Value].name)
+                );
 
-                for (int k = 0; k < nagr[i].sub_groups.Length; k++)
-                {
-                    foreach (var groups in DSub_groups)
-                    {
-                        if (nagr[i].sub_groups[k] == groups.Value.id)
-                            InformationDGV.Rows[i].Cells[4].Value += groups.Value.title + " ";
-                    }
-                }
+                InformationDGV.Rows[i].Cells[4].Value = String.Join(
+                ", ",
+                nagr[i].sub_groups
+                .Where(x => x.HasValue && DSub_groups.ContainsKey(x.Value))
+                .Select(x => DSub_groups[x.Value].title)
+                );
 
-                for (int k = 0; k < nagr[i].auds.Length; k++)
-                {
-                    foreach (var auditori in DAuditories)
-                    {
-                        if (nagr[i].auds[k] == auditori.Value.id)
-                            InformationDGV.Rows[i].Cells[6].Value += auditori.Value.title + " ";
-                    }
-                }
+                InformationDGV.Rows[i].Cells[6].Value = String.Join(
+                ", ",
+                nagr[i].auds
+                .Where(x => x.HasValue && DAuditories.ContainsKey(x.Value))
+                .Select(x => DAuditories[x.Value].title)
+                );
 
                 InformationDGV.Rows[i].Cells[8].Value = nagr[i].discipline.ToString();
 
@@ -103,14 +105,10 @@ namespace WindowsFormsApp2
             {
                 for (int i = 0; i < nagr.Length; i++)
                 {
-                    nagr[i].h = Convert.ToInt32(InformationDGV.Rows[i].Cells[0].Value);
-                    if (InformationDGV.Rows[i].Cells[1].Value.Equals("Лекционное занятие"))
-                        nagr[i].nt = 1;
-                    else if (InformationDGV.Rows[i].Cells[1].Value.Equals("Практическое занятие"))
-                        nagr[i].nt = 2;
-                    else
-                        nagr[i].nt = 3;
+                    nagr[i].h = (int)InformationDGV.Rows[i].Cells[0].Value;
 
+                    nagr[i].nt = (int)InformationDGV.Rows[i].Cells[1].Value;
+                   
                     nagr[i].discipline = (string)InformationDGV.Rows[i].Cells[8].Value;
 
                     if (InformationDGV.Rows[i].Cells[9].Value.Equals(true))
@@ -144,7 +142,7 @@ namespace WindowsFormsApp2
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
                 {
                     int type = 1;
-                    ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(type, e.RowIndex, nagr, activeScheduleDataModel);
+                    ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(type, nagr[e.RowIndex], activeScheduleDataModel);
 
                     if (teachers.ShowDialog() == DialogResult.OK)
                     {
@@ -172,7 +170,7 @@ namespace WindowsFormsApp2
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
                 {
                     int type = 2;
-                    ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, e.RowIndex, nagr, activeScheduleDataModel);
+                    ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, nagr[e.RowIndex], activeScheduleDataModel);
 
                     if (groups.ShowDialog() == DialogResult.OK)
                     {
@@ -201,7 +199,7 @@ namespace WindowsFormsApp2
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
                 {
                     int type = 3;
-                    ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, e.RowIndex, nagr, activeScheduleDataModel);
+                    ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, nagr[e.RowIndex], activeScheduleDataModel);
 
                     if (auditorys.ShowDialog() == DialogResult.OK)
                     {
