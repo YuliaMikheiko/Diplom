@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -104,7 +105,7 @@ namespace WindowsFormsApp2
                 {
                     nagr[i].h = (int)InformationDGV.Rows[i].Cells[0].Value;
 
-                    nagr[i].nt = (int)InformationDGV.Rows[i].Cells[1].Value;
+                    //nagr[i].nt = (int)InformationDGV.Rows[i].Cells[1].Value;
                    
                     nagr[i].discipline = (string)InformationDGV.Rows[i].Cells[8].Value;
 
@@ -152,7 +153,7 @@ namespace WindowsFormsApp2
                             var value = "";
                             foreach (var name in TitleList)
                             {
-                                value += name + " ";
+                                value += name + ", ";
                             }
                             InformationDGV.Rows[e.RowIndex].Cells[2].Value = value;
                         }
@@ -226,7 +227,8 @@ namespace WindowsFormsApp2
 
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
-            InformationDGV.Rows.Clear();
+            InformationDGV.DataSource = null;
+          //  InformationDGV.Rows.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
@@ -247,7 +249,6 @@ namespace WindowsFormsApp2
     {
         public int H { get; set; }
         public object NT { get; set; }
-       // public int NT { get; set; }
         public string Teachers { get; set; }
         public string Sub_groups { get; set; }
         public string Auds { get; set; }
