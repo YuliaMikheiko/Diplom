@@ -26,15 +26,6 @@ namespace WindowsFormsApp2
 
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
-            DataGridViewColumn CheckColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn IdColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn NameColumn = new DataGridViewTextBoxColumn();
-
-            CheckColumn.DataPropertyName = "Checked";
-            IdColumn.DataPropertyName = "Key";
-            NameColumn.DataPropertyName = "Value";
-
-
             InitializeComponent();
             this.nagr = nagr;
 

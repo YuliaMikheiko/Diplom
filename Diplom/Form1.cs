@@ -29,21 +29,18 @@ namespace WindowsFormsApp2
         {
             InitializeComponent();
 
-            DataGridViewColumn HColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn NtColumn = new DataGridViewComboBoxColumn();
-            DataGridViewColumn TeachersColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn GroupsColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn AuditoriesColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn DisciplineColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn OnlineColumn = new DataGridViewCheckBoxColumn();
-
-            HColumn.DataPropertyName = "H";
-            NtColumn.DataPropertyName = "NT";
-            TeachersColumn.DataPropertyName = "Teachers";
-            GroupsColumn.DataPropertyName = "Sub_groups";
-            AuditoriesColumn.DataPropertyName = "Auds";
-            DisciplineColumn.DataPropertyName = "Discipline";
-            OnlineColumn.DataPropertyName = "Is_online";
+            NtColumn.DataSource = new List<KeyValuePair<int, string>>
+            {
+            new KeyValuePair<int, string>(1, "Лекция"),
+            new KeyValuePair<int, string>(2, "Практика"),
+            new KeyValuePair<int, string>(3, "Лаба"),
+            new KeyValuePair<int, string>(4, "Консультация"),
+            new KeyValuePair<int, string>(5, "Экзамен консультация"),
+            new KeyValuePair<int, string>(6, "Экзамен"),
+            new KeyValuePair<int, string>(7, "Зачет"),
+            };
+            NtColumn.DisplayMember = "Value";
+            NtColumn.ValueMember = "Key";
 
             path = Properties.Settings.Default.path.ToString();
 
@@ -63,7 +60,7 @@ namespace WindowsFormsApp2
             InformationDGV.DataSource = nagr.Select(x => new ScheduleRowDataGridRowItem
             {
                 H = x.h,
-                NT = NtColumn.Items[x.nt - 1],
+                NT = x.nt,
                 Teachers = String.Join(
                 " ",
                 x.teachers
@@ -111,7 +108,7 @@ namespace WindowsFormsApp2
                             nagr[i].h = (int)InformationDGV[column.Index, i].Value;
 
                         if (column.Name == "NtColumn")
-                            nagr[i].nt = NtColumn.Items.IndexOf(InformationDGV[column.Index, i].Value) + 1;
+                            nagr[i].nt = (int)InformationDGV[column.Index, i].Value;
                         
                         if (column.Name == "DisciplineColumn")
                             nagr[i].discipline = (string)InformationDGV[column.Index, i].Value;
