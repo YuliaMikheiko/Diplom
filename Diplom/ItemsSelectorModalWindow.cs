@@ -19,7 +19,7 @@ namespace WindowsFormsApp2
         public List<string> TitleList;
 
         ScheduleRow nagr;
-       // int row;
+
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;

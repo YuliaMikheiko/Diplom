@@ -35,16 +35,16 @@ namespace WindowsFormsApp2
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.teachersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.subgroupsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.audsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AuditoriesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.disciplineDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isonlineDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
@@ -57,16 +57,16 @@ namespace WindowsFormsApp2
             this.InformationDGV.AutoGenerateColumns = false;
             this.InformationDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.InformationDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.hDataGridViewTextBoxColumn,
+            this.HColumn,
             this.NtColumn,
-            this.teachersDataGridViewTextBoxColumn,
+            this.TeachersColumn,
             this.TColumn,
-            this.subgroupsDataGridViewTextBoxColumn,
+            this.GroupsColumn,
             this.GColumn,
-            this.audsDataGridViewTextBoxColumn,
+            this.AuditoriesColumn,
             this.AColumn,
-            this.disciplineDataGridViewTextBoxColumn,
-            this.isonlineDataGridViewCheckBoxColumn});
+            this.DisciplineColumn,
+            this.OnlineColumn});
             this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
             this.InformationDGV.DataSource = this.scheduleRowDataGridRowItemBindingSource;
             this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -105,16 +105,18 @@ namespace WindowsFormsApp2
             // 
             this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(WindowsFormsApp2.ScheduleRowDataGridRowItem);
             // 
-            // hDataGridViewTextBoxColumn
+            // HColumn
             // 
-            this.hDataGridViewTextBoxColumn.DataPropertyName = "H";
-            this.hDataGridViewTextBoxColumn.HeaderText = "H";
-            this.hDataGridViewTextBoxColumn.Name = "hDataGridViewTextBoxColumn";
+            this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HColumn.DataPropertyName = "H";
+            this.HColumn.HeaderText = "Количество часов";
+            this.HColumn.Name = "HColumn";
             // 
             // NtColumn
             // 
+            this.NtColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NtColumn.DataPropertyName = "NT";
-            this.NtColumn.HeaderText = "NT";
+            this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Items.AddRange(new object[] {
             "Лекционное занятие",
             "Практическое занятие",
@@ -123,11 +125,12 @@ namespace WindowsFormsApp2
             this.NtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // teachersDataGridViewTextBoxColumn
+            // TeachersColumn
             // 
-            this.teachersDataGridViewTextBoxColumn.DataPropertyName = "Teachers";
-            this.teachersDataGridViewTextBoxColumn.HeaderText = "Teachers";
-            this.teachersDataGridViewTextBoxColumn.Name = "teachersDataGridViewTextBoxColumn";
+            this.TeachersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TeachersColumn.DataPropertyName = "Teachers";
+            this.TeachersColumn.HeaderText = "Преподаватель";
+            this.TeachersColumn.Name = "TeachersColumn";
             // 
             // TColumn
             // 
@@ -137,11 +140,12 @@ namespace WindowsFormsApp2
             this.TColumn.ReadOnly = true;
             this.TColumn.Width = 25;
             // 
-            // subgroupsDataGridViewTextBoxColumn
+            // GroupsColumn
             // 
-            this.subgroupsDataGridViewTextBoxColumn.DataPropertyName = "Sub_groups";
-            this.subgroupsDataGridViewTextBoxColumn.HeaderText = "Sub_groups";
-            this.subgroupsDataGridViewTextBoxColumn.Name = "subgroupsDataGridViewTextBoxColumn";
+            this.GroupsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GroupsColumn.DataPropertyName = "Sub_groups";
+            this.GroupsColumn.HeaderText = "Список групп";
+            this.GroupsColumn.Name = "GroupsColumn";
             // 
             // GColumn
             // 
@@ -151,11 +155,12 @@ namespace WindowsFormsApp2
             this.GColumn.ReadOnly = true;
             this.GColumn.Width = 25;
             // 
-            // audsDataGridViewTextBoxColumn
+            // AuditoriesColumn
             // 
-            this.audsDataGridViewTextBoxColumn.DataPropertyName = "Auds";
-            this.audsDataGridViewTextBoxColumn.HeaderText = "Auds";
-            this.audsDataGridViewTextBoxColumn.Name = "audsDataGridViewTextBoxColumn";
+            this.AuditoriesColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AuditoriesColumn.DataPropertyName = "Auds";
+            this.AuditoriesColumn.HeaderText = "Список аудиторий";
+            this.AuditoriesColumn.Name = "AuditoriesColumn";
             // 
             // AColumn
             // 
@@ -165,17 +170,19 @@ namespace WindowsFormsApp2
             this.AColumn.ReadOnly = true;
             this.AColumn.Width = 25;
             // 
-            // disciplineDataGridViewTextBoxColumn
+            // DisciplineColumn
             // 
-            this.disciplineDataGridViewTextBoxColumn.DataPropertyName = "Discipline";
-            this.disciplineDataGridViewTextBoxColumn.HeaderText = "Discipline";
-            this.disciplineDataGridViewTextBoxColumn.Name = "disciplineDataGridViewTextBoxColumn";
+            this.DisciplineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DisciplineColumn.DataPropertyName = "Discipline";
+            this.DisciplineColumn.HeaderText = "Название дисциплины";
+            this.DisciplineColumn.Name = "DisciplineColumn";
             // 
-            // isonlineDataGridViewCheckBoxColumn
+            // OnlineColumn
             // 
-            this.isonlineDataGridViewCheckBoxColumn.DataPropertyName = "Is_online";
-            this.isonlineDataGridViewCheckBoxColumn.HeaderText = "Is_online";
-            this.isonlineDataGridViewCheckBoxColumn.Name = "isonlineDataGridViewCheckBoxColumn";
+            this.OnlineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OnlineColumn.DataPropertyName = "Is_online";
+            this.OnlineColumn.HeaderText = "Занятие онлайн";
+            this.OnlineColumn.Name = "OnlineColumn";
             // 
             // Form1
             // 
@@ -202,16 +209,16 @@ namespace WindowsFormsApp2
         private System.Windows.Forms.ToolStripMenuItem OpenMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SaveMenuItem;
         private System.Windows.Forms.BindingSource scheduleRowDataGridRowItemBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn hDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn NtColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn teachersDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TeachersColumn;
         private System.Windows.Forms.DataGridViewButtonColumn TColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subgroupsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GroupsColumn;
         private System.Windows.Forms.DataGridViewButtonColumn GColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn audsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AuditoriesColumn;
         private System.Windows.Forms.DataGridViewButtonColumn AColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn disciplineDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn isonlineDataGridViewCheckBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DisciplineColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
     }
 }
 

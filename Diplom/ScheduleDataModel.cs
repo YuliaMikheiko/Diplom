@@ -17,7 +17,6 @@ namespace WindowsFormsApp2
             throw new NotImplementedException();
         }
 
-
         public virtual void Save()
         {
             throw new NotImplementedException();

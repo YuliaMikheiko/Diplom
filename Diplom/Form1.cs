@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,21 +65,21 @@ namespace WindowsFormsApp2
                 H = x.h,
                 NT = NtColumn.Items[x.nt - 1],
                 Teachers = String.Join(
-                ", ",
+                " ",
                 x.teachers
                 .Where(y => y.HasValue && DTeachers.ContainsKey(y.Value))
                 .Select(y => DTeachers[y.Value].name)
                 ),
 
                 Sub_groups = String.Join(
-                ", ",
+                " ",
                 x.sub_groups
                 .Where(y => y.HasValue && DSub_groups.ContainsKey(y.Value))
                 .Select(y => DSub_groups[y.Value].title)
                 ),
 
                 Auds = String.Join(
-                ", ",
+                " ",
                 x.auds
                 .Where(y => y.HasValue && DAuditories.ContainsKey(y.Value))
                 .Select(y => DAuditories[y.Value].title)
@@ -101,20 +102,32 @@ namespace WindowsFormsApp2
             }
             else
             {
+                InformationDGV.EndEdit();
                 for (int i = 0; i < nagr.Length; i++)
                 {
-                    nagr[i].h = (int)InformationDGV.Rows[i].Cells[0].Value;
+                    foreach (DataGridViewColumn column in InformationDGV.Columns)
+                    {
+                        if (column.Name == "HColumn")
+                            nagr[i].h = (int)InformationDGV[column.Index, i].Value;
 
-                    //nagr[i].nt = (int)InformationDGV.Rows[i].Cells[1].Value;
-                   
-                    nagr[i].discipline = (string)InformationDGV.Rows[i].Cells[8].Value;
+                        if (column.Name == "NtColumn")
+                            nagr[i].nt = NtColumn.Items.IndexOf(InformationDGV[column.Index, i].Value) + 1;
+                        
+                        if (column.Name == "DisciplineColumn")
+                            nagr[i].discipline = (string)InformationDGV[column.Index, i].Value;
+                        
+                        if (column.Name == "OnlineColumn")
+                        {
+                            if (InformationDGV[column.Index, i].Value.Equals(true))
+                                nagr[i].is_online = 1;
+                            else
+                                nagr[i].is_online = 0;
 
-                    if (InformationDGV.Rows[i].Cells[9].Value.Equals(true))
-                        nagr[i].is_online = 1;
-                    else
-                        nagr[i].is_online = 0;
+                        }
+                    }
                 }
 
+                (activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
                 activeScheduleDataModel.Save();
 
                 MessageBox.Show(
@@ -146,22 +159,22 @@ namespace WindowsFormsApp2
                     {
                         List<int?> idsList = teachers.idsList;
                         List<string> TitleList = teachers.TitleList;
+                        var value = "";
+
                         if (idsList.Count > 0)
                         {
                             nagr[e.RowIndex].teachers = idsList.ToArray();
 
-                            var value = "";
+                            value = "";
                             foreach (var name in TitleList)
-                            {
-                                value += name + ", ";
-                            }
-                            InformationDGV.Rows[e.RowIndex].Cells[2].Value = value;
+                                value += name + " ";
                         }
                         else
-                        {
                             Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
-                            InformationDGV.Rows[e.RowIndex].Cells[2].Value = "";
-                        }
+
+                        foreach (DataGridViewColumn column in InformationDGV.Columns)
+                            if (column.Name == "TeachersColumn")
+                                InformationDGV[column.Index, e.RowIndex].Value = value;  
                     }
                 }
 
@@ -174,23 +187,22 @@ namespace WindowsFormsApp2
                     {
                         List<int?> idsList = groups.idsList;
                         List<string> TitleList = groups.TitleList;
+                        var value = "";
 
                         if (idsList.Count > 0)
                         {
                             nagr[e.RowIndex].sub_groups = idsList.ToArray();
 
-                            var value = "";
+                            value = "";
                             foreach (var title in TitleList)
-                            {
-                                value += title + ", ";
-                            }
-                            InformationDGV.Rows[e.RowIndex].Cells[4].Value = value;
+                                value += title + " ";
                         }
                         else
-                        {
                             Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
-                            InformationDGV.Rows[e.RowIndex].Cells[4].Value = "";
-                        }
+
+                        foreach (DataGridViewColumn column in InformationDGV.Columns)
+                            if (column.Name == "GroupsColumn")
+                                InformationDGV[column.Index, e.RowIndex].Value = value;
                     }
                 }
 
@@ -203,23 +215,21 @@ namespace WindowsFormsApp2
                     {
                         List<int?> idsList = auditorys.idsList;
                         List<string> TitleList = auditorys.TitleList;
+                        var value = "";
 
                         if (idsList.Count > 0)
                         {
                             nagr[e.RowIndex].auds = idsList.ToArray();
 
-                            var value = "";
                             foreach (var title in TitleList)
-                            {
-                                value += title + ", ";
-                            }
-                            InformationDGV.Rows[e.RowIndex].Cells[6].Value = value;
+                                value += title + " ";
                         }
                         else
-                        {
                             Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
-                            InformationDGV.Rows[e.RowIndex].Cells[6].Value = "";
-                        }
+
+                        foreach (DataGridViewColumn column in InformationDGV.Columns)
+                            if (column.Name == "AuditoriesColumn")
+                                InformationDGV[column.Index, e.RowIndex].Value = value;
                     }
                 }
             }

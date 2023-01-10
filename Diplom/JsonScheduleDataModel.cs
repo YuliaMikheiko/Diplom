@@ -12,7 +12,19 @@ namespace WindowsFormsApp2
 {
     internal class JsonScheduleDataModel : ScheduleDataModel
     {
-        public ScheduleRow[] nagruzka;
+        private ScheduleRow[] _nagruzka;
+        public ScheduleRow[] nagruzka
+        {
+            set
+            {
+                _nagruzka = value;
+                data.nagr = value;
+            }
+            get
+            {
+                return _nagruzka;
+            }
+        }
         public Dictionary<int, Teacher> teacher;
         public Dictionary<int, Auditory> auditory;
         public Dictionary<int, SubGroup> subGroup;
@@ -34,8 +46,6 @@ namespace WindowsFormsApp2
 
         public override void Save()
         {
-            Form1 f1 = new Form1();
-            data.nagr = f1.nagr;
             var jsonTextData = JsonSerializer.Serialize(data);
             File.WriteAllText(this._filePath, jsonTextData);
         }
@@ -61,7 +71,6 @@ namespace WindowsFormsApp2
         public override ScheduleRow[] GetNagruzka()
         {
             nagruzka = data.nagr;
-
             return nagruzka;
         }
     }
