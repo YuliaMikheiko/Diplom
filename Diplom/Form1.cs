@@ -46,7 +46,7 @@ namespace WindowsFormsApp2
 
             path = Properties.Settings.Default.path.ToString();
 
-            if (path != null | path != "")
+            if (path.Length > 0)
                 ReadData();
         }
 
@@ -182,7 +182,7 @@ namespace WindowsFormsApp2
                             var value = "";
                             foreach (var title in TitleList)
                             {
-                                value += title + " ";
+                                value += title + ", ";
                             }
                             InformationDGV.Rows[e.RowIndex].Cells[4].Value = value;
                         }
@@ -211,7 +211,7 @@ namespace WindowsFormsApp2
                             var value = "";
                             foreach (var title in TitleList)
                             {
-                                value += title + " ";
+                                value += title + ", ";
                             }
                             InformationDGV.Rows[e.RowIndex].Cells[6].Value = value;
                         }
@@ -228,7 +228,6 @@ namespace WindowsFormsApp2
         private void OpenMenuItem_Click(object sender, EventArgs e)
         {
             InformationDGV.DataSource = null;
-          //  InformationDGV.Rows.Clear();
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
