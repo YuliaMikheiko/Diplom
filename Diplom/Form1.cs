@@ -28,7 +28,7 @@ namespace WindowsFormsApp2
             InitializeComponent();
 
             DataGridViewColumn HColumn = new DataGridViewTextBoxColumn();
-            DataGridViewColumn nTDataGridViewTextBoxColumn = new DataGridViewComboBoxColumn();
+            DataGridViewColumn NtColumn = new DataGridViewComboBoxColumn();
             DataGridViewColumn TeachersColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn GroupsColumn = new DataGridViewTextBoxColumn();
             DataGridViewColumn AuditoriesColumn = new DataGridViewTextBoxColumn();
@@ -36,7 +36,7 @@ namespace WindowsFormsApp2
             DataGridViewColumn OnlineColumn = new DataGridViewCheckBoxColumn();
 
             HColumn.DataPropertyName = "H";
-            nTDataGridViewTextBoxColumn.DataPropertyName = "NT";
+            NtColumn.DataPropertyName = "NT";
             TeachersColumn.DataPropertyName = "Teachers";
             GroupsColumn.DataPropertyName = "Sub_groups";
             AuditoriesColumn.DataPropertyName = "Auds";
@@ -47,17 +47,6 @@ namespace WindowsFormsApp2
 
             if (path != null | path != "")
                 ReadData();
-
-
-            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).DataSource = new List<KeyValuePair<int, string>>
-            {
-                new KeyValuePair<int, string>(1, "Лекционное занятие"),
-                new KeyValuePair<int, string>(2, "Практическое занятие"),
-                new KeyValuePair<int, string>(3, "Лабораторное занятие"),
-            };
-            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).DisplayMember = "Value";
-            (nTDataGridViewTextBoxColumn as DataGridViewComboBoxColumn).ValueMember = "Key";
-
         }
 
         private void ReadData()
@@ -72,7 +61,7 @@ namespace WindowsFormsApp2
             InformationDGV.DataSource = nagr.Select(x => new ScheduleRowDataGridRowItem
             {
                 H = x.h,
-                //NT = x.nt,
+                NT = NtColumn.Items[x.nt - 1],
                 Teachers = String.Join(
                 ", ",
                 x.teachers
@@ -97,16 +86,6 @@ namespace WindowsFormsApp2
                 Discipline = x.discipline,
                 Is_online = x.is_online.Equals(1),
             }).ToList();
-
-
-            //InformationDGV.Rows[i].Cells[1].Value = nagr[i].nt;
-
-
-
-            //if (nagr[i].is_online == 1)
-            //    InformationDGV.Rows[i].Cells[9].Value = true;
-            //else
-            //    InformationDGV.Rows[i].Cells[9].Value = false;
         }
 
         private void SaveData()
@@ -267,7 +246,8 @@ namespace WindowsFormsApp2
     public class ScheduleRowDataGridRowItem
     {
         public int H { get; set; }
-        public int NT { get; set; }
+        public object NT { get; set; }
+       // public int NT { get; set; }
         public string Teachers { get; set; }
         public string Sub_groups { get; set; }
         public string Auds { get; set; }
