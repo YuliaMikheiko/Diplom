@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.ItemsDGV = new System.Windows.Forms.DataGridView();
             this.Choice = new System.Windows.Forms.Button();
-            this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.checkedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -61,17 +61,13 @@
             // Choice
             // 
             this.Choice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Choice.Location = new System.Drawing.Point(369, 189);
+            this.Choice.Location = new System.Drawing.Point(357, 189);
             this.Choice.Name = "Choice";
-            this.Choice.Size = new System.Drawing.Size(88, 23);
+            this.Choice.Size = new System.Drawing.Size(100, 23);
             this.Choice.TabIndex = 1;
             this.Choice.Text = "Выбрать";
             this.Choice.UseVisualStyleBackColor = true;
             this.Choice.Click += new System.EventHandler(this.Choice_Click);
-            // 
-            // rowCheckedItemBindingSource
-            // 
-            this.rowCheckedItemBindingSource.DataSource = typeof(WindowsFormsApp2.RowCheckedItem);
             // 
             // checkedDataGridViewCheckBoxColumn
             // 
@@ -94,6 +90,10 @@
             this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
             this.valueDataGridViewTextBoxColumn.HeaderText = "Список";
             this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            // 
+            // rowCheckedItemBindingSource
+            // 
+            this.rowCheckedItemBindingSource.DataSource = typeof(WindowsFormsApp2.RowCheckedItem);
             // 
             // ItemsSelectorModalWindow
             // 

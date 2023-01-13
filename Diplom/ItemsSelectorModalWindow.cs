@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.Json;
 using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WindowsFormsApp2
 {
@@ -23,6 +24,9 @@ namespace WindowsFormsApp2
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
+
+        //DataTable dtSales = new DataTable();
+       // string filterField = "Country";
 
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
@@ -49,6 +53,8 @@ namespace WindowsFormsApp2
                 Value = x.Value.name,
                 Checked = nagr.teachers.Contains(x.Key),
             }).OrderByDescending(x =>x.Checked).ToList();
+
+           // dtSales = (DataTable)ItemsDGV.DataSource;
         }
 
         private void ReadGroups()
@@ -93,6 +99,11 @@ namespace WindowsFormsApp2
 
             this.DialogResult = DialogResult.OK;
         }
+
+        //private void filter_TextChanged(object sender, EventArgs e)
+        //{
+        //    dtSales.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, filter.Text);
+        //}
     }
 
     public class RowCheckedItem
