@@ -7,11 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
-using System.IO;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace WindowsFormsApp2
+namespace Diplom
 {
     public partial class ItemsSelectorModalWindow : Form
     {
@@ -26,7 +23,7 @@ namespace WindowsFormsApp2
         Dictionary<int, SubGroup> sub_groups_info;
 
         //DataTable dtSales = new DataTable();
-       // string filterField = "Country";
+        // string filterField = "Country";
 
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
@@ -52,9 +49,9 @@ namespace WindowsFormsApp2
                 Key = x.Key,
                 Value = x.Value.name,
                 Checked = nagr.teachers.Contains(x.Key),
-            }).OrderByDescending(x =>x.Checked).ToList();
+            }).OrderByDescending(x => x.Checked).ToList();
 
-           // dtSales = (DataTable)ItemsDGV.DataSource;
+            // dtSales = (DataTable)ItemsDGV.DataSource;
         }
 
         private void ReadGroups()

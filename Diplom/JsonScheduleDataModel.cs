@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace WindowsFormsApp2
+namespace Diplom
 {
     internal class JsonScheduleDataModel : ScheduleDataModel
     {

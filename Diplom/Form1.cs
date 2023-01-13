@@ -1,20 +1,15 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
-namespace WindowsFormsApp2
+namespace Diplom
 {
     public partial class Form1 : Form
     {
@@ -88,10 +83,10 @@ namespace WindowsFormsApp2
 
                         if (column.Name == "NtColumn")
                             nagr[i].nt = (int)InformationDGV[column.Index, i].Value;
-                        
+
                         if (column.Name == "DisciplineColumn")
                             nagr[i].discipline = (string)InformationDGV[column.Index, i].Value;
-                        
+
                         if (column.Name == "OnlineColumn")
                         {
                             if (InformationDGV[column.Index, i].Value.Equals(true))
@@ -114,7 +109,7 @@ namespace WindowsFormsApp2
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (path == null)
             {
@@ -150,7 +145,7 @@ namespace WindowsFormsApp2
 
                         foreach (DataGridViewColumn column in InformationDGV.Columns)
                             if (column.Name == "TeachersColumn")
-                                InformationDGV[column.Index, e.RowIndex].Value = value;  
+                                InformationDGV[column.Index, e.RowIndex].Value = value;
                     }
                 }
 
@@ -237,7 +232,8 @@ namespace WindowsFormsApp2
         Dictionary<int, Auditory> DAuditories;
         Dictionary<int, SubGroup> DSub_groups;
 
-        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups) { 
+        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups)
+        {
             this.x = x;
             this.DTeachers = DTeachers;
             this.DAuditories = DAuditories;
@@ -246,7 +242,7 @@ namespace WindowsFormsApp2
 
         public int H { get; set; }
         public object NT { get; set; }
-        public string Teachers 
+        public string Teachers
         {
             get
             {
@@ -257,11 +253,11 @@ namespace WindowsFormsApp2
                 .Select(y => DTeachers[y.Value].name)
                 );
             }
-            set 
-            { 
+            set
+            {
             }
         }
-        public string Sub_groups 
+        public string Sub_groups
         {
             get
             {
@@ -276,8 +272,8 @@ namespace WindowsFormsApp2
             {
             }
         }
-        public string Auds 
-        { 
+        public string Auds
+        {
             get
             {
                 return String.Join(
