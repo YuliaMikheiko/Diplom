@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Diplom
 {
@@ -22,8 +24,7 @@ namespace Diplom
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        //DataTable dtSales = new DataTable();
-        // string filterField = "Country";
+        string filterField = "ValueColumn";
 
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
@@ -47,11 +48,9 @@ namespace Diplom
             ItemsDGV.DataSource = teachers.Select(x => new RowCheckedItem
             {
                 Key = x.Key,
-                Value = x.Value.name,
-                Checked = nagr.teachers.Contains(x.Key),
+                Value = x.Value.name.ToString(),
+                Checked = nagr.teachers.Contains(x.Key)
             }).OrderByDescending(x => x.Checked).ToList();
-
-            // dtSales = (DataTable)ItemsDGV.DataSource;
         }
 
         private void ReadGroups()
@@ -97,10 +96,10 @@ namespace Diplom
             this.DialogResult = DialogResult.OK;
         }
 
-        //private void filter_TextChanged(object sender, EventArgs e)
-        //{
-        //    dtSales.DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, filter.Text);
-        //}
+        private void filter_TextChanged(object sender, EventArgs e)
+        {         
+            (ItemsDGV.DataSource as DataTable).DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, filter.Text);
+        }
     }
 
     public class RowCheckedItem

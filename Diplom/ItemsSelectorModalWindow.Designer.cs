@@ -32,9 +32,10 @@
             this.Choice = new System.Windows.Forms.Button();
             this.ItemsDGV = new System.Windows.Forms.DataGridView();
             this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.filter = new System.Windows.Forms.TextBox();
             this.checkedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.valueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -62,7 +63,7 @@
             this.ItemsDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.checkedDataGridViewCheckBoxColumn,
             this.keyDataGridViewTextBoxColumn,
-            this.valueDataGridViewTextBoxColumn});
+            this.ValueColumn});
             this.ItemsDGV.DataSource = this.rowCheckedItemBindingSource;
             this.ItemsDGV.Location = new System.Drawing.Point(6, 1);
             this.ItemsDGV.Name = "ItemsDGV";
@@ -72,6 +73,14 @@
             // rowCheckedItemBindingSource
             // 
             this.rowCheckedItemBindingSource.DataSource = typeof(Diplom.RowCheckedItem);
+            // 
+            // filter
+            // 
+            this.filter.Location = new System.Drawing.Point(361, 12);
+            this.filter.Name = "filter";
+            this.filter.Size = new System.Drawing.Size(100, 20);
+            this.filter.TabIndex = 4;
+            this.filter.TextChanged += new System.EventHandler(this.filter_TextChanged);
             // 
             // checkedDataGridViewCheckBoxColumn
             // 
@@ -87,18 +96,19 @@
             this.keyDataGridViewTextBoxColumn.Name = "keyDataGridViewTextBoxColumn";
             this.keyDataGridViewTextBoxColumn.Width = 50;
             // 
-            // valueDataGridViewTextBoxColumn
+            // ValueColumn
             // 
-            this.valueDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.valueDataGridViewTextBoxColumn.DataPropertyName = "Value";
-            this.valueDataGridViewTextBoxColumn.HeaderText = "Список";
-            this.valueDataGridViewTextBoxColumn.Name = "valueDataGridViewTextBoxColumn";
+            this.ValueColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ValueColumn.DataPropertyName = "Value";
+            this.ValueColumn.HeaderText = "Список";
+            this.ValueColumn.Name = "ValueColumn";
             // 
             // ItemsSelectorModalWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 224);
+            this.Controls.Add(this.filter);
             this.Controls.Add(this.Choice);
             this.Controls.Add(this.ItemsDGV);
             this.Name = "ItemsSelectorModalWindow";
@@ -106,16 +116,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button Choice;
-        private System.Windows.Forms.DataGridView ItemsDGV;
+        private System.Windows.Forms.BindingSource rowCheckedItemBindingSource;
+        public System.Windows.Forms.DataGridView ItemsDGV;
+        private System.Windows.Forms.TextBox filter;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn valueDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource rowCheckedItemBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
     }
 }
