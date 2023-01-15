@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Equin.ApplicationFramework;
 
 namespace Diplom
 {
@@ -45,32 +46,38 @@ namespace Diplom
 
         private void ReadTeachers()
         {
-            ItemsDGV.DataSource = teachers.Select(x => new RowCheckedItem
-            {
-                Key = x.Key,
-                Value = x.Value.name.ToString(),
-                Checked = nagr.teachers.Contains(x.Key)
-            }).OrderByDescending(x => x.Checked).ToList();
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                teachers.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.name.ToString(),
+                    Checked = nagr.teachers.Contains(x.Key)
+                }).OrderByDescending(x => x.Checked).ToList()
+            );
         }
 
         private void ReadGroups()
         {
-            ItemsDGV.DataSource = sub_groups_info.Select(x => new RowCheckedItem
-            {
-                Key = x.Key,
-                Value = x.Value.title,
-                Checked = nagr.sub_groups.Contains(x.Key),
-            }).OrderByDescending(x => x.Checked).ToList();
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                sub_groups_info.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.title,
+                    Checked = nagr.sub_groups.Contains(x.Key),
+                }).OrderByDescending(x => x.Checked).ToList()
+            );
         }
 
         private void ReadAuditorys()
         {
-            ItemsDGV.DataSource = auditories.Select(x => new RowCheckedItem
-            {
-                Key = x.Key,
-                Value = x.Value.title,
-                Checked = nagr.auds.Contains(x.Key),
-            }).OrderByDescending(x => x.Checked).ToList();
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                auditories.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.title,
+                    Checked = nagr.auds.Contains(x.Key),
+                }).OrderByDescending(x => x.Checked).ToList()
+            );
         }
 
         private void Choice_Click(object sender, EventArgs e)
@@ -97,8 +104,11 @@ namespace Diplom
         }
 
         private void filter_TextChanged(object sender, EventArgs e)
-        {         
-            (ItemsDGV.DataSource as DataTable).DefaultView.RowFilter = string.Format("[{0}] LIKE '%{1}%'", filterField, filter.Text);
+        {
+            (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).ApplyFilter(x =>
+            {
+                return filter.Text == "" || x.Value.Contains(filter.Text);
+            });
         }
     }
 
