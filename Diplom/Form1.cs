@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Equin.ApplicationFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -56,6 +57,7 @@ namespace Diplom
             {
                 H = x.h,
                 NT = x.nt,
+                Kaf = x.kaf,
                 Discipline = x.discipline,
                 Is_online = x.is_online.Equals(1),
             }).ToList();
@@ -223,6 +225,15 @@ namespace Diplom
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
             SaveData();
+        }
+
+        private void FilterMenuItem_Click(object sender, EventArgs e)
+        {
+            FilterWindow filter = new FilterWindow(activeScheduleDataModel);
+            if (filter.ShowDialog() == DialogResult.OK)
+            {
+                
+            }
         }
     }
 }

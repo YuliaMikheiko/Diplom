@@ -53,6 +53,8 @@ namespace Diplom
             {
             }
         }
+
+        public string Kaf { get; set; }
         public string Auds
         {
             get

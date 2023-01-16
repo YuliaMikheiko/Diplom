@@ -25,8 +25,6 @@ namespace Diplom
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        string filterField = "ValueColumn";
-
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
             InitializeComponent();
@@ -44,17 +42,50 @@ namespace Diplom
                 ReadAuditorys();
         }
 
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel)
+        {
+            InitializeComponent();
+
+            teachers = scheduleDataModel.GetTeachers();
+            auditories = scheduleDataModel.GetAuditories();
+            sub_groups_info = scheduleDataModel.GetGroups();
+
+            if (type == 1)
+                ReadTeachersFilter();
+            if (type == 2)
+                ReadGroupsFilter();
+            if (type == 3)
+                ReadAuditorysFilter();
+            if (type == 4)
+                ReadKafedraFilter();
+            if (type == 5)
+                ReadDisciplineFilter();
+        }
+
         private void ReadTeachers()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
                 teachers.Select(x => new RowCheckedItem
                 {
                     Key = x.Key,
-                    Value = x.Value.name.ToString(),
+                    Value = x.Value.name,
                     Checked = nagr.teachers.Contains(x.Key)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
+
+        private void ReadTeachersFilter()
+        {
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                teachers.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.name,
+                   // Checked = nagr.teachers.Contains(x.Key)
+                }).ToList()
+            );
+        }
+
 
         private void ReadGroups()
         {
@@ -65,6 +96,18 @@ namespace Diplom
                     Value = x.Value.title,
                     Checked = nagr.sub_groups.Contains(x.Key),
                 }).OrderByDescending(x => x.Checked).ToList()
+            );
+        }
+
+        private void ReadGroupsFilter()
+        {
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                sub_groups_info.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.title,
+                    //Checked = nagr.sub_groups.Contains(x.Key),
+                }).ToList()
             );
         }
 
@@ -80,12 +123,34 @@ namespace Diplom
             );
         }
 
+        private void ReadAuditorysFilter()
+        {
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                auditories.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value.title,
+                    //Checked = nagr.auds.Contains(x.Key),
+                }).ToList()
+            );
+        }
+
+        private void ReadKafedraFilter()
+        {
+
+        }
+
+        private void ReadDisciplineFilter()
+        { 
+
+        }
+
         private void Choice_Click(object sender, EventArgs e)
         {
             idsList = new List<int?>();
             TitleList = new List<string>();
 
-            var items = (ItemsDGV.DataSource as List<RowCheckedItem>).Where(x => x.Checked);
+            var items = (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).Where(x => x.Checked);
 
             foreach (DataGridViewRow rows in ItemsDGV.Rows)
             {
