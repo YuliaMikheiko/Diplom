@@ -30,26 +30,26 @@
         {
             this.Filter = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.GroupsCheckBox = new System.Windows.Forms.CheckBox();
             this.KafedraCheckBox = new System.Windows.Forms.CheckBox();
+            this.GroupsCheckBox = new System.Windows.Forms.CheckBox();
             this.TeacherCheckBox = new System.Windows.Forms.CheckBox();
             this.AuditorysCheckBox = new System.Windows.Forms.CheckBox();
             this.DisciplineCheckBox = new System.Windows.Forms.CheckBox();
-            this.GroupsTextBox = new System.Windows.Forms.TextBox();
             this.KafedraTextBox = new System.Windows.Forms.TextBox();
             this.TeacherTextBox = new System.Windows.Forms.TextBox();
             this.AuditorysTextBox = new System.Windows.Forms.TextBox();
             this.DisciplineTextBox = new System.Windows.Forms.TextBox();
-            this.GroupsButton = new System.Windows.Forms.Button();
-            this.KafedraButton = new System.Windows.Forms.Button();
-            this.TeacherButton = new System.Windows.Forms.Button();
+            this.GroupsTextBox = new System.Windows.Forms.TextBox();
             this.AuditorysButton = new System.Windows.Forms.Button();
             this.DisciplineButton = new System.Windows.Forms.Button();
+            this.TeacherButton = new System.Windows.Forms.Button();
+            this.KafedraButton = new System.Windows.Forms.Button();
+            this.GroupsButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,7 +74,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
@@ -105,19 +105,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(407, 145);
             this.tableLayoutPanel1.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Группы";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label2
             // 
@@ -171,19 +158,6 @@
             this.label5.Text = "Название дисциплин";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // GroupsCheckBox
-            // 
-            this.GroupsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupsCheckBox.AutoSize = true;
-            this.GroupsCheckBox.Location = new System.Drawing.Point(123, 3);
-            this.GroupsCheckBox.Name = "GroupsCheckBox";
-            this.GroupsCheckBox.Size = new System.Drawing.Size(38, 23);
-            this.GroupsCheckBox.TabIndex = 5;
-            this.GroupsCheckBox.Text = "не";
-            this.GroupsCheckBox.UseVisualStyleBackColor = true;
-            // 
             // KafedraCheckBox
             // 
             this.KafedraCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -196,6 +170,19 @@
             this.KafedraCheckBox.TabIndex = 6;
             this.KafedraCheckBox.Text = "не";
             this.KafedraCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // GroupsCheckBox
+            // 
+            this.GroupsCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupsCheckBox.AutoSize = true;
+            this.GroupsCheckBox.Location = new System.Drawing.Point(123, 3);
+            this.GroupsCheckBox.Name = "GroupsCheckBox";
+            this.GroupsCheckBox.Size = new System.Drawing.Size(38, 23);
+            this.GroupsCheckBox.TabIndex = 5;
+            this.GroupsCheckBox.Text = "не";
+            this.GroupsCheckBox.UseVisualStyleBackColor = true;
             // 
             // TeacherCheckBox
             // 
@@ -235,16 +222,6 @@
             this.DisciplineCheckBox.TabIndex = 9;
             this.DisciplineCheckBox.Text = "не";
             this.DisciplineCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // GroupsTextBox
-            // 
-            this.GroupsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupsTextBox.Location = new System.Drawing.Point(167, 3);
-            this.GroupsTextBox.Name = "GroupsTextBox";
-            this.GroupsTextBox.Size = new System.Drawing.Size(201, 20);
-            this.GroupsTextBox.TabIndex = 10;
             // 
             // KafedraTextBox
             // 
@@ -286,44 +263,15 @@
             this.DisciplineTextBox.Size = new System.Drawing.Size(201, 20);
             this.DisciplineTextBox.TabIndex = 14;
             // 
-            // GroupsButton
+            // GroupsTextBox
             // 
-            this.GroupsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.GroupsTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.GroupsButton.Location = new System.Drawing.Point(374, 3);
-            this.GroupsButton.Name = "GroupsButton";
-            this.GroupsButton.Size = new System.Drawing.Size(30, 23);
-            this.GroupsButton.TabIndex = 15;
-            this.GroupsButton.Text = "...";
-            this.GroupsButton.UseVisualStyleBackColor = true;
-            this.GroupsButton.Click += new System.EventHandler(this.GroupsButton_Click);
-            // 
-            // KafedraButton
-            // 
-            this.KafedraButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.KafedraButton.Location = new System.Drawing.Point(374, 32);
-            this.KafedraButton.Name = "KafedraButton";
-            this.KafedraButton.Size = new System.Drawing.Size(30, 23);
-            this.KafedraButton.TabIndex = 16;
-            this.KafedraButton.Text = "...";
-            this.KafedraButton.UseVisualStyleBackColor = true;
-            this.KafedraButton.Click += new System.EventHandler(this.KafedraButton_Click);
-            // 
-            // TeacherButton
-            // 
-            this.TeacherButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TeacherButton.Location = new System.Drawing.Point(374, 61);
-            this.TeacherButton.Name = "TeacherButton";
-            this.TeacherButton.Size = new System.Drawing.Size(30, 23);
-            this.TeacherButton.TabIndex = 17;
-            this.TeacherButton.Text = "...";
-            this.TeacherButton.UseVisualStyleBackColor = true;
-            this.TeacherButton.Click += new System.EventHandler(this.TeacherButton_Click);
+            this.GroupsTextBox.Location = new System.Drawing.Point(167, 3);
+            this.GroupsTextBox.Name = "GroupsTextBox";
+            this.GroupsTextBox.Size = new System.Drawing.Size(201, 20);
+            this.GroupsTextBox.TabIndex = 10;
             // 
             // AuditorysButton
             // 
@@ -350,6 +298,58 @@
             this.DisciplineButton.Text = "...";
             this.DisciplineButton.UseVisualStyleBackColor = true;
             this.DisciplineButton.Click += new System.EventHandler(this.DisciplineButton_Click);
+            // 
+            // TeacherButton
+            // 
+            this.TeacherButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TeacherButton.Location = new System.Drawing.Point(374, 61);
+            this.TeacherButton.Name = "TeacherButton";
+            this.TeacherButton.Size = new System.Drawing.Size(30, 23);
+            this.TeacherButton.TabIndex = 17;
+            this.TeacherButton.Text = "...";
+            this.TeacherButton.UseVisualStyleBackColor = true;
+            this.TeacherButton.Click += new System.EventHandler(this.TeacherButton_Click);
+            // 
+            // KafedraButton
+            // 
+            this.KafedraButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.KafedraButton.Location = new System.Drawing.Point(374, 32);
+            this.KafedraButton.Name = "KafedraButton";
+            this.KafedraButton.Size = new System.Drawing.Size(30, 23);
+            this.KafedraButton.TabIndex = 16;
+            this.KafedraButton.Text = "...";
+            this.KafedraButton.UseVisualStyleBackColor = true;
+            this.KafedraButton.Click += new System.EventHandler(this.KafedraButton_Click);
+            // 
+            // GroupsButton
+            // 
+            this.GroupsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.GroupsButton.Location = new System.Drawing.Point(374, 3);
+            this.GroupsButton.Name = "GroupsButton";
+            this.GroupsButton.Size = new System.Drawing.Size(30, 23);
+            this.GroupsButton.TabIndex = 15;
+            this.GroupsButton.Text = "...";
+            this.GroupsButton.UseVisualStyleBackColor = true;
+            this.GroupsButton.Click += new System.EventHandler(this.GroupsButton_Click);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Группы";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FilterWindow
             // 

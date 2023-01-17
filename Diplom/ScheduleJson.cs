@@ -72,29 +72,29 @@ namespace Diplom
         public override string ToString()
         {
             return $@"{{
-    {nameof(id)}: {id},
-    {nameof(h)}: {h},
-    {nameof(nt)}: {nt},
-    {nameof(auds)}: {Utils.ArrayToString(auds)},
-    {nameof(teachers)}: {Utils.ArrayToString(teachers)},
-    {nameof(sub_groups)}: {Utils.ArrayToString(sub_groups)},
-    {nameof(fac)}: {Utils.ArrayToString(fac)},
-    {nameof(owners)}: {Utils.ArrayToString(owners)},
-    {nameof(smena)}: {smena},
-    {nameof(students)}: {students},
-    {nameof(semi_week)}: {semi_week},
-    {nameof(discipline)}: {discipline},
-    {nameof(kurs)}: {kurs},
-    {nameof(kaf)}: {kaf},
-    {nameof(pairs_count)}: {pairs_count},
-    {nameof(verbose_konts)}: {verbose_konts},
-    {nameof(in_list)}: {in_list},
-    {nameof(nagr_list)}: {nagr_list},
-    {nameof(set_in_one_aud)}: {set_in_one_aud},
-    {nameof(is_online)}: {is_online},
-    {nameof(is_zaoch)}: {is_zaoch},
-    {nameof(afobuch)}: {afobuch}
-}}";
+                {nameof(id)}: {id},
+                {nameof(h)}: {h},
+                {nameof(nt)}: {nt},
+                {nameof(auds)}: {Utils.ArrayToString(auds)},
+                {nameof(teachers)}: {Utils.ArrayToString(teachers)},
+                {nameof(sub_groups)}: {Utils.ArrayToString(sub_groups)},
+                {nameof(fac)}: {Utils.ArrayToString(fac)},
+                {nameof(owners)}: {Utils.ArrayToString(owners)},
+                {nameof(smena)}: {smena},
+                {nameof(students)}: {students},
+                {nameof(semi_week)}: {semi_week},
+                {nameof(discipline)}: {discipline},
+                {nameof(kurs)}: {kurs},
+                {nameof(kaf)}: {kaf},
+                {nameof(pairs_count)}: {pairs_count},
+                {nameof(verbose_konts)}: {verbose_konts},
+                {nameof(in_list)}: {in_list},
+                {nameof(nagr_list)}: {nagr_list},
+                {nameof(set_in_one_aud)}: {set_in_one_aud},
+                {nameof(is_online)}: {is_online},
+                {nameof(is_zaoch)}: {is_zaoch},
+                {nameof(afobuch)}: {afobuch}
+            }}";
         }
     }
 

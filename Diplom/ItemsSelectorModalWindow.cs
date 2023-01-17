@@ -19,6 +19,8 @@ namespace Diplom
         public List<int?> idsList;
         public List<string> TitleList;
 
+        List<string> Kafedra;
+
         ScheduleRow nagr;
 
         Dictionary<int, Teacher> teachers;
@@ -28,6 +30,7 @@ namespace Diplom
         internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
         {
             InitializeComponent();
+
             this.nagr = nagr;
 
             teachers = scheduleDataModel.GetTeachers();
@@ -36,9 +39,9 @@ namespace Diplom
 
             if (type == 1)
                 ReadTeachers();
-            else if (type == 2)
+            if (type == 2)
                 ReadGroups();
-            else
+            if (type == 3)
                 ReadAuditorys();
         }
 
@@ -56,6 +59,14 @@ namespace Diplom
                 ReadGroupsFilter();
             if (type == 3)
                 ReadAuditorysFilter();
+        }
+
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> Kafedra)
+        {
+            InitializeComponent();
+
+            this.Kafedra = Kafedra;
+
             if (type == 4)
                 ReadKafedraFilter();
             if (type == 5)
@@ -85,7 +96,6 @@ namespace Diplom
                 }).ToList()
             );
         }
-
 
         private void ReadGroups()
         {
@@ -137,12 +147,22 @@ namespace Diplom
 
         private void ReadKafedraFilter()
         {
-
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                Kafedra.Select(x => new RowCheckedItem
+                {
+                    Value = x
+                }).OrderBy(x => x.Value).ToList()
+            );
         }
 
         private void ReadDisciplineFilter()
-        { 
-
+        {
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                Kafedra.Select(x => new RowCheckedItem
+                {
+                    Value = x
+                }).OrderBy(x => x.Value).ToList()
+            );
         }
 
         private void Choice_Click(object sender, EventArgs e)
@@ -163,7 +183,6 @@ namespace Diplom
                 }
             }
             TitleList = items.Select(x => x.Value).ToList();
-
 
             this.DialogResult = DialogResult.OK;
         }

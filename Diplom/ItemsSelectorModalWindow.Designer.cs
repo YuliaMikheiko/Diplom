@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.Choice = new System.Windows.Forms.Button();
             this.ItemsDGV = new System.Windows.Forms.DataGridView();
-            this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.filter = new System.Windows.Forms.TextBox();
             this.checkedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -70,12 +70,10 @@
             this.ItemsDGV.Size = new System.Drawing.Size(349, 223);
             this.ItemsDGV.TabIndex = 2;
             // 
-            // rowCheckedItemBindingSource
-            // 
-            this.rowCheckedItemBindingSource.DataSource = typeof(Diplom.RowCheckedItem);
-            // 
             // filter
             // 
+            this.filter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.filter.Location = new System.Drawing.Point(361, 12);
             this.filter.Name = "filter";
             this.filter.Size = new System.Drawing.Size(100, 20);
@@ -102,6 +100,10 @@
             this.ValueColumn.DataPropertyName = "Value";
             this.ValueColumn.HeaderText = "Список";
             this.ValueColumn.Name = "ValueColumn";
+            // 
+            // rowCheckedItemBindingSource
+            // 
+            this.rowCheckedItemBindingSource.DataSource = typeof(Diplom.RowCheckedItem);
             // 
             // ItemsSelectorModalWindow
             // 

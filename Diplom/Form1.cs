@@ -95,7 +95,6 @@ namespace Diplom
                                 nagr[i].is_online = 1;
                             else
                                 nagr[i].is_online = 0;
-
                         }
                     }
                 }
@@ -229,7 +228,7 @@ namespace Diplom
 
         private void FilterMenuItem_Click(object sender, EventArgs e)
         {
-            FilterWindow filter = new FilterWindow(activeScheduleDataModel);
+            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr);
             if (filter.ShowDialog() == DialogResult.OK)
             {
                 

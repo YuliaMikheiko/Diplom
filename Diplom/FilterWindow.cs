@@ -13,9 +13,13 @@ namespace Diplom
     public partial class FilterWindow : Form
     {
         ScheduleDataModel scheduleDataModel;
-        internal FilterWindow(ScheduleDataModel scheduleDataModel)
+        ScheduleRow[] nagr;
+
+        internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr)
         {
             this.scheduleDataModel = scheduleDataModel;
+            this.nagr = nagr;
+
             InitializeComponent();
         }
 
@@ -42,21 +46,28 @@ namespace Diplom
 
         private void KafedraButton_Click(object sender, EventArgs e)
         {
+            List<string> allKafedra = new List<string>();
+
+            int i = 0;
+            foreach(var item in nagr)
+            {
+                allKafedra.Add(nagr[i].kaf);
+                i++;
+            }
+
+            List<string> Kafedra = allKafedra.Distinct().ToList();
+
             int type = 4;
-            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(type, scheduleDataModel);
+            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(type, scheduleDataModel, Kafedra);
 
             if (kafedra.ShowDialog() == DialogResult.OK)
             {
-                List<int?> idsList = kafedra.idsList;
                 List<string> TitleList = kafedra.TitleList;
                 var value = " ";
+                
+                foreach (var name in TitleList)
+                    value += name + " ";
 
-                if (idsList.Count > 0)
-                {
-                    value = "";
-                    foreach (var name in TitleList)
-                        value += name + " ";
-                }
                 KafedraTextBox.Text = value;
             }
         }
@@ -106,21 +117,28 @@ namespace Diplom
 
         private void DisciplineButton_Click(object sender, EventArgs e)
         {
+            List<string> allDiscipline = new List<string>();
+
+            int i = 0;
+            foreach (var item in nagr)
+            {
+                allDiscipline.Add(nagr[i].discipline);
+                i++;
+            }
+
+            List<string> Discipline = allDiscipline.Distinct().ToList();
+
             int type = 5;
-            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(type, scheduleDataModel);
+            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(type, scheduleDataModel, Discipline);
 
             if (discipline.ShowDialog() == DialogResult.OK)
             {
-                List<int?> idsList = discipline.idsList;
                 List<string> TitleList = discipline.TitleList;
                 var value = " ";
+                
+                foreach (var name in TitleList)
+                    value += name + " ";
 
-                if (idsList.Count > 0)
-                {
-                    value = "";
-                    foreach (var name in TitleList)
-                        value += name + " ";
-                }
                 DisciplineTextBox.Text = value;
             }
         }
