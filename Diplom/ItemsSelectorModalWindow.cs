@@ -19,7 +19,8 @@ namespace Diplom
         public List<int?> idsList;
         public List<string> TitleList;
 
-        List<string> Kafedra;
+        List<string> Title;
+        List<string> TitleText;
 
         ScheduleRow nagr;
 
@@ -45,13 +46,15 @@ namespace Diplom
                 ReadAuditorys();
         }
 
-        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel)
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> TitleText)
         {
             InitializeComponent();
 
             teachers = scheduleDataModel.GetTeachers();
             auditories = scheduleDataModel.GetAuditories();
             sub_groups_info = scheduleDataModel.GetGroups();
+
+            this.TitleText = TitleText;
 
             if (type == 1)
                 ReadTeachersFilter();
@@ -61,11 +64,12 @@ namespace Diplom
                 ReadAuditorysFilter();
         }
 
-        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> Kafedra)
+        internal ItemsSelectorModalWindow(int type, List<string> TitleText, List<string> Title)
         {
             InitializeComponent();
 
-            this.Kafedra = Kafedra;
+            this.Title = Title;
+            this.TitleText = TitleText;
 
             if (type == 4)
                 ReadKafedraFilter();
@@ -92,8 +96,8 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.name,
-                   // Checked = nagr.teachers.Contains(x.Key)
-                }).ToList()
+                    Checked = TitleText.Contains(x.Value.name)
+                }).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
@@ -116,8 +120,8 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    //Checked = nagr.sub_groups.Contains(x.Key),
-                }).ToList()
+                    Checked = TitleText.Contains(x.Value.title)
+                }).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
@@ -140,28 +144,30 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    //Checked = nagr.auds.Contains(x.Key),
-                }).ToList()
+                    Checked = TitleText.Contains(x.Value.title)
+                }).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
         private void ReadKafedraFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                Kafedra.Select(x => new RowCheckedItem
+                Title.Select(x => new RowCheckedItem
                 {
-                    Value = x
-                }).OrderBy(x => x.Value).ToList()
+                    Value = x,
+                    Checked = TitleText.Contains(x)
+                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
             );
         }
 
         private void ReadDisciplineFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                Kafedra.Select(x => new RowCheckedItem
+                Title.Select(x => new RowCheckedItem
                 {
-                    Value = x
-                }).OrderBy(x => x.Value).ToList()
+                    Value = x,
+                    Checked = TitleText.Contains(x)
+                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
             );
         }
 
