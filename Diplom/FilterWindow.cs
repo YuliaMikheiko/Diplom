@@ -27,14 +27,20 @@ namespace Diplom
         {
             int type = 2;
 
-            List<string> GroupsText = new List<string>();
+            List<string> GroupsText1 = new List<string>();
 
-            if (GroupsTextBox.Text == "")
-                GroupsText.Add("");
-            else
-                 GroupsText = GroupsTextBox.Text.Split().ToList();
+            if (GroupsTextBox.Text != "")
+            {
+                List<string> GroupsText = GroupsTextBox.Text.Split(';').ToList();
 
-            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, scheduleDataModel, GroupsText);
+                foreach (var name in GroupsText)
+                {
+                    if (name != " ")
+                        GroupsText1.Add(name.Trim());
+                }
+            }
+
+            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, scheduleDataModel, GroupsText1);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -46,9 +52,9 @@ namespace Diplom
                 {
                     value = "";
                     foreach (var name in TitleList)
-                        value += name + " ";
+                        value += name + "; ";
                 }
-                GroupsTextBox.Text = value;
+                GroupsTextBox.Text = value.Trim().TrimEnd(';');
             }
         }
 
@@ -69,7 +75,7 @@ namespace Diplom
 
             if (KafedraTextBox.Text != "")
             {
-                List<string> KafedraText = KafedraTextBox.Text.Split(',').ToList();
+                List<string> KafedraText = KafedraTextBox.Text.Split(';').ToList();
 
                 foreach (var name in KafedraText)
                 {
@@ -87,9 +93,9 @@ namespace Diplom
                 var value = " ";
                 
                 foreach (var name in TitleList)
-                    value += name + ", ";
+                    value += name + "; ";
 
-                KafedraTextBox.Text = value;
+                KafedraTextBox.Text = value.Trim().TrimEnd(';');
             }
         }
 
@@ -101,7 +107,7 @@ namespace Diplom
 
             if (TeacherTextBox.Text != "")
             {
-                List<string> TeacherText = TeacherTextBox.Text.Split(',').ToList();
+                List<string> TeacherText = TeacherTextBox.Text.Split(';').ToList();
 
                 foreach (var name in TeacherText)
                 {
@@ -122,25 +128,31 @@ namespace Diplom
                 {
                     value = "";
                     foreach (var name in TitleList)
-                        value += name + ", ";
+                        value += name + "; ";
                 }
-                TeacherTextBox.Text = value;
+                TeacherTextBox.Text = value.Trim().TrimEnd(';');
             }
 
         }
 
         private void AuditorysButton_Click(object sender, EventArgs e)
         {
+            List<string> AuditorysText1 = new List<string>();
+
+            if (AuditorysTextBox.Text != "")
+            {
+                List<string> AuditorysText = AuditorysTextBox.Text.Split(';').ToList();
+
+                foreach (var name in AuditorysText)
+                {
+                    if (name != " ")
+                        AuditorysText1.Add(name.Trim());
+                }
+            }
+
             int type = 3;
 
-            List<string> AuditorysText = new List<string>();
-
-            if (AuditorysTextBox.Text == "")
-                AuditorysText.Add("");
-            else
-                AuditorysText = AuditorysTextBox.Text.Split().ToList();
-
-            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, scheduleDataModel, AuditorysText);
+            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, scheduleDataModel, AuditorysText1);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {
@@ -152,9 +164,9 @@ namespace Diplom
                 {
                     value = "";
                     foreach (var name in TitleList)
-                        value += name + " ";
+                        value += name + "; ";
                 }
-                AuditorysTextBox.Text = value;
+                AuditorysTextBox.Text = value.Trim().TrimEnd(';');
             }
         }
 
@@ -175,7 +187,7 @@ namespace Diplom
 
             if (DisciplineTextBox.Text != "")
             {
-                List<string> DisciplineText = DisciplineTextBox.Text.Split(',').ToList();
+                List<string> DisciplineText = DisciplineTextBox.Text.Split(';').ToList();
 
                 foreach (var name in DisciplineText)
                 {
@@ -193,9 +205,9 @@ namespace Diplom
                 var value = " ";
                 
                 foreach (var name in TitleList)
-                    value += name + ", ";
+                    value += name + "; ";
 
-                DisciplineTextBox.Text = value;
+                DisciplineTextBox.Text = value.Trim().TrimEnd(';');
             }
         }
 
