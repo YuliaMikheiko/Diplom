@@ -1,5 +1,6 @@
 ﻿using Equin.ApplicationFramework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -53,14 +54,16 @@ namespace Diplom
             DAuditories = activeScheduleDataModel.GetAuditories();
             DSub_groups = activeScheduleDataModel.GetGroups();
 
-            InformationDGV.DataSource = nagr.Select(x => new ScheduleRowDataGridRowItem(x, DTeachers, DAuditories, DSub_groups)
-            {
-                H = x.h,
-                NT = x.nt,
-                Kaf = x.kaf,
-                Discipline = x.discipline,
-                Is_online = x.is_online.Equals(1),
-            }).ToList();
+            InformationDGV.DataSource = new BindingListView<ScheduleRowDataGridRowItem>(
+                nagr.Select(x => new ScheduleRowDataGridRowItem(x, DTeachers, DAuditories, DSub_groups)
+                {
+                    H = x.h,
+                    NT = x.nt,
+                    Kaf = x.kaf,
+                    Discipline = x.discipline,
+                    Is_online = x.is_online.Equals(1),
+                }).ToList()
+            );
         }
 
         private void SaveData()
@@ -231,8 +234,63 @@ namespace Diplom
             FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr);
             if (filter.ShowDialog() == DialogResult.OK)
             {
-                
+                FilterData(filter);
             }
+
+            MessageBox.Show(
+                "Отфильтровано",
+                "Сообщение",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+
+        }
+
+        private void FilterData(FilterWindow filter)
+        {
+            (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+            {
+                bool a = false;
+                foreach (var item in filter.TitleListAuditorys)
+                    if (x.Auds.Contains(item))
+                    {
+                        a = true;
+                        break;
+                    }
+
+                bool b = false;
+                foreach (var item in filter.TitleListGroups)
+                    if (x.Sub_groups.Contains(item))
+                    {
+                        b = true;
+                        break;
+                    }
+
+                bool c = false;
+                foreach (var item in filter.TitleListTeacher)
+                    if (x.Teachers.Contains(item))
+                    {
+                        c = true;
+                        break;
+                    }
+
+                bool d = false;
+                foreach (var item in filter.TitleListKafedra)
+                    if (x.Kaf.Contains(item))
+                    {
+                        d = true;
+                        break;
+                    }
+
+                bool e = false;
+                foreach (var item in filter.TitleListDiscipline)
+                    if (x.Discipline.Contains(item))
+                    { 
+                        e = true; 
+                        break; 
+                    }
+                
+                return (a & b & c & d & e);
+            });            
         }
     }
 }
