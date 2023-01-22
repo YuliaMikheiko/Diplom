@@ -27,6 +27,11 @@ namespace Diplom
         {
             this.scheduleDataModel = scheduleDataModel;
             this.nagr = nagr;
+            TitleListDiscipline = new List<string>();
+            TitleListKafedra = new List<string>();
+            TitleListAuditorys = new List<string>();
+            TitleListGroups = new List<string>();
+            TitleListTeacher = new List<string>();
 
             InitializeComponent();
         }
@@ -229,43 +234,6 @@ namespace Diplom
 
         private void Filter_Click(object sender, EventArgs e)
         {
-            if (DisciplineTextBox.Text == "")
-            {
-                ReadDiscipline();
-                TitleListDiscipline = new List<string>();
-                TitleListDiscipline = Discipline;
-            }
-            if (KafedraTextBox.Text == "")
-            {
-                ReadKafedra();
-                TitleListKafedra = new List<string>();
-                TitleListKafedra = Kafedra;
-            }
-            if (AuditorysTextBox.Text == "")
-            {
-                Dictionary<int, Auditory> DAuditories = scheduleDataModel.GetAuditories();
-                TitleListAuditorys = new List<string>();
-                int i = 0;
-                foreach (var auditori in DAuditories)
-                {
-                    TitleListAuditorys.Add(auditori.Value.title);
-                    i++;
-                }
-            }
-            if (GroupsTextBox.Text == "")
-            {
-                Dictionary<int, SubGroup> DGroups = scheduleDataModel.GetGroups();
-                TitleListGroups = new List<string>();
-                foreach (var groups in DGroups)
-                    TitleListGroups.Add(groups.Value.title);
-            }
-            if (TeacherTextBox.Text == "")
-            {
-                Dictionary<int, Teacher> DTeachers = scheduleDataModel.GetTeachers();
-                TitleListTeacher = new List<string>();
-                foreach (var teachers in DTeachers)
-                    TitleListTeacher.Add(teachers.Value.name);
-            }
             this.DialogResult = DialogResult.OK;
         }
     }

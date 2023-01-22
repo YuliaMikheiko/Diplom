@@ -235,14 +235,13 @@ namespace Diplom
             if (filter.ShowDialog() == DialogResult.OK)
             {
                 FilterData(filter);
-            }
 
-            MessageBox.Show(
+                MessageBox.Show(
                 "Отфильтровано",
                 "Сообщение",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
-
+            }
         }
 
         private void FilterData(FilterWindow filter)
@@ -250,44 +249,39 @@ namespace Diplom
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
             {
                 bool a = false;
-                foreach (var item in filter.TitleListAuditorys)
-                    if (x.Auds.Contains(item))
-                    {
+                if (filter.TitleListAuditorys.Count() > 0)
+                    foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
                         a = true;
-                        break;
-                    }
+                else
+                    a = true;
 
                 bool b = false;
-                foreach (var item in filter.TitleListGroups)
-                    if (x.Sub_groups.Contains(item))
-                    {
+                if (filter.TitleListGroups.Count() > 0)
+                    foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
                         b = true;
-                        break;
-                    }
+                else
+                b = true;
 
                 bool c = false;
-                foreach (var item in filter.TitleListTeacher)
-                    if (x.Teachers.Contains(item))
-                    {
+                if (filter.TitleListTeacher.Count() > 0)
+                    foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
                         c = true;
-                        break;
-                    }
+                else
+                    c = true;
 
                 bool d = false;
-                foreach (var item in filter.TitleListKafedra)
-                    if (x.Kaf.Contains(item))
-                    {
+                if (filter.TitleListKafedra.Count() > 0)
+                    foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
                         d = true;
-                        break;
-                    }
+                else
+                    d = true;
 
                 bool e = false;
-                foreach (var item in filter.TitleListDiscipline)
-                    if (x.Discipline.Contains(item))
-                    { 
-                        e = true; 
-                        break; 
-                    }
+                if (filter.TitleListDiscipline.Count() > 0)
+                    foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                        e = true;
+                else
+                    e = true;
                 
                 return (a & b & c & d & e);
             });            

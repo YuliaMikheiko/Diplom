@@ -270,6 +270,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.GroupsTextBox.Location = new System.Drawing.Point(169, 3);
             this.GroupsTextBox.Name = "GroupsTextBox";
+            this.GroupsTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GroupsTextBox.Size = new System.Drawing.Size(238, 20);
             this.GroupsTextBox.TabIndex = 10;
             // 
