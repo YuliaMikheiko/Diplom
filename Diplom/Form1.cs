@@ -28,13 +28,13 @@ namespace Diplom
 
             NtColumn.DataSource = new List<KeyValuePair<int, string>>
             {
-            new KeyValuePair<int, string>(1, "Лекция"),
-            new KeyValuePair<int, string>(2, "Практика"),
-            new KeyValuePair<int, string>(3, "Лаба"),
-            new KeyValuePair<int, string>(4, "Консультация"),
-            new KeyValuePair<int, string>(5, "Экзамен консультация"),
-            new KeyValuePair<int, string>(6, "Экзамен"),
-            new KeyValuePair<int, string>(7, "Зачет"),
+                new KeyValuePair<int, string>(1, "Лекция"),
+                new KeyValuePair<int, string>(2, "Практика"),
+                new KeyValuePair<int, string>(3, "Лаба"),
+                new KeyValuePair<int, string>(4, "Консультация"),
+                new KeyValuePair<int, string>(5, "Экзамен консультация"),
+                new KeyValuePair<int, string>(6, "Экзамен"),
+                new KeyValuePair<int, string>(7, "Зачет"),
             };
             NtColumn.DisplayMember = "Value";
             NtColumn.ValueMember = "Key";
@@ -226,6 +226,10 @@ namespace Diplom
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
+            (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+            {
+                return true;
+            });
             SaveData();
         }
 
@@ -249,40 +253,105 @@ namespace Diplom
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
             {
                 bool a = false;
-                if (filter.TitleListAuditorys.Count() > 0)
-                    foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
-                        a = true;
-                else
+                if (filter.AuditoryCheck)
+                {
                     a = true;
 
-                bool b = false;
-                if (filter.TitleListGroups.Count() > 0)
-                    foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
-                        b = true;
+                    if (filter.TitleListAuditorys.Count() > 0)
+                        foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                            a = false;
+                    else
+                        a = false;
+                }
                 else
-                b = true;
+                {
+                    if (filter.TitleListAuditorys.Count() > 0)
+                        foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                            a = true;
+                    else
+                        a = true;
+                }
+
+
+                bool b = false;
+                if (filter.GroupCheck)
+                {
+                    b = true;
+
+                    if (filter.TitleListGroups.Count() > 0)
+                        foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                            b = false;
+                    else
+                        b = false;
+                }
+                else
+                {
+                    if (filter.TitleListGroups.Count() > 0)
+                        foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                            b = true;
+                    else
+                        b = true;
+                }
+
 
                 bool c = false;
-                if (filter.TitleListTeacher.Count() > 0)
-                    foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
-                        c = true;
-                else
+                if (filter.TeacherCheck)
+                {
                     c = true;
+                    if (filter.TitleListTeacher.Count() > 0)
+                        foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                            c = false;
+                    else
+                        c = false;
+                }
+                else
+                {
+                    if (filter.TitleListTeacher.Count() > 0)
+                        foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                            c = true;
+                    else
+                        c = true;
+                }
 
                 bool d = false;
-                if (filter.TitleListKafedra.Count() > 0)
-                    foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
-                        d = true;
-                else
+                if (filter.TeacherCheck)
+                {
                     d = true;
+                    if (filter.TitleListKafedra.Count() > 0)
+                        foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                            d = false;
+                    else
+                        d = false;
+                }
+                else
+                {
+                    if (filter.TitleListKafedra.Count() > 0)
+                        foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                            d = true;
+                    else
+                        d = true;
+                }
 
                 bool e = false;
-                if (filter.TitleListDiscipline.Count() > 0)
-                    foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
-                        e = true;
-                else
+                if (filter.TeacherCheck)
+                {
                     e = true;
-                
+
+                    if (filter.TitleListDiscipline.Count() > 0)
+                        foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                            e = false;
+                    else
+                        e = false;
+                }
+                else
+                {
+                    if (filter.TitleListDiscipline.Count() > 0)
+                        foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                            e = true;
+                    else
+                        e = true;
+                }
+
                 return (a & b & c & d & e);
             });            
         }

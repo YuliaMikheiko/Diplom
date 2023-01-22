@@ -14,11 +14,18 @@ namespace Diplom
     {
         ScheduleDataModel scheduleDataModel;
         ScheduleRow[] nagr;
+
         public List<string> TitleListGroups;
         public List<string> TitleListKafedra;
         public List<string> TitleListTeacher;
         public List<string> TitleListAuditorys;
         public List<string> TitleListDiscipline;
+
+        public bool TeacherCheck;
+        public bool AuditoryCheck;
+        public bool GroupCheck;
+        public bool KafedraCheck;
+        public bool DisciplineCheck;
 
         List<string> Discipline;
         List<string> Kafedra;
@@ -27,6 +34,7 @@ namespace Diplom
         {
             this.scheduleDataModel = scheduleDataModel;
             this.nagr = nagr;
+
             TitleListDiscipline = new List<string>();
             TitleListKafedra = new List<string>();
             TitleListAuditorys = new List<string>();
@@ -38,22 +46,11 @@ namespace Diplom
 
         private void GroupsButton_Click(object sender, EventArgs e)
         {
-            List<string> GroupsText1 = new List<string>();
+            List<string> GroupsText = new List<string>();
 
-            if (GroupsTextBox.Text != "")
-            {
-                List<string> GroupsText = GroupsTextBox.Text.Split(';').ToList();
+            GroupsText.AddRange(GroupsTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-                foreach (var name in GroupsText)
-                {
-                    if (name != " ")
-                        GroupsText1.Add(name.Trim());
-                }
-            }
-
-            int type = 2;
-
-            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, scheduleDataModel, GroupsText1);
+            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(2, scheduleDataModel, GroupsText);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -85,28 +82,17 @@ namespace Diplom
         {
             ReadKafedra();
 
-            List<string> KafedraText1 = new List<string>();
+            List<string> KafedraText = new List<string>();
 
-            if (KafedraTextBox.Text != "")
-            {
-                List<string> KafedraText = KafedraTextBox.Text.Split(';').ToList();
+            KafedraText.AddRange(KafedraTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-                foreach (var name in KafedraText)
-                {
-                    if (name != " ")
-                        KafedraText1.Add(name.Trim());
-                }
-            }
-
-            int type = 4;
-
-            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(type, KafedraText1, Kafedra);
+            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(4, KafedraText, Kafedra);
 
             if (kafedra.ShowDialog() == DialogResult.OK)
             {
                 TitleListKafedra = kafedra.TitleList;
                 var value = " ";
-                
+
                 foreach (var name in TitleListKafedra)
                     value += name + "; ";
 
@@ -116,71 +102,40 @@ namespace Diplom
 
         private void TeacherButton_Click(object sender, EventArgs e)
         {
-            List<string> TeacherText1 = new List<string>();
+            List<string> TeacherText = new List<string>();
 
-            if (TeacherTextBox.Text != "")
-            {
-                List<string> TeacherText = TeacherTextBox.Text.Split(';').ToList();
+            TeacherText.AddRange(TeacherTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-                foreach (var name in TeacherText)
-                {
-                    if (name != " ")
-                        TeacherText1.Add(name.Trim());
-                }
-            }
-
-            int type = 1;
-
-            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(type, scheduleDataModel, TeacherText1);
+            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(1, scheduleDataModel, TeacherText);
 
             if (teachers.ShowDialog() == DialogResult.OK)
             {
-                List<int?> idsList = teachers.idsList;
                 TitleListTeacher = teachers.TitleList;
                 var value = " ";
 
-                if (idsList.Count > 0)
-                {
-                    value = "";
-                    foreach (var name in TitleListTeacher)
-                        value += name + "; ";
-                }
+                foreach (var name in TitleListTeacher)
+                    value += name + "; ";
+
                 TeacherTextBox.Text = value.Trim().TrimEnd(';');
             }
-
         }
 
         private void AuditorysButton_Click(object sender, EventArgs e)
         {
-            List<string> AuditorysText1 = new List<string>();
+            List<string> AuditorysText = new List<string>();
 
-            if (AuditorysTextBox.Text != "")
-            {
-                List<string> AuditorysText = AuditorysTextBox.Text.Split(';').ToList();
+            AuditorysText.AddRange(AuditorysTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-                foreach (var name in AuditorysText)
-                {
-                    if (name != " ")
-                        AuditorysText1.Add(name.Trim());
-                }
-            }
-
-            int type = 3;
-
-            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, scheduleDataModel, AuditorysText1);
+            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(3, scheduleDataModel, AuditorysText);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {
-                List<int?> idsList = auditorys.idsList;
                 TitleListAuditorys = auditorys.TitleList;
                 var value = " ";
 
-                if (idsList.Count > 0)
-                {
-                    value = "";
-                    foreach (var name in TitleListAuditorys)
-                        value += name + "; ";
-                }
+                foreach (var name in TitleListAuditorys)
+                    value += name + "; ";
+
                 AuditorysTextBox.Text = value.Trim().TrimEnd(';');
             }
         }
@@ -203,28 +158,17 @@ namespace Diplom
         {
             ReadDiscipline();
 
-            List<string> DisciplineText1 = new List<string>();
+            List<string> DisciplineText = new List<string>();
 
-            if (DisciplineTextBox.Text != "")
-            {
-                List<string> DisciplineText = DisciplineTextBox.Text.Split(';').ToList();
+            DisciplineText.AddRange(DisciplineTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-                foreach (var name in DisciplineText)
-                {
-                    if (name != " ")
-                        DisciplineText1.Add(name.Trim());
-                }
-            }
-                       
-            int type = 5;
-
-            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(type, DisciplineText1, Discipline);
+            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(5, DisciplineText, Discipline);
 
             if (discipline.ShowDialog() == DialogResult.OK)
             {
                 TitleListDiscipline = discipline.TitleList;
                 var value = " ";
-                
+
                 foreach (var name in TitleListDiscipline)
                     value += name + "; ";
 
@@ -234,6 +178,12 @@ namespace Diplom
 
         private void Filter_Click(object sender, EventArgs e)
         {
+            TeacherCheck = TeacherCheckBox.Checked;
+            AuditoryCheck = AuditorysCheckBox.Checked;
+            GroupCheck = GroupsCheckBox.Checked;
+            DisciplineCheck = DisciplineCheckBox.Checked;
+            KafedraCheck = KafedraCheckBox.Checked;
+
             this.DialogResult = DialogResult.OK;
         }
     }
