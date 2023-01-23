@@ -28,7 +28,7 @@ namespace Diplom
             get
             {
                 return String.Join(
-                " ",
+                "; ",
                 x.teachers
                 .Where(y => y.HasValue && DTeachers.ContainsKey(y.Value))
                 .Select(y => DTeachers[y.Value].name)
@@ -43,7 +43,7 @@ namespace Diplom
             get
             {
                 return String.Join(
-                " ",
+                "; ",
                 x.sub_groups
                 .Where(y => y.HasValue && DSub_groups.ContainsKey(y.Value))
                 .Select(y => DSub_groups[y.Value].title)
@@ -59,7 +59,7 @@ namespace Diplom
             get
             {
                 return String.Join(
-                " ",
+                "; ",
                 x.auds
                 .Where(y => y.HasValue && DAuditories.ContainsKey(y.Value))
                 .Select(y => DAuditories[y.Value].title)
@@ -72,5 +72,10 @@ namespace Diplom
         }
         public string Discipline { get; set; }
         public bool Is_online { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Teachers}%{Sub_groups}%{Auds}";
+        }
     }
 }

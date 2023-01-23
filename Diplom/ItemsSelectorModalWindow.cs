@@ -22,17 +22,17 @@ namespace Diplom
         List<string> Title;
         List<string> TitleText;
 
-        ScheduleRow nagr;
+        Object dataItem;
 
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        internal ItemsSelectorModalWindow(int type, ScheduleRow nagr, ScheduleDataModel scheduleDataModel)
+        internal ItemsSelectorModalWindow(int type, Object dataItem, ScheduleDataModel scheduleDataModel)
         {
             InitializeComponent();
 
-            this.nagr = nagr;
+            this.dataItem = dataItem;
 
             teachers = scheduleDataModel.GetTeachers();
             auditories = scheduleDataModel.GetAuditories();
@@ -84,7 +84,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.name,
-                    Checked = nagr.teachers.Contains(x.Key)
+                    Checked = dataItem.ToString().Contains(x.Value.name)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -108,7 +108,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = nagr.sub_groups.Contains(x.Key),
+                    Checked = dataItem.ToString().Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -132,7 +132,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = nagr.auds.Contains(x.Key),
+                    Checked = dataItem.ToString().Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -193,11 +193,11 @@ namespace Diplom
             this.DialogResult = DialogResult.OK;
         }
 
-        private void filter_TextChanged(object sender, EventArgs e)
+        private void Filter_TextChanged(object sender, EventArgs e)
         {
             (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).ApplyFilter(x =>
             {
-                return filter.Text == "" || x.Value.Contains(filter.Text);
+                return Filter.Text == "" || x.Value.Contains(Filter.Text);
             });
         }
     }

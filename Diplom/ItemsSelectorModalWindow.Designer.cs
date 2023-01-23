@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.Choice = new System.Windows.Forms.Button();
             this.ItemsDGV = new System.Windows.Forms.DataGridView();
-            this.filter = new System.Windows.Forms.TextBox();
             this.checkedDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.keyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Filter = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -70,16 +70,6 @@
             this.ItemsDGV.Size = new System.Drawing.Size(349, 223);
             this.ItemsDGV.TabIndex = 2;
             // 
-            // filter
-            // 
-            this.filter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.filter.Location = new System.Drawing.Point(361, 12);
-            this.filter.Name = "filter";
-            this.filter.Size = new System.Drawing.Size(100, 20);
-            this.filter.TabIndex = 4;
-            this.filter.TextChanged += new System.EventHandler(this.filter_TextChanged);
-            // 
             // checkedDataGridViewCheckBoxColumn
             // 
             this.checkedDataGridViewCheckBoxColumn.DataPropertyName = "Checked";
@@ -105,12 +95,22 @@
             // 
             this.rowCheckedItemBindingSource.DataSource = typeof(Diplom.RowCheckedItem);
             // 
+            // Filter
+            // 
+            this.Filter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Filter.Location = new System.Drawing.Point(361, 12);
+            this.Filter.Name = "Filter";
+            this.Filter.Size = new System.Drawing.Size(100, 20);
+            this.Filter.TabIndex = 4;
+            this.Filter.TextChanged += new System.EventHandler(this.Filter_TextChanged);
+            // 
             // ItemsSelectorModalWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 224);
-            this.Controls.Add(this.filter);
+            this.Controls.Add(this.Filter);
             this.Controls.Add(this.Choice);
             this.Controls.Add(this.ItemsDGV);
             this.Name = "ItemsSelectorModalWindow";
@@ -127,7 +127,7 @@
         private System.Windows.Forms.Button Choice;
         private System.Windows.Forms.BindingSource rowCheckedItemBindingSource;
         public System.Windows.Forms.DataGridView ItemsDGV;
-        private System.Windows.Forms.TextBox filter;
+        private System.Windows.Forms.TextBox Filter;
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
