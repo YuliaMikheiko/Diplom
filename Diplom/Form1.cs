@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -359,6 +360,27 @@ namespace Diplom
 
                 return (isAuditorysOK & isGroupOK & isTeacherOK & isKafedraOK & isDisciplineOK);
             });
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var label = new Label();
+
+   
+            label.Location = new System.Drawing.Point(10, 10);
+            label.Size = new System.Drawing.Size(60, 60);
+            label.ForeColor = Color.Black;
+            label.BackColor = Color.Aqua;
+            label.Text = "123";
+            label.Click += Label_Click;
+            this.Controls.Add(label);
+        }
+
+        private void Label_Click(object sender, EventArgs e)
+        {
+            var label = sender as Label;
+            label.Text = "О";
+            label.BackColor = Color.Aquamarine;
         }
     }
 }
