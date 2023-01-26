@@ -243,15 +243,7 @@ namespace Diplom
         {
             FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr);
             if (filter.ShowDialog() == DialogResult.OK)
-            {
                 FilterData(filter);
-
-                MessageBox.Show(
-                "Отфильтровано",
-                "Сообщение",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-            }
         }
 
         private void FilterData(FilterWindow filter)
@@ -362,25 +354,13 @@ namespace Diplom
             });
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void TeacherWishMenuItem_Click(object sender, EventArgs e)
         {
-            var label = new Label();
+            WishWindow wish = new WishWindow();
+            if (wish.ShowDialog() == DialogResult.OK)
+            {
 
-   
-            label.Location = new System.Drawing.Point(10, 10);
-            label.Size = new System.Drawing.Size(60, 60);
-            label.ForeColor = Color.Black;
-            label.BackColor = Color.Aqua;
-            label.Text = "123";
-            label.Click += Label_Click;
-            this.Controls.Add(label);
-        }
-
-        private void Label_Click(object sender, EventArgs e)
-        {
-            var label = sender as Label;
-            label.Text = "О";
-            label.BackColor = Color.Aquamarine;
+            }
         }
     }
 }

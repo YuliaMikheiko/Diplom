@@ -101,6 +101,12 @@
     <Compile Include="ScheduleDataModel.cs" />
     <Compile Include="ScheduleJson.cs" />
     <Compile Include="ScheduleRowDataGridRowItem.cs" />
+    <Compile Include="WishWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WishWindow.Designer.cs">
+      <DependentUpon>WishWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FilterWindow.resx">
       <DependentUpon>FilterWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -119,6 +125,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="WishWindow.resx">
+      <DependentUpon>WishWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\RowCheckedItem.datasource" />
     <None Include="Properties\DataSources\ScheduleRowDataGridRowItem.datasource" />
