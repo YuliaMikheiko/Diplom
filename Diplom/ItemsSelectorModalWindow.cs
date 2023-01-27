@@ -197,7 +197,7 @@ namespace Diplom
         {
             (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).ApplyFilter(x =>
             {
-                return Filter.Text == "" || x.Value.Contains(Filter.Text);
+                return Filter.Text == "" || x.Value.ToUpper().Contains(Filter.Text.ToUpper());
             });
         }
     }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Diplom
 {
@@ -185,6 +186,13 @@ namespace Diplom
             KafedraCheck = KafedraCheckBox.Checked;
 
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void GroupsTextBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            ToolTip t = new ToolTip();
+            
+            t.SetToolTip(sender as TextBox, (sender as TextBox).Text);
         }
     }
 }
