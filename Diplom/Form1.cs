@@ -250,107 +250,143 @@ namespace Diplom
         {
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
             {
-                bool isAuditorysOK = false;
-                if (filter.auditoryCheck)
+                List<(bool, List<string>, string)> list = new List<(bool, List<string>, string)>
                 {
-                    isAuditorysOK = true;
+                    (filter.auditoryCheck, filter.titleListAuditorys, x.Auds),
+                    (filter.groupCheck, filter.titleListGroups, x.Sub_groups),
+                    (filter.teacherCheck, filter.titleListTeacher, x.Teachers),
+                    (filter.kafedraCheck, filter.titleListKafedra, x.Kaf),
+                    (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline)
+                };
 
-                    if (filter.titleListAuditorys.Count() > 0)
-                        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
-                            isAuditorysOK = false;
-                    else
-                        isAuditorysOK = false;
-                }
-                else
-                {
-                    if (filter.titleListAuditorys.Count() > 0)
-                        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
-                            isAuditorysOK = true;
-                    else
-                        isAuditorysOK = true;
-                }
+                bool aresult = true;
 
 
-                bool isGroupOK = false;
-                if (filter.groupCheck)
+                foreach (var item in list)
                 {
-                    isGroupOK = true;
+                    bool result = false;
+                    if (item.Item1)
+                    {
+                        result = true;
 
-                    if (filter.titleListGroups.Count() > 0)
-                        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
-                            isGroupOK = false;
+                        if (item.Item2.Count() > 0)
+                            foreach (var _ in item.Item2.Where(i => item.Item3.Contains(i)).Select(i => new { }))
+                                result = false;
+                        else
+                            result = false;
+                    }
                     else
-                        isGroupOK = false;
+                    {
+                        if (item.Item2.Count() > 0)
+                            foreach (var _ in item.Item2.Where(i => item.Item3.Contains(i)).Select(i => new { }))
+                                result = true;
+                        else
+                            result = true;
+                    }
+                    aresult &= result;
                 }
-                else
-                {
-                    if (filter.titleListGroups.Count() > 0)
-                        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
-                            isGroupOK = true;
-                    else
-                        isGroupOK = true;
-                }
+                return aresult;
 
 
-                bool isTeacherOK = false;
-                if (filter.teacherCheck)
-                {
-                    isTeacherOK = true;
-                    if (filter.titleListTeacher.Count() > 0)
-                        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
-                            isTeacherOK = false;
-                    else
-                        isTeacherOK = false;
-                }
-                else
-                {
-                    if (filter.titleListTeacher.Count() > 0)
-                        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
-                            isTeacherOK = true;
-                    else
-                        isTeacherOK = true;
-                }
+                //bool isAuditorysOK = false;
+                //if (filter.auditoryCheck)
+                //{
+                //    isAuditorysOK = true;
 
-                bool isKafedraOK = false;
-                if (filter.kafedraCheck)
-                {
-                    isKafedraOK = true;
-                    if (filter.titleListKafedra.Count() > 0)
-                        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
-                            isKafedraOK = false;
-                    else
-                        isKafedraOK = false;
-                }
-                else
-                {
-                    if (filter.titleListKafedra.Count() > 0)
-                        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
-                            isKafedraOK = true;
-                    else
-                        isKafedraOK = true;
-                }
+                //    if (filter.titleListAuditorys.Count() > 0)
+                //        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                //            isAuditorysOK = false;
+                //    else
+                //        isAuditorysOK = false;
+                //}
+                //else
+                //{
+                //    if (filter.titleListAuditorys.Count() > 0)
+                //        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                //            isAuditorysOK = true;
+                //    else
+                //        isAuditorysOK = true;
+                //}
 
-                bool isDisciplineOK = false;
-                if (filter.disciplineCheck)
-                {
-                    isDisciplineOK = true;
+                //bool isGroupOK = false;
+                //if (filter.groupCheck)
+                //{
+                //    isGroupOK = true;
 
-                    if (filter.titleListDiscipline.Count() > 0)
-                        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
-                            isDisciplineOK = false;
-                    else
-                        isDisciplineOK = false;
-                }
-                else
-                {
-                    if (filter.titleListDiscipline.Count() > 0)
-                        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
-                            isDisciplineOK = true;
-                    else
-                        isDisciplineOK = true;
-                }
+                //    if (filter.titleListGroups.Count() > 0)
+                //        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                //            isGroupOK = false;
+                //    else
+                //        isGroupOK = false;
+                //}
+                //else
+                //{
+                //    if (filter.titleListGroups.Count() > 0)
+                //        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                //            isGroupOK = true;
+                //    else
+                //        isGroupOK = true;
+                //}
 
-                return (isAuditorysOK & isGroupOK & isTeacherOK & isKafedraOK & isDisciplineOK);
+                //bool isTeacherOK = false;
+                //if (filter.teacherCheck)
+                //{
+                //    isTeacherOK = true;
+                //    if (filter.titleListTeacher.Count() > 0)
+                //        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                //            isTeacherOK = false;
+                //    else
+                //        isTeacherOK = false;
+                //}
+                //else
+                //{
+                //    if (filter.titleListTeacher.Count() > 0)
+                //        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                //            isTeacherOK = true;
+                //    else
+                //        isTeacherOK = true;
+                //}
+
+                //bool isKafedraOK = false;
+                //if (filter.kafedraCheck)
+                //{
+                //    isKafedraOK = true;
+                //    if (filter.titleListKafedra.Count() > 0)
+                //        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                //            isKafedraOK = false;
+                //    else
+                //        isKafedraOK = false;
+                //}
+                //else
+                //{
+                //    if (filter.titleListKafedra.Count() > 0)
+                //        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                //            isKafedraOK = true;
+                //    else
+                //        isKafedraOK = true;
+                //}
+
+                //bool isDisciplineOK = false;
+                //if (filter.disciplineCheck)
+                //{
+                //    isDisciplineOK = true;
+
+                //    if (filter.titleListDiscipline.Count() > 0)
+                //        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                //            isDisciplineOK = false;
+                //    else
+                //        isDisciplineOK = false;
+                //}
+                //else
+                //{
+                //    if (filter.titleListDiscipline.Count() > 0)
+                //        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                //            isDisciplineOK = true;
+                //    else
+                //        isDisciplineOK = true;
+                //}
+
+                //return (isAuditorysOK & isGroupOK & isTeacherOK & isKafedraOK & isDisciplineOK);
             });
         }
 
