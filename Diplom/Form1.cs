@@ -18,9 +18,9 @@ namespace Diplom
         private ScheduleDataModel activeScheduleDataModel;
         public ScheduleRow[] nagr;
         string path;
-        Dictionary<int, Teacher> DTeachers;
-        Dictionary<int, Auditory> DAuditories;
-        Dictionary<int, SubGroup> DSub_groups;
+        Dictionary<int, Teacher> dTeachers;
+        Dictionary<int, Auditory> dAuditories;
+        Dictionary<int, SubGroup> dSub_groups;
 
         public Form1()
         {
@@ -50,12 +50,12 @@ namespace Diplom
             activeScheduleDataModel = new JsonScheduleDataModel(path);
             activeScheduleDataModel.Load();
             nagr = activeScheduleDataModel.GetNagruzka();
-            DTeachers = activeScheduleDataModel.GetTeachers();
-            DAuditories = activeScheduleDataModel.GetAuditories();
-            DSub_groups = activeScheduleDataModel.GetGroups();
+            dTeachers = activeScheduleDataModel.GetTeachers();
+            dAuditories = activeScheduleDataModel.GetAuditories();
+            dSub_groups = activeScheduleDataModel.GetGroups();
 
             InformationDGV.DataSource = new BindingListView<ScheduleRowDataGridRowItem>(
-                nagr.Select(x => new ScheduleRowDataGridRowItem(x, DTeachers, DAuditories, DSub_groups)
+                nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups)
                 {
                     H = x.h,
                     NT = x.nt,
@@ -138,7 +138,7 @@ namespace Diplom
                     if (teachers.ShowDialog() == DialogResult.OK)
                     {
                         List<int?> idsList = teachers.idsList;
-                        List<string> TitleList = teachers.TitleList;
+                        List<string> titleList = teachers.titleList;
                         var value = " ";
 
                         if (idsList.Count > 0)
@@ -146,7 +146,7 @@ namespace Diplom
                             nagr[e.RowIndex].teachers = idsList.ToArray();
 
                             value = "";
-                            foreach (var name in TitleList)
+                            foreach (var name in titleList)
                                 value += name + " ";
                         }
                         else
@@ -168,7 +168,7 @@ namespace Diplom
                     if (groups.ShowDialog() == DialogResult.OK)
                     {
                         List<int?> idsList = groups.idsList;
-                        List<string> TitleList = groups.TitleList;
+                        List<string> titleList = groups.titleList;
                         var value = " ";
 
                         if (idsList.Count > 0)
@@ -176,7 +176,7 @@ namespace Diplom
                             nagr[e.RowIndex].sub_groups = idsList.ToArray();
 
                             value = "";
-                            foreach (var title in TitleList)
+                            foreach (var title in titleList)
                                 value += title + " ";
                         }
                         else
@@ -198,7 +198,7 @@ namespace Diplom
                     if (auditorys.ShowDialog() == DialogResult.OK)
                     {
                         List<int?> idsList = auditorys.idsList;
-                        List<string> TitleList = auditorys.TitleList;
+                        List<string> titleList = auditorys.titleList;
                         var value = " ";
 
                         if (idsList.Count > 0)
@@ -206,7 +206,7 @@ namespace Diplom
                             nagr[e.RowIndex].auds = idsList.ToArray();
 
                             value = "";
-                            foreach (var title in TitleList)
+                            foreach (var title in titleList)
                                 value += title + " ";
                         }
                         else
@@ -251,20 +251,20 @@ namespace Diplom
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
             {
                 bool isAuditorysOK = false;
-                if (filter.AuditoryCheck)
+                if (filter.auditoryCheck)
                 {
                     isAuditorysOK = true;
 
-                    if (filter.TitleListAuditorys.Count() > 0)
-                        foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                    if (filter.titleListAuditorys.Count() > 0)
+                        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
                             isAuditorysOK = false;
                     else
                         isAuditorysOK = false;
                 }
                 else
                 {
-                    if (filter.TitleListAuditorys.Count() > 0)
-                        foreach (var _ in filter.TitleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
+                    if (filter.titleListAuditorys.Count() > 0)
+                        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
                             isAuditorysOK = true;
                     else
                         isAuditorysOK = true;
@@ -272,20 +272,20 @@ namespace Diplom
 
 
                 bool isGroupOK = false;
-                if (filter.GroupCheck)
+                if (filter.groupCheck)
                 {
                     isGroupOK = true;
 
-                    if (filter.TitleListGroups.Count() > 0)
-                        foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                    if (filter.titleListGroups.Count() > 0)
+                        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
                             isGroupOK = false;
                     else
                         isGroupOK = false;
                 }
                 else
                 {
-                    if (filter.TitleListGroups.Count() > 0)
-                        foreach (var _ in filter.TitleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
+                    if (filter.titleListGroups.Count() > 0)
+                        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
                             isGroupOK = true;
                     else
                         isGroupOK = true;
@@ -293,58 +293,58 @@ namespace Diplom
 
 
                 bool isTeacherOK = false;
-                if (filter.TeacherCheck)
+                if (filter.teacherCheck)
                 {
                     isTeacherOK = true;
-                    if (filter.TitleListTeacher.Count() > 0)
-                        foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                    if (filter.titleListTeacher.Count() > 0)
+                        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
                             isTeacherOK = false;
                     else
                         isTeacherOK = false;
                 }
                 else
                 {
-                    if (filter.TitleListTeacher.Count() > 0)
-                        foreach (var _ in filter.TitleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
+                    if (filter.titleListTeacher.Count() > 0)
+                        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
                             isTeacherOK = true;
                     else
                         isTeacherOK = true;
                 }
 
                 bool isKafedraOK = false;
-                if (filter.KafedraCheck)
+                if (filter.kafedraCheck)
                 {
                     isKafedraOK = true;
-                    if (filter.TitleListKafedra.Count() > 0)
-                        foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                    if (filter.titleListKafedra.Count() > 0)
+                        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
                             isKafedraOK = false;
                     else
                         isKafedraOK = false;
                 }
                 else
                 {
-                    if (filter.TitleListKafedra.Count() > 0)
-                        foreach (var _ in filter.TitleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
+                    if (filter.titleListKafedra.Count() > 0)
+                        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
                             isKafedraOK = true;
                     else
                         isKafedraOK = true;
                 }
 
                 bool isDisciplineOK = false;
-                if (filter.DisciplineCheck)
+                if (filter.disciplineCheck)
                 {
                     isDisciplineOK = true;
 
-                    if (filter.TitleListDiscipline.Count() > 0)
-                        foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                    if (filter.titleListDiscipline.Count() > 0)
+                        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
                             isDisciplineOK = false;
                     else
                         isDisciplineOK = false;
                 }
                 else
                 {
-                    if (filter.TitleListDiscipline.Count() > 0)
-                        foreach (var _ in filter.TitleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
+                    if (filter.titleListDiscipline.Count() > 0)
+                        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
                             isDisciplineOK = true;
                     else
                         isDisciplineOK = true;

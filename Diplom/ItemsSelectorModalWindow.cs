@@ -17,10 +17,10 @@ namespace Diplom
     {
 
         public List<int?> idsList;
-        public List<string> TitleList;
+        public List<string> titleList;
 
-        List<string> Title;
-        List<string> TitleText;
+        List<string> title;
+        List<string> titleText;
 
         Object dataItem;
 
@@ -46,7 +46,7 @@ namespace Diplom
                 ReadAuditorys();
         }
 
-        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> TitleText)
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText)
         {
             InitializeComponent();
 
@@ -54,7 +54,7 @@ namespace Diplom
             auditories = scheduleDataModel.GetAuditories();
             sub_groups_info = scheduleDataModel.GetGroups();
 
-            this.TitleText = TitleText;
+            this.titleText = titleText;
 
             if (type == 1)
                 ReadTeachersFilter();
@@ -64,12 +64,12 @@ namespace Diplom
                 ReadAuditorysFilter();
         }
 
-        internal ItemsSelectorModalWindow(int type, List<string> TitleText, List<string> Title)
+        internal ItemsSelectorModalWindow(int type, List<string> titleText, List<string> title)
         {
             InitializeComponent();
 
-            this.Title = Title;
-            this.TitleText = TitleText;
+            this.title = title;
+            this.titleText = titleText;
 
             if (type == 4)
                 ReadKafedraFilter();
@@ -96,7 +96,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.name,
-                    Checked = TitleText.Contains(x.Value.name)
+                    Checked = titleText.Contains(x.Value.name)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -120,7 +120,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = TitleText.Contains(x.Value.title)
+                    Checked = titleText.Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -144,7 +144,7 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = TitleText.Contains(x.Value.title)
+                    Checked = titleText.Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -152,10 +152,10 @@ namespace Diplom
         private void ReadKafedraFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                Title.Select(x => new RowCheckedItem
+                title.Select(x => new RowCheckedItem
                 {
                     Value = x,
-                    Checked = TitleText.Contains(x)
+                    Checked = titleText.Contains(x)
                 }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
             );
         }
@@ -163,10 +163,10 @@ namespace Diplom
         private void ReadDisciplineFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                Title.Select(x => new RowCheckedItem
+                title.Select(x => new RowCheckedItem
                 {
                     Value = x,
-                    Checked = TitleText.Contains(x)
+                    Checked = titleText.Contains(x)
                 }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
             );
         }
@@ -174,7 +174,7 @@ namespace Diplom
         private void Choice_Click(object sender, EventArgs e)
         {
             idsList = new List<int?>();
-            TitleList = new List<string>();
+            titleList = new List<string>();
 
             var items = (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).Where(x => x.Checked);
 
@@ -188,7 +188,7 @@ namespace Diplom
                     }
                 }
             }
-            TitleList = items.Select(x => x.Value).ToList();
+            titleList = items.Select(x => x.Value).ToList();
 
             this.DialogResult = DialogResult.OK;
         }

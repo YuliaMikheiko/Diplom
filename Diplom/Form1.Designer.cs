@@ -153,7 +153,7 @@
             // DisciplineColumn
             // 
             this.DisciplineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DisciplineColumn.DataPropertyName = "Discipline";
+            this.DisciplineColumn.DataPropertyName = "discipline";
             this.DisciplineColumn.HeaderText = "Название дисциплины";
             this.DisciplineColumn.Name = "DisciplineColumn";
             // 
