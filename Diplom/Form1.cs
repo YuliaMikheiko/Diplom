@@ -116,106 +116,99 @@ namespace Diplom
             }
         }
 
+        enum Type : int
+        {
+            Teachers,
+            Groups,
+            Auditorys
+        }
+
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (path == null)
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
             {
-                MessageBox.Show(
-                "Откройте файл",
-                "Сообщение",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
+                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
+
+                ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow((int)Type.Teachers, dataItem, activeScheduleDataModel);
+
+                if (teachers.ShowDialog() == DialogResult.OK)
+                {
+                    List<int?> idsList = teachers.idsList;
+                    List<string> titleList = teachers.titleList;
+                    var value = " ";
+
+                    if (idsList.Count > 0)
+                    {
+                        nagr[e.RowIndex].teachers = idsList.ToArray();
+
+                        value = "";
+                        foreach (var name in titleList)
+                            value += name + " ";
+                    }
+                    else
+                        Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
+
+                    foreach (DataGridViewColumn column in InformationDGV.Columns)
+                        if (column.Name == "TeachersColumn")
+                            InformationDGV[column.Index, e.RowIndex].Value = value;
+                }
             }
-            else
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
             {
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
+                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
+
+                ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow((int)Type.Groups, dataItem, activeScheduleDataModel);
+
+                if (groups.ShowDialog() == DialogResult.OK)
                 {
-                    int type = 1;
-                    Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
-                    
-                    ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(type, dataItem, activeScheduleDataModel);
+                    List<int?> idsList = groups.idsList;
+                    List<string> titleList = groups.titleList;
+                    var value = " ";
 
-                    if (teachers.ShowDialog() == DialogResult.OK)
+                    if (idsList.Count > 0)
                     {
-                        List<int?> idsList = teachers.idsList;
-                        List<string> titleList = teachers.titleList;
-                        var value = " ";
+                        nagr[e.RowIndex].sub_groups = idsList.ToArray();
 
-                        if (idsList.Count > 0)
-                        {
-                            nagr[e.RowIndex].teachers = idsList.ToArray();
-
-                            value = "";
-                            foreach (var name in titleList)
-                                value += name + " ";
-                        }
-                        else
-                            Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
-
-                        foreach (DataGridViewColumn column in InformationDGV.Columns)
-                            if (column.Name == "TeachersColumn")
-                                InformationDGV[column.Index, e.RowIndex].Value = value;
+                        value = "";
+                        foreach (var title in titleList)
+                            value += title + " ";
                     }
+                    else
+                        Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
+
+                    foreach (DataGridViewColumn column in InformationDGV.Columns)
+                        if (column.Name == "GroupsColumn")
+                            InformationDGV[column.Index, e.RowIndex].Value = value;
                 }
+            }
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
+            {
+                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
+
+                ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow((int)Type.Auditorys, dataItem, activeScheduleDataModel);
+
+                if (auditorys.ShowDialog() == DialogResult.OK)
                 {
-                    int type = 2;
-                    Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
+                    List<int?> idsList = auditorys.idsList;
+                    List<string> titleList = auditorys.titleList;
+                    var value = " ";
 
-                    ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(type, dataItem, activeScheduleDataModel);
-
-                    if (groups.ShowDialog() == DialogResult.OK)
+                    if (idsList.Count > 0)
                     {
-                        List<int?> idsList = groups.idsList;
-                        List<string> titleList = groups.titleList;
-                        var value = " ";
+                        nagr[e.RowIndex].auds = idsList.ToArray();
 
-                        if (idsList.Count > 0)
-                        {
-                            nagr[e.RowIndex].sub_groups = idsList.ToArray();
-
-                            value = "";
-                            foreach (var title in titleList)
-                                value += title + " ";
-                        }
-                        else
-                            Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
-
-                        foreach (DataGridViewColumn column in InformationDGV.Columns)
-                            if (column.Name == "GroupsColumn")
-                                InformationDGV[column.Index, e.RowIndex].Value = value;
+                        value = "";
+                        foreach (var title in titleList)
+                            value += title + " ";
                     }
-                }
+                    else
+                        Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
-                {
-                    int type = 3;
-                    Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
-
-                    ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(type, dataItem, activeScheduleDataModel);
-
-                    if (auditorys.ShowDialog() == DialogResult.OK)
-                    {
-                        List<int?> idsList = auditorys.idsList;
-                        List<string> titleList = auditorys.titleList;
-                        var value = " ";
-
-                        if (idsList.Count > 0)
-                        {
-                            nagr[e.RowIndex].auds = idsList.ToArray();
-
-                            value = "";
-                            foreach (var title in titleList)
-                                value += title + " ";
-                        }
-                        else
-                            Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
-
-                        foreach (DataGridViewColumn column in InformationDGV.Columns)
-                            if (column.Name == "AuditoriesColumn")
-                                InformationDGV[column.Index, e.RowIndex].Value = value;
-                    }
+                    foreach (DataGridViewColumn column in InformationDGV.Columns)
+                        if (column.Name == "AuditoriesColumn")
+                            InformationDGV[column.Index, e.RowIndex].Value = value;
                 }
             }
         }
@@ -259,12 +252,12 @@ namespace Diplom
                     (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline)
                 };
 
-                bool aresult = true;
-
+                bool allResult = true;
 
                 foreach (var item in list)
                 {
                     bool result = false;
+
                     if (item.Item1)
                     {
                         result = true;
@@ -283,110 +276,9 @@ namespace Diplom
                         else
                             result = true;
                     }
-                    aresult &= result;
+                    allResult &= result;
                 }
-                return aresult;
-
-
-                //bool isAuditorysOK = false;
-                //if (filter.auditoryCheck)
-                //{
-                //    isAuditorysOK = true;
-
-                //    if (filter.titleListAuditorys.Count() > 0)
-                //        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
-                //            isAuditorysOK = false;
-                //    else
-                //        isAuditorysOK = false;
-                //}
-                //else
-                //{
-                //    if (filter.titleListAuditorys.Count() > 0)
-                //        foreach (var _ in filter.titleListAuditorys.Where(item => x.Auds.Contains(item)).Select(item => new { }))
-                //            isAuditorysOK = true;
-                //    else
-                //        isAuditorysOK = true;
-                //}
-
-                //bool isGroupOK = false;
-                //if (filter.groupCheck)
-                //{
-                //    isGroupOK = true;
-
-                //    if (filter.titleListGroups.Count() > 0)
-                //        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
-                //            isGroupOK = false;
-                //    else
-                //        isGroupOK = false;
-                //}
-                //else
-                //{
-                //    if (filter.titleListGroups.Count() > 0)
-                //        foreach (var _ in filter.titleListGroups.Where(item => x.Sub_groups.Contains(item)).Select(item => new { }))
-                //            isGroupOK = true;
-                //    else
-                //        isGroupOK = true;
-                //}
-
-                //bool isTeacherOK = false;
-                //if (filter.teacherCheck)
-                //{
-                //    isTeacherOK = true;
-                //    if (filter.titleListTeacher.Count() > 0)
-                //        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
-                //            isTeacherOK = false;
-                //    else
-                //        isTeacherOK = false;
-                //}
-                //else
-                //{
-                //    if (filter.titleListTeacher.Count() > 0)
-                //        foreach (var _ in filter.titleListTeacher.Where(item => x.Teachers.Contains(item)).Select(item => new { }))
-                //            isTeacherOK = true;
-                //    else
-                //        isTeacherOK = true;
-                //}
-
-                //bool isKafedraOK = false;
-                //if (filter.kafedraCheck)
-                //{
-                //    isKafedraOK = true;
-                //    if (filter.titleListKafedra.Count() > 0)
-                //        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
-                //            isKafedraOK = false;
-                //    else
-                //        isKafedraOK = false;
-                //}
-                //else
-                //{
-                //    if (filter.titleListKafedra.Count() > 0)
-                //        foreach (var _ in filter.titleListKafedra.Where(item => x.Kaf.Contains(item)).Select(item => new { }))
-                //            isKafedraOK = true;
-                //    else
-                //        isKafedraOK = true;
-                //}
-
-                //bool isDisciplineOK = false;
-                //if (filter.disciplineCheck)
-                //{
-                //    isDisciplineOK = true;
-
-                //    if (filter.titleListDiscipline.Count() > 0)
-                //        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
-                //            isDisciplineOK = false;
-                //    else
-                //        isDisciplineOK = false;
-                //}
-                //else
-                //{
-                //    if (filter.titleListDiscipline.Count() > 0)
-                //        foreach (var _ in filter.titleListDiscipline.Where(item => x.Discipline.Contains(item)).Select(item => new { }))
-                //            isDisciplineOK = true;
-                //    else
-                //        isDisciplineOK = true;
-                //}
-
-                //return (isAuditorysOK & isGroupOK & isTeacherOK & isKafedraOK & isDisciplineOK);
+                return allResult;
             });
         }
 

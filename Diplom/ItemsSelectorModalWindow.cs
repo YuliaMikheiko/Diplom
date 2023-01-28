@@ -38,11 +38,11 @@ namespace Diplom
             auditories = scheduleDataModel.GetAuditories();
             sub_groups_info = scheduleDataModel.GetGroups();
 
-            if (type == 1)
+            if (type == 0)
                 ReadTeachers();
-            if (type == 2)
+            if (type == 1)
                 ReadGroups();
-            if (type == 3)
+            if (type == 2)
                 ReadAuditorys();
         }
 
