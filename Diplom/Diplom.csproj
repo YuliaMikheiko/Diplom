@@ -83,11 +83,11 @@
     <Compile Include="FilterWindow.Designer.cs">
       <DependentUpon>FilterWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="MainWindows.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="MainWindows.Designer.cs">
+      <DependentUpon>MainWindows.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemsSelectorModalWindow.cs">
       <SubType>Form</SubType>
@@ -110,8 +110,8 @@
     <EmbeddedResource Include="FilterWindow.resx">
       <DependentUpon>FilterWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="MainWindows.resx">
+      <DependentUpon>MainWindows.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ItemsSelectorModalWindow.resx">
       <DependentUpon>ItemsSelectorModalWindow.cs</DependentUpon>

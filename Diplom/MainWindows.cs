@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace Diplom
 {
-    public partial class Form1 : Form
+    public partial class MainWindows : Form
     {
         private ScheduleDataModel activeScheduleDataModel;
         public ScheduleRow[] nagr;
@@ -22,7 +22,7 @@ namespace Diplom
         Dictionary<int, Auditory> dAuditories;
         Dictionary<int, SubGroup> dSub_groups;
 
-        public Form1()
+        public MainWindows()
         {
             InitializeComponent();
 

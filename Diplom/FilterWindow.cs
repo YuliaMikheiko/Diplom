@@ -181,6 +181,7 @@ namespace Diplom
 
             kursList = allKurs.Distinct().ToList();
         }
+
         private void KursButton_Click(object sender, EventArgs e)
         {
             ReadKurs();
