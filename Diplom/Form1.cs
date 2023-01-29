@@ -49,7 +49,9 @@ namespace Diplom
         {
             activeScheduleDataModel = new JsonScheduleDataModel(path);
             activeScheduleDataModel.Load();
+
             nagr = activeScheduleDataModel.GetNagruzka();
+
             dTeachers = activeScheduleDataModel.GetTeachers();
             dAuditories = activeScheduleDataModel.GetAuditories();
             dSub_groups = activeScheduleDataModel.GetGroups();
@@ -116,99 +118,78 @@ namespace Diplom
             }
         }
 
-        enum Type : int
+        public enum Type : int
         {
             Teachers,
             Groups,
             Auditorys
         }
 
+        List<int?> idsList = new List<int?>();
+        List<string> titleList = new List<string>();
+
+        public string ModalWindow(int row, Type type, string columnName)
+        {
+            object dataItem = (InformationDGV.Rows[row].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
+
+            List<string> columnItem = new List<string>();
+            columnItem.AddRange(dataItem.ToString().Split('%')[(int)type].Split(';').ToList().Where(title => title != " ").Select(title => title.Trim()));
+
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)type, activeScheduleDataModel, columnItem);
+
+            string value = null;
+
+            if (modalWindow.ShowDialog() == DialogResult.OK)
+            {
+                idsList = modalWindow.idsList;
+                titleList = modalWindow.titleList;
+                value = " ";
+
+                if (idsList.Count > 0)
+                {
+                    value = "";
+                    foreach (var name in titleList)
+                        value += name + "; ";
+                }
+
+                foreach (DataGridViewColumn column in InformationDGV.Columns)
+                    if (column.Name == columnName)
+                        InformationDGV[column.Index, row].Value = value;
+            }
+            return value;
+        }
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
-            {
-                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
-
-                ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow((int)Type.Teachers, dataItem, activeScheduleDataModel);
-
-                if (teachers.ShowDialog() == DialogResult.OK)
+            {              
+                if (ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
                 {
-                    List<int?> idsList = teachers.idsList;
-                    List<string> titleList = teachers.titleList;
-                    var value = " ";
-
                     if (idsList.Count > 0)
-                    {
                         nagr[e.RowIndex].teachers = idsList.ToArray();
-
-                        value = "";
-                        foreach (var name in titleList)
-                            value += name + " ";
-                    }
                     else
                         Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
-
-                    foreach (DataGridViewColumn column in InformationDGV.Columns)
-                        if (column.Name == "TeachersColumn")
-                            InformationDGV[column.Index, e.RowIndex].Value = value;
                 }
             }
 
             if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
             {
-                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
-
-                ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow((int)Type.Groups, dataItem, activeScheduleDataModel);
-
-                if (groups.ShowDialog() == DialogResult.OK)
+                if (ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
                 {
-                    List<int?> idsList = groups.idsList;
-                    List<string> titleList = groups.titleList;
-                    var value = " ";
-
                     if (idsList.Count > 0)
-                    {
                         nagr[e.RowIndex].sub_groups = idsList.ToArray();
-
-                        value = "";
-                        foreach (var title in titleList)
-                            value += title + " ";
-                    }
                     else
                         Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
-
-                    foreach (DataGridViewColumn column in InformationDGV.Columns)
-                        if (column.Name == "GroupsColumn")
-                            InformationDGV[column.Index, e.RowIndex].Value = value;
                 }
             }
 
             if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
             {
-                Object dataItem = (InformationDGV.Rows[e.RowIndex].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
-
-                ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow((int)Type.Auditorys, dataItem, activeScheduleDataModel);
-
-                if (auditorys.ShowDialog() == DialogResult.OK)
+                if (ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
                 {
-                    List<int?> idsList = auditorys.idsList;
-                    List<string> titleList = auditorys.titleList;
-                    var value = " ";
-
                     if (idsList.Count > 0)
-                    {
                         nagr[e.RowIndex].auds = idsList.ToArray();
-
-                        value = "";
-                        foreach (var title in titleList)
-                            value += title + " ";
-                    }
                     else
                         Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
-
-                    foreach (DataGridViewColumn column in InformationDGV.Columns)
-                        if (column.Name == "AuditoriesColumn")
-                            InformationDGV[column.Index, e.RowIndex].Value = value;
                 }
             }
         }
@@ -249,7 +230,8 @@ namespace Diplom
                     (filter.groupCheck, filter.titleListGroups, x.Sub_groups),
                     (filter.teacherCheck, filter.titleListTeacher, x.Teachers),
                     (filter.kafedraCheck, filter.titleListKafedra, x.Kaf),
-                    (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline)
+                    (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline),
+                    (filter.kursCheck, filter.titleListKurs, x.Kurs)
                 };
 
                 bool allResult = true;

@@ -21,15 +21,18 @@ namespace Diplom
         public List<string> titleListTeacher;
         public List<string> titleListAuditorys;
         public List<string> titleListDiscipline;
+        public List<string> titleListKurs;
 
         public bool teacherCheck;
         public bool auditoryCheck;
         public bool groupCheck;
         public bool kafedraCheck;
         public bool disciplineCheck;
+        public bool kursCheck;
 
         List<string> disciplineList;
         List<string> kafedraList;
+        List<string> kursList;
 
         internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr)
         {
@@ -41,6 +44,7 @@ namespace Diplom
             titleListAuditorys = new List<string>();
             titleListGroups = new List<string>();
             titleListTeacher = new List<string>();
+            titleListKurs = new List<string>();
 
             InitializeComponent();
         }
@@ -51,7 +55,7 @@ namespace Diplom
 
             groupsText.AddRange(GroupsTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(2, scheduleDataModel, groupsText);
+            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, groupsText);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -67,14 +71,7 @@ namespace Diplom
         
         public void ReadKafedra()
         {
-            List<string> allKafedra = new List<string>();
-
-            int i = 0;
-            foreach (var item in nagr)
-            {
-                allKafedra.Add(nagr[i].kaf);
-                i++;
-            }
+            List<string> allKafedra = nagr.Select(item => item.kaf).ToList();
 
             kafedraList = allKafedra.Distinct().ToList();
         }
@@ -107,7 +104,7 @@ namespace Diplom
 
             teacherText.AddRange(TeacherTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(1, scheduleDataModel, teacherText);
+            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, teacherText);
 
             if (teachers.ShowDialog() == DialogResult.OK)
             {
@@ -127,7 +124,7 @@ namespace Diplom
 
             auditorysText.AddRange(AuditorysTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(3, scheduleDataModel, auditorysText);
+            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, auditorysText);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {
@@ -143,14 +140,7 @@ namespace Diplom
 
         public void ReadDiscipline()
         {
-            List<string> allDiscipline = new List<string>();
-
-            int i = 0;
-            foreach (var item in nagr)
-            {
-                allDiscipline.Add(nagr[i].discipline);
-                i++;
-            }
+            List<string> allDiscipline = nagr.Select(item => item.discipline).ToList();
 
             disciplineList = allDiscipline.Distinct().ToList();
         }
@@ -177,6 +167,43 @@ namespace Diplom
             }
         }
 
+        private void NtButton_Click(object sender, EventArgs e)
+        {
+
+        }
+        public void ReadKurs()
+        {
+            List<string> allKurs = new List<string>();
+
+            Dictionary<int, SubGroup> dSub_groups = scheduleDataModel.GetGroups();
+
+            allKurs.AddRange(dSub_groups.Select(item => item.Value.kurs.ToString()));
+
+            kursList = allKurs.Distinct().ToList();
+        }
+        private void KursButton_Click(object sender, EventArgs e)
+        {
+            ReadKurs();
+
+            List<string> kursText = new List<string>();
+
+            kursText.AddRange(KursTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+
+            ItemsSelectorModalWindow kurs = new ItemsSelectorModalWindow(6, kursText, kursList);
+
+            if (kurs.ShowDialog() == DialogResult.OK)
+            {
+                titleListKurs = kurs.titleList;
+                var value = " ";
+
+                foreach (var name in titleListKurs)
+                    value += name + "; ";
+
+                KursTextBox.Text = value.Trim().TrimEnd(';');
+            }
+        }
+
+
         private void Filter_Click(object sender, EventArgs e)
         {
             teacherCheck = TeacherCheckBox.Checked;
@@ -184,6 +211,7 @@ namespace Diplom
             groupCheck = GroupsCheckBox.Checked;
             disciplineCheck = DisciplineCheckBox.Checked;
             kafedraCheck = KafedraCheckBox.Checked;
+            kursCheck = KursCheckBox.Checked;
 
             this.DialogResult = DialogResult.OK;
         }

@@ -30,12 +30,10 @@
         {
             this.Filter = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.KursButton = new System.Windows.Forms.Button();
+            this.NtButton = new System.Windows.Forms.Button();
+            this.KursCheckBox = new System.Windows.Forms.CheckBox();
+            this.NtCheckBox = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -58,10 +56,8 @@
             this.KafedraButton = new System.Windows.Forms.Button();
             this.GroupsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
+            this.NtTextBox = new System.Windows.Forms.TextBox();
+            this.KursTextBox = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,12 +82,10 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0047F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.68567F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.003757F));
-            this.tableLayoutPanel1.Controls.Add(this.button3, 3, 7);
-            this.tableLayoutPanel1.Controls.Add(this.button2, 3, 6);
-            this.tableLayoutPanel1.Controls.Add(this.button1, 3, 5);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox3, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox2, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.checkBox1, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.KursButton, 3, 6);
+            this.tableLayoutPanel1.Controls.Add(this.NtButton, 3, 5);
+            this.tableLayoutPanel1.Controls.Add(this.KursCheckBox, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.NtCheckBox, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
@@ -114,10 +108,8 @@
             this.tableLayoutPanel1.Controls.Add(this.KafedraButton, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.GroupsButton, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox1, 2, 5);
-            this.tableLayoutPanel1.Controls.Add(this.textBox4, 2, 6);
-            this.tableLayoutPanel1.Controls.Add(this.textBox5, 2, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.NtTextBox, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.KursTextBox, 2, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -132,80 +124,57 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 232);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // button3
+            // KursButton
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.KursButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(468, 206);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(36, 23);
-            this.button3.TabIndex = 31;
-            this.button3.Text = "...";
-            this.button3.UseVisualStyleBackColor = true;
+            this.KursButton.Location = new System.Drawing.Point(468, 177);
+            this.KursButton.Name = "KursButton";
+            this.KursButton.Size = new System.Drawing.Size(36, 23);
+            this.KursButton.TabIndex = 30;
+            this.KursButton.Text = "...";
+            this.KursButton.UseVisualStyleBackColor = true;
+            this.KursButton.Click += new System.EventHandler(this.KursButton_Click);
             // 
-            // button2
+            // NtButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.NtButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(468, 177);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(36, 23);
-            this.button2.TabIndex = 30;
-            this.button2.Text = "...";
-            this.button2.UseVisualStyleBackColor = true;
+            this.NtButton.Location = new System.Drawing.Point(468, 148);
+            this.NtButton.Name = "NtButton";
+            this.NtButton.Size = new System.Drawing.Size(36, 23);
+            this.NtButton.TabIndex = 29;
+            this.NtButton.Text = "...";
+            this.NtButton.UseVisualStyleBackColor = true;
+            this.NtButton.Click += new System.EventHandler(this.NtButton_Click);
             // 
-            // button1
+            // KursCheckBox
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.KursCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(468, 148);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(36, 23);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.KursCheckBox.AutoSize = true;
+            this.KursCheckBox.Location = new System.Drawing.Point(141, 177);
+            this.KursCheckBox.Name = "KursCheckBox";
+            this.KursCheckBox.Size = new System.Drawing.Size(44, 23);
+            this.KursCheckBox.TabIndex = 27;
+            this.KursCheckBox.Text = "не";
+            this.KursCheckBox.UseVisualStyleBackColor = true;
             // 
-            // checkBox3
+            // NtCheckBox
             // 
-            this.checkBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.NtCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(141, 206);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(44, 23);
-            this.checkBox3.TabIndex = 28;
-            this.checkBox3.Text = "не";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(141, 177);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(44, 23);
-            this.checkBox2.TabIndex = 27;
-            this.checkBox2.Text = "не";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(141, 148);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(44, 23);
-            this.checkBox1.TabIndex = 26;
-            this.checkBox1.Text = "не";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.NtCheckBox.AutoSize = true;
+            this.NtCheckBox.Location = new System.Drawing.Point(141, 148);
+            this.NtCheckBox.Name = "NtCheckBox";
+            this.NtCheckBox.Size = new System.Drawing.Size(44, 23);
+            this.NtCheckBox.TabIndex = 26;
+            this.NtCheckBox.Text = "не";
+            this.NtCheckBox.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -489,54 +458,29 @@
             this.label1.Text = "Группы";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox1
+            // NtTextBox
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.NtTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(191, 148);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(271, 20);
-            this.textBox1.TabIndex = 20;
-            this.textBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.NtTextBox.Location = new System.Drawing.Point(191, 148);
+            this.NtTextBox.Name = "NtTextBox";
+            this.NtTextBox.ReadOnly = true;
+            this.NtTextBox.Size = new System.Drawing.Size(271, 20);
+            this.NtTextBox.TabIndex = 20;
+            this.NtTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
             // 
-            // textBox4
+            // KursTextBox
             // 
-            this.textBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.KursTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox4.Location = new System.Drawing.Point(191, 177);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(271, 20);
-            this.textBox4.TabIndex = 21;
-            this.textBox4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
-            // 
-            // textBox5
-            // 
-            this.textBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox5.Location = new System.Drawing.Point(191, 206);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(271, 20);
-            this.textBox5.TabIndex = 22;
-            this.textBox5.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
-            // 
-            // label8
-            // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 203);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 29);
-            this.label8.TabIndex = 25;
-            this.label8.Text = "Аудиторная";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.KursTextBox.Location = new System.Drawing.Point(191, 177);
+            this.KursTextBox.Name = "KursTextBox";
+            this.KursTextBox.ReadOnly = true;
+            this.KursTextBox.Size = new System.Drawing.Size(271, 20);
+            this.KursTextBox.TabIndex = 21;
+            this.KursTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
             // 
             // FilterWindow
             // 
@@ -577,17 +521,13 @@
         private System.Windows.Forms.Button TeacherButton;
         private System.Windows.Forms.Button KafedraButton;
         private System.Windows.Forms.Button GroupsButton;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button KursButton;
+        private System.Windows.Forms.Button NtButton;
+        private System.Windows.Forms.CheckBox KursCheckBox;
+        private System.Windows.Forms.CheckBox NtCheckBox;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox NtTextBox;
+        private System.Windows.Forms.TextBox KursTextBox;
     }
 }

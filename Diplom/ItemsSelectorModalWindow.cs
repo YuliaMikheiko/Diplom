@@ -15,36 +15,15 @@ namespace Diplom
 {
     public partial class ItemsSelectorModalWindow : Form
     {
-
         public List<int?> idsList;
         public List<string> titleList;
 
         List<string> title;
         List<string> titleText;
 
-        Object dataItem;
-
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
-
-        internal ItemsSelectorModalWindow(int type, Object dataItem, ScheduleDataModel scheduleDataModel)
-        {
-            InitializeComponent();
-
-            this.dataItem = dataItem;
-
-            teachers = scheduleDataModel.GetTeachers();
-            auditories = scheduleDataModel.GetAuditories();
-            sub_groups_info = scheduleDataModel.GetGroups();
-
-            if (type == 0)
-                ReadTeachers();
-            if (type == 1)
-                ReadGroups();
-            if (type == 2)
-                ReadAuditorys();
-        }
 
         internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText)
         {
@@ -56,12 +35,14 @@ namespace Diplom
 
             this.titleText = titleText;
 
+            if (type == 0)
+                ReadTeachers();
             if (type == 1)
-                ReadTeachersFilter();
+                ReadGroups();
             if (type == 2)
-                ReadGroupsFilter();
-            if (type == 3)
-                ReadAuditorysFilter();
+                ReadAuditorys();
+            if (type == 6)
+                ReadKurs();
         }
 
         internal ItemsSelectorModalWindow(int type, List<string> titleText, List<string> title)
@@ -71,25 +52,10 @@ namespace Diplom
             this.title = title;
             this.titleText = titleText;
 
-            if (type == 4)
-                ReadKafedraFilter();
-            if (type == 5)
-                ReadDisciplineFilter();
+            ReadFilter();
         }
 
         private void ReadTeachers()
-        {
-            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                teachers.Select(x => new RowCheckedItem
-                {
-                    Key = x.Key,
-                    Value = x.Value.name,
-                    Checked = dataItem.ToString().Contains(x.Value.name)
-                }).OrderByDescending(x => x.Checked).ToList()
-            );
-        }
-
-        private void ReadTeachersFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
                 teachers.Select(x => new RowCheckedItem
@@ -108,19 +74,18 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = dataItem.ToString().Contains(x.Value.title)
+                    Checked = titleText.Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
-
-        private void ReadGroupsFilter()
+        private void ReadKurs()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
                 sub_groups_info.Select(x => new RowCheckedItem
                 {
                     Key = x.Key,
-                    Value = x.Value.title,
-                    Checked = titleText.Contains(x.Value.title)
+                    Value = x.Value.kurs.ToString(),
+                    //Checked = titleText.Contains(x.Value.kurs.ToString())
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
@@ -132,35 +97,12 @@ namespace Diplom
                 {
                     Key = x.Key,
                     Value = x.Value.title,
-                    Checked = dataItem.ToString().Contains(x.Value.title)
-                }).OrderByDescending(x => x.Checked).ToList()
-            );
-        }
-
-        private void ReadAuditorysFilter()
-        {
-            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                auditories.Select(x => new RowCheckedItem
-                {
-                    Key = x.Key,
-                    Value = x.Value.title,
                     Checked = titleText.Contains(x.Value.title)
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
-        private void ReadKafedraFilter()
-        {
-            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                title.Select(x => new RowCheckedItem
-                {
-                    Value = x,
-                    Checked = titleText.Contains(x)
-                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
-            );
-        }
-
-        private void ReadDisciplineFilter()
+        private void ReadFilter()
         {
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
                 title.Select(x => new RowCheckedItem
@@ -175,6 +117,8 @@ namespace Diplom
         {
             idsList = new List<int?>();
             titleList = new List<string>();
+
+            (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).RemoveFilter();
 
             var items = (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).Where(x => x.Checked);
 

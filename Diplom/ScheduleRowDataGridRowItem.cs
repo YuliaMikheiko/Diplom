@@ -53,6 +53,21 @@ namespace Diplom
             {
             }
         }
+        public string Kurs
+        {
+            get
+            {
+                return String.Join(
+                "; ",
+                x.sub_groups
+                .Where(y => y.HasValue && DSub_groups.ContainsKey(y.Value))
+                .Select(y => DSub_groups[y.Value].kurs)
+                );
+            }
+            set
+            {
+            }
+        }
         public string Kaf { get; set; }
         public string Auds
         {
