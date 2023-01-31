@@ -19,6 +19,7 @@ namespace Diplom
         public List<string> titleList;
 
         List<string> title;
+        List<KeyValuePair<int, string>> Nt;
         List<string> titleText;
 
         Dictionary<int, Teacher> teachers;
@@ -41,11 +42,9 @@ namespace Diplom
                 ReadGroups();
             if (type == 2)
                 ReadAuditorys();
-            if (type == 6)
-                ReadKurs();
         }
 
-        internal ItemsSelectorModalWindow(int type, List<string> titleText, List<string> title)
+        internal ItemsSelectorModalWindow(List<string> titleText, List<string> title)
         {
             InitializeComponent();
 
@@ -53,6 +52,16 @@ namespace Diplom
             this.titleText = titleText;
 
             ReadFilter();
+        }
+
+        internal ItemsSelectorModalWindow(List<string> titleText, List<KeyValuePair<int, string>> Nt)
+        {
+            InitializeComponent();
+
+            this.Nt = Nt;
+            this.titleText = titleText;
+
+            ReadNt();
         }
 
         private void ReadTeachers()
@@ -78,17 +87,6 @@ namespace Diplom
                 }).OrderByDescending(x => x.Checked).ToList()
             );
         }
-        private void ReadKurs()
-        {
-            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
-                sub_groups_info.Select(x => new RowCheckedItem
-                {
-                    Key = x.Key,
-                    Value = x.Value.kurs.ToString(),
-                    //Checked = titleText.Contains(x.Value.kurs.ToString())
-                }).OrderByDescending(x => x.Checked).ToList()
-            );
-        }
 
         private void ReadAuditorys()
         {
@@ -104,12 +102,25 @@ namespace Diplom
 
         private void ReadFilter()
         {
+            keyDataGridViewTextBoxColumn.Visible = false;
             ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
                 title.Select(x => new RowCheckedItem
                 {
                     Value = x,
                     Checked = titleText.Contains(x)
                 }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
+            );
+        }
+
+        private void ReadNt()
+        {
+            ItemsDGV.DataSource = new BindingListView<RowCheckedItem>(
+                Nt.Select(x => new RowCheckedItem
+                {
+                    Key = x.Key,
+                    Value = x.Value,
+                    Checked = titleText.Contains(x.Value)
+                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Key).ToList()
             );
         }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace Diplom
         public List<string> titleListAuditorys;
         public List<string> titleListDiscipline;
         public List<string> titleListKurs;
+        public List<string> idListNt;
 
         public bool teacherCheck;
         public bool auditoryCheck;
@@ -29,10 +31,12 @@ namespace Diplom
         public bool kafedraCheck;
         public bool disciplineCheck;
         public bool kursCheck;
+        public bool ntCheck;
 
         List<string> disciplineList;
         List<string> kafedraList;
         List<string> kursList;
+        List<KeyValuePair<int, string>> ntList;
 
         internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr)
         {
@@ -45,6 +49,7 @@ namespace Diplom
             titleListGroups = new List<string>();
             titleListTeacher = new List<string>();
             titleListKurs = new List<string>();
+            idListNt = new List<string>();
 
             InitializeComponent();
         }
@@ -53,48 +58,37 @@ namespace Diplom
         {
             List<string> groupsText = new List<string>();
 
-            groupsText.AddRange(GroupsTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            groupsText.AddRange(GroupsTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
             ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, groupsText);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
-                titleListGroups = groups.titleList;
-                var value = "";
+               
+                GroupsTextBox.Text = String.Join("; ", groups.titleList);
 
-                foreach (var name in titleListGroups)
-                    value += name + "; ";
-
-                GroupsTextBox.Text = value.Trim().TrimEnd(';');
+                foreach (var item in groups.titleList)
+                    titleListGroups.Add(item.Replace("(И,О)", "").Replace("(И,З)", "").Trim());
             }
-        }
-        
-        public void ReadKafedra()
-        {
-            List<string> allKafedra = nagr.Select(item => item.kaf).ToList();
-
-            kafedraList = allKafedra.Distinct().ToList();
         }
 
         private void KafedraButton_Click(object sender, EventArgs e)
         {
-            ReadKafedra();
+            List<string> allKafedra = nagr.Select(item => item.kaf).ToList();
+
+            kafedraList = allKafedra.Distinct().ToList();
 
             List<string> kafedraText = new List<string>();
 
-            kafedraText.AddRange(KafedraTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            kafedraText.AddRange(KafedraTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(4, kafedraText, kafedraList);
+            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(kafedraText, kafedraList);
 
             if (kafedra.ShowDialog() == DialogResult.OK)
             {
                 titleListKafedra = kafedra.titleList;
-                var value = " ";
 
-                foreach (var name in titleListKafedra)
-                    value += name + "; ";
-
-                KafedraTextBox.Text = value.Trim().TrimEnd(';');
+                KafedraTextBox.Text = String.Join("; ", titleListKafedra);
             }
         }
 
@@ -102,19 +96,15 @@ namespace Diplom
         {
             List<string> teacherText = new List<string>();
 
-            teacherText.AddRange(TeacherTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            teacherText.AddRange(TeacherTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
             ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, teacherText);
 
             if (teachers.ShowDialog() == DialogResult.OK)
             {
                 titleListTeacher = teachers.titleList;
-                var value = " ";
 
-                foreach (var name in titleListTeacher)
-                    value += name + "; ";
-
-                TeacherTextBox.Text = value.Trim().TrimEnd(';');
+                TeacherTextBox.Text = String.Join("; ", titleListTeacher);
             }
         }
 
@@ -122,56 +112,66 @@ namespace Diplom
         {
             List<string> auditorysText = new List<string>();
 
-            auditorysText.AddRange(AuditorysTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            auditorysText.AddRange(AuditorysTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
             ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, auditorysText);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {
                 titleListAuditorys = auditorys.titleList;
-                var value = " ";
 
-                foreach (var name in titleListAuditorys)
-                    value += name + "; ";
-
-                AuditorysTextBox.Text = value.Trim().TrimEnd(';');
+                AuditorysTextBox.Text = String.Join("; ", titleListAuditorys);
             }
-        }
-
-        public void ReadDiscipline()
-        {
-            List<string> allDiscipline = nagr.Select(item => item.discipline).ToList();
-
-            disciplineList = allDiscipline.Distinct().ToList();
         }
 
         private void DisciplineButton_Click(object sender, EventArgs e)
         {
-            ReadDiscipline();
+            List<string> allDiscipline = nagr.Select(item => item.discipline).ToList();
+
+            disciplineList = allDiscipline.Distinct().ToList();
 
             List<string> disciplineText = new List<string>();
 
-            disciplineText.AddRange(DisciplineTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            disciplineText.AddRange(DisciplineTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(5, disciplineText, disciplineList);
+            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(disciplineText, disciplineList);
 
             if (discipline.ShowDialog() == DialogResult.OK)
             {
                 titleListDiscipline = discipline.titleList;
-                var value = " ";
 
-                foreach (var name in titleListDiscipline)
-                    value += name + "; ";
-
-                DisciplineTextBox.Text = value.Trim().TrimEnd(';');
+                DisciplineTextBox.Text = String.Join("; ", titleListDiscipline);
             }
         }
 
         private void NtButton_Click(object sender, EventArgs e)
         {
+            ntList = new List<KeyValuePair<int, string>>
+            {
+                new KeyValuePair<int, string>(1, "Лекция"),
+                new KeyValuePair<int, string>(2, "Практика"),
+                new KeyValuePair<int, string>(3, "Лаба"),
+                new KeyValuePair<int, string>(4, "Консультация"),
+                new KeyValuePair<int, string>(5, "Экзамен консультация"),
+                new KeyValuePair<int, string>(6, "Экзамен"),
+                new KeyValuePair<int, string>(7, "Зачет"),
+            };
 
+            List<string> ntText = new List<string>();
+
+            ntText.AddRange(NtTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
+
+            ItemsSelectorModalWindow nt = new ItemsSelectorModalWindow(ntText, ntList);
+
+            if (nt.ShowDialog() == DialogResult.OK)
+            {
+                idListNt.AddRange(nt.idsList.Select(item => item.ToString()));
+               
+                NtTextBox.Text = String.Join("; ", nt.titleList);
+            }
         }
-        public void ReadKurs()
+
+        private void KursButton_Click(object sender, EventArgs e)
         {
             List<string> allKurs = new List<string>();
 
@@ -180,30 +180,20 @@ namespace Diplom
             allKurs.AddRange(dSub_groups.Select(item => item.Value.kurs.ToString()));
 
             kursList = allKurs.Distinct().ToList();
-        }
-
-        private void KursButton_Click(object sender, EventArgs e)
-        {
-            ReadKurs();
 
             List<string> kursText = new List<string>();
 
-            kursText.AddRange(KursTextBox.Text.Split(';').ToList().Where(name => name != " ").Select(name => name.Trim()));
+            kursText.AddRange(KursTextBox.Text.Split(';').ToList().Where(name => name != "").Select(name => name.Trim()));
 
-            ItemsSelectorModalWindow kurs = new ItemsSelectorModalWindow(6, kursText, kursList);
+            ItemsSelectorModalWindow kurs = new ItemsSelectorModalWindow(kursText, kursList);
 
             if (kurs.ShowDialog() == DialogResult.OK)
             {
                 titleListKurs = kurs.titleList;
-                var value = " ";
-
-                foreach (var name in titleListKurs)
-                    value += name + "; ";
-
-                KursTextBox.Text = value.Trim().TrimEnd(';');
+               
+                KursTextBox.Text = String.Join("; ", titleListKurs);
             }
         }
-
 
         private void Filter_Click(object sender, EventArgs e)
         {
@@ -213,14 +203,15 @@ namespace Diplom
             disciplineCheck = DisciplineCheckBox.Checked;
             kafedraCheck = KafedraCheckBox.Checked;
             kursCheck = KursCheckBox.Checked;
+            ntCheck = NtCheckBox.Checked;
 
             this.DialogResult = DialogResult.OK;
         }
 
-        private void GroupsTextBox_MouseMove(object sender, MouseEventArgs e)
+        private void TextBox_MouseMove(object sender, MouseEventArgs e)
         {
             ToolTip toolTip = new ToolTip();
-            
+
             toolTip.SetToolTip(sender as TextBox, (sender as TextBox).Text);
         }
     }

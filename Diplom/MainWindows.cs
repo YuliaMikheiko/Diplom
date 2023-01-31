@@ -133,7 +133,7 @@ namespace Diplom
             object dataItem = (InformationDGV.Rows[row].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
 
             List<string> columnItem = new List<string>();
-            columnItem.AddRange(dataItem.ToString().Split('%')[(int)type].Split(';').ToList().Where(title => title != " ").Select(title => title.Trim()));
+            columnItem.AddRange(dataItem.ToString().Split('%')[(int)type].Split(';').ToList().Where(title => title != "").Select(title => title.Trim()));
 
             ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)type, activeScheduleDataModel, columnItem);
 
@@ -143,21 +143,17 @@ namespace Diplom
             {
                 idsList = modalWindow.idsList;
                 titleList = modalWindow.titleList;
-                value = " ";
 
-                if (idsList.Count > 0)
-                {
-                    value = "";
-                    foreach (var name in titleList)
-                        value += name + "; ";
-                }
+                value = String.Join("; ", titleList);
 
                 foreach (DataGridViewColumn column in InformationDGV.Columns)
                     if (column.Name == columnName)
                         InformationDGV[column.Index, row].Value = value;
             }
+
             return value;
         }
+
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
@@ -231,7 +227,8 @@ namespace Diplom
                     (filter.teacherCheck, filter.titleListTeacher, x.Teachers),
                     (filter.kafedraCheck, filter.titleListKafedra, x.Kaf),
                     (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline),
-                    (filter.kursCheck, filter.titleListKurs, x.Kurs)
+                    (filter.kursCheck, filter.titleListKurs, x.Kurs),
+                    (filter.ntCheck, filter.idListNt, x.NT.ToString())
                 };
 
                 bool allResult = true;
@@ -258,7 +255,7 @@ namespace Diplom
                         else
                             result = true;
                     }
-                    allResult &= result;
+                    allResult &= result;                         
                 }
                 return allResult;
             });

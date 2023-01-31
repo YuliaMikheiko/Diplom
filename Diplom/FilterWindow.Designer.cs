@@ -329,7 +329,7 @@
             this.KafedraTextBox.ReadOnly = true;
             this.KafedraTextBox.Size = new System.Drawing.Size(271, 20);
             this.KafedraTextBox.TabIndex = 11;
-            this.KafedraTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.KafedraTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // TeacherTextBox
             // 
@@ -341,7 +341,7 @@
             this.TeacherTextBox.ReadOnly = true;
             this.TeacherTextBox.Size = new System.Drawing.Size(271, 20);
             this.TeacherTextBox.TabIndex = 12;
-            this.TeacherTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.TeacherTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // AuditorysTextBox
             // 
@@ -353,7 +353,7 @@
             this.AuditorysTextBox.ReadOnly = true;
             this.AuditorysTextBox.Size = new System.Drawing.Size(271, 20);
             this.AuditorysTextBox.TabIndex = 13;
-            this.AuditorysTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.AuditorysTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // DisciplineTextBox
             // 
@@ -365,7 +365,7 @@
             this.DisciplineTextBox.ReadOnly = true;
             this.DisciplineTextBox.Size = new System.Drawing.Size(271, 20);
             this.DisciplineTextBox.TabIndex = 14;
-            this.DisciplineTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.DisciplineTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // GroupsTextBox
             // 
@@ -378,7 +378,7 @@
             this.GroupsTextBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.GroupsTextBox.Size = new System.Drawing.Size(271, 20);
             this.GroupsTextBox.TabIndex = 10;
-            this.GroupsTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.GroupsTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // AuditorysButton
             // 
@@ -468,7 +468,7 @@
             this.NtTextBox.ReadOnly = true;
             this.NtTextBox.Size = new System.Drawing.Size(271, 20);
             this.NtTextBox.TabIndex = 20;
-            this.NtTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.NtTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // KursTextBox
             // 
@@ -480,7 +480,7 @@
             this.KursTextBox.ReadOnly = true;
             this.KursTextBox.Size = new System.Drawing.Size(271, 20);
             this.KursTextBox.TabIndex = 21;
-            this.KursTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GroupsTextBox_MouseMove);
+            this.KursTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
             // FilterWindow
             // 
