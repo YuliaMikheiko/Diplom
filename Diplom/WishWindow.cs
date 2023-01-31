@@ -52,7 +52,7 @@ namespace Diplom
             h = button.BackColor;
         }
 
-        private void button6_Click(object sender, EventArgs e)
+        private void Accept_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
         }
