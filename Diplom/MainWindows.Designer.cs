@@ -215,21 +215,23 @@
             // TeacherWishMenuItem
             // 
             this.TeacherWishMenuItem.Name = "TeacherWishMenuItem";
-            this.TeacherWishMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.TeacherWishMenuItem.Size = new System.Drawing.Size(180, 22);
             this.TeacherWishMenuItem.Text = "Преподаватели";
             this.TeacherWishMenuItem.Click += new System.EventHandler(this.TeacherWishMenuItem_Click);
             // 
             // GroupWishMenuItem
             // 
             this.GroupWishMenuItem.Name = "GroupWishMenuItem";
-            this.GroupWishMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.GroupWishMenuItem.Size = new System.Drawing.Size(180, 22);
             this.GroupWishMenuItem.Text = "Группы";
+            this.GroupWishMenuItem.Click += new System.EventHandler(this.GroupWishMenuItem_Click);
             // 
             // AudsWishToolStripMenuItem
             // 
             this.AudsWishToolStripMenuItem.Name = "AudsWishToolStripMenuItem";
-            this.AudsWishToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.AudsWishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.AudsWishToolStripMenuItem.Text = "Аудиториии";
+            this.AudsWishToolStripMenuItem.Click += new System.EventHandler(this.AudsWishToolStripMenuItem_Click);
             // 
             // MainWindows
             // 

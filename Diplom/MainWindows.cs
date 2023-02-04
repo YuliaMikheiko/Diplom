@@ -1,14 +1,8 @@
 ﻿using Equin.ApplicationFramework;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Diplom
@@ -18,9 +12,13 @@ namespace Diplom
         private ScheduleDataModel activeScheduleDataModel;
         public ScheduleRow[] nagr;
         string path;
+
         Dictionary<int, Teacher> dTeachers;
         Dictionary<int, Auditory> dAuditories;
         Dictionary<int, SubGroup> dSub_groups;
+
+        List<int?> idsList = new List<int?>();
+        List<string> titleList = new List<string>();
 
         public MainWindows()
         {
@@ -124,9 +122,6 @@ namespace Diplom
             Groups,
             Auditorys
         }
-
-        List<int?> idsList = new List<int?>();
-        List<string> titleList = new List<string>();
 
         public string ModalWindow(int row, Type type, string columnName)
         {
@@ -263,10 +258,85 @@ namespace Diplom
 
         private void TeacherWishMenuItem_Click(object sender, EventArgs e)
         {
-            WishWindow wish = new WishWindow();
-            if (wish.ShowDialog() == DialogResult.OK)
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Teachers, activeScheduleDataModel, new List<string>());
+            
+            if (modalWindow.ShowDialog() == DialogResult.OK)
             {
+                idsList = modalWindow.idsList;
 
+                if (idsList.Count > 0 & idsList.Count < 2)
+                {
+                    WishWindow wish = new WishWindow((int)Type.Teachers, activeScheduleDataModel, idsList);
+
+                    if (wish.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                    "Выберете одного преподавателя",
+                    "Сообщение",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void GroupWishMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Groups, activeScheduleDataModel, new List<string>());
+
+            if (modalWindow.ShowDialog() == DialogResult.OK)
+            {
+                idsList = modalWindow.idsList;
+
+                if (idsList.Count > 0 & idsList.Count < 2)
+                {
+                    WishWindow wish = new WishWindow((int)Type.Groups, activeScheduleDataModel, idsList);
+
+                    if (wish.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                    "Выберете одну группу",
+                    "Сообщение",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void AudsWishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Auditorys, activeScheduleDataModel, new List<string>());
+
+            if (modalWindow.ShowDialog() == DialogResult.OK)
+            {
+                idsList = modalWindow.idsList;
+
+                if (idsList.Count > 0 & idsList.Count < 2)
+                {
+                    WishWindow wish = new WishWindow((int)Type.Auditorys, activeScheduleDataModel, idsList);
+
+                    if (wish.ShowDialog() == DialogResult.OK)
+                    {
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(
+                    "Выберете одну аудиторию",
+                    "Сообщение",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                }
             }
         }
     }

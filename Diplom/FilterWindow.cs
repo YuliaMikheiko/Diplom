@@ -1,14 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 
 namespace Diplom
 {
@@ -64,11 +58,9 @@ namespace Diplom
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
-               
                 GroupsTextBox.Text = String.Join("; ", groups.titleList);
 
-                foreach (var item in groups.titleList)
-                    titleListGroups.Add(item.Replace("(И,О)", "").Replace("(И,З)", "").Trim());
+                titleListGroups.AddRange(groups.titleList.Select(item => item.Replace("(И,О)", "").Replace("(И,З)", "").Trim()));
             }
         }
 
@@ -211,7 +203,6 @@ namespace Diplom
         private void TextBox_MouseMove(object sender, MouseEventArgs e)
         {
             ToolTip toolTip = new ToolTip();
-
             toolTip.SetToolTip(sender as TextBox, (sender as TextBox).Text);
         }
     }

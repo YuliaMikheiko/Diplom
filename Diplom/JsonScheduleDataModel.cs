@@ -25,10 +25,10 @@ namespace Diplom
                 return _nagruzka;
             }
         }
+
         public Dictionary<int, Teacher> teacher;
         public Dictionary<int, Auditory> auditory;
         public Dictionary<int, SubGroup> subGroup;
-
 
         string _filePath = "";
         public Data data { get; set; }
@@ -42,7 +42,6 @@ namespace Diplom
         {
             this.data = JsonSerializer.Deserialize<Data>(File.ReadAllText(this._filePath));
         }
-
 
         public override void Save()
         {
