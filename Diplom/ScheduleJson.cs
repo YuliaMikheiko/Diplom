@@ -114,36 +114,28 @@ namespace Diplom
         {
             get
             {
-                String key = null;
-                if (this.ContainsKey(day.ToString()))
-                    key = day.ToString();
-                else if (this.ContainsKey("all"))
-                    key = "all";
+                var result = new List<int>();
 
-                if (key == null)
-                    return null;
-
-                var dayWish = this[key];
-                key = null;
-                if (dayWish.ContainsKey(pair.ToString()))
-                    key = pair.ToString();
-                else if (dayWish.ContainsKey("all"))
-                    key = "all";
-
-                if (key == null)
-                    return null;
-
-                var pairWish = dayWish[key];
-                key = null;
-                if (pairWish.ContainsKey(week.ToString()))
-                    key = week.ToString();
-                else if (pairWish.ContainsKey("all"))
-                    key = "all";
-
-                if (key == null)
-                    return null;
-
-                return pairWish[key];
+                foreach (var dayKey in new[] { day.ToString(), "all" })
+                {
+                    if (this.ContainsKey(dayKey))
+                    {
+                        var dayWish = this[dayKey];
+                        foreach (var pairKey in new[] { pair.ToString(), "all" })
+                        {
+                            if (dayWish.ContainsKey(pairKey))
+                            {
+                                var pairWish = dayWish[pairKey];
+                                foreach (var weekKey in new[] { week.ToString(), "all" })
+                                {
+                                    if (pairWish.ContainsKey(weekKey))
+                                        result.AddRange(pairWish[weekKey]);
+                                }
+                            }
+                        }
+                    }
+                }
+                return result.Count > 0 ? result.ToArray() : null;
             }
         }
     }
