@@ -37,6 +37,8 @@ namespace Diplom
                 WishGroups();
             if (type == 2)
                 WishAuditorys();
+
+            text = null;
         }
 
         public void WishTeacher()
