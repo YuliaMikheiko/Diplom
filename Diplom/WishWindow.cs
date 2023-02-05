@@ -41,457 +41,138 @@ namespace Diplom
 
         public void WishTeacher()
         {
-            int h = 0;
-            foreach (var teacher in teachers)
+            foreach (var teacher in teachers.SelectMany(teacher => idList.Where(id => teacher.Value.id == id).Select(id => new { }).Select(_ => teacher)))
             {
-                foreach (var id in idList)
+                for (int day = 0; day < 7; day++)
                 {
-                    if (teacher.Value.id == id)
+                    for (int pair = 0; pair < 8; pair++)
                     {
-                        Dictionary<String, Dictionary<String, Dictionary<String, int[]>>> wishesDay = teacher.Value.wishes;
-
-                        if (wishesDay != null)
+                        for (int week = 0; week < 2; week++)
                         {
-                            foreach (var wishDay in wishesDay)
+                            if (teacher.Value.wishes[day, pair, week] != null)
                             {
-                                int[] day = new int[7];
-
-                                if (wishDay.Key != "all")
-                                    day[0] = Int32.Parse(wishDay.Key) + 1;
-                                else
-                                    for (int o = 0; o < 7; o++)
-                                        day[o] = o + 1;
-
-                                Dictionary<String, Dictionary<String, int[]>> wishesPair = wishDay.Value;
-
-                                foreach (var wishPair in wishesPair)
-                                {
-                                    int[] pair = new int[8];
-
-                                    if (wishPair.Key != "all")
-                                        pair[0] = Int32.Parse(wishPair.Key) + 1;
-                                    else
-                                        for (int o = 0; o < 8; o++)
-                                            pair[o] = o + 1;
-
-                                    Dictionary<String, int[]> wishesWeek = wishPair.Value;
-
-                                    foreach (var wishWeek in wishesWeek)
-                                    {
-                                        int[] week = new int[2];
-
-                                        if (wishWeek.Key != "all")
-                                            week[0] = Int32.Parse(wishWeek.Key) + 1;
-                                        else
-                                            for (int o = 0; o < 2; o++)
-                                                week[o] = o + 1;
-
-                                        int r = wishWeek.Value[0];
-
-                                        if (r == 1)
-                                        {
-                                            color = Color.LightGreen;
-                                            text = "О";
-                                        }
-                                        else if (r == 11)
-                                        {
-                                            color = Color.LightCoral;
-                                            text = "Д";
-                                        }
-                                        else if (r == 12)
-                                        {
-                                            color = Color.Turquoise;
-                                            text = "И";
-                                        }
-                                        else if (r == 14)
-                                        {
-                                            color = Color.HotPink;
-                                            text = "Ф";
-                                        }
-                                        else if (r == 15)
-                                        {
-                                            color = Color.CornflowerBlue;
-                                            text = "С";
-                                        }
-                                        else if (r == 16)
-                                        {
-                                            color = Color.Plum;
-                                            text = "К";
-                                        }
-                                        else if (r == 20)
-                                        {
-                                            color = Color.Gold;
-                                            text = "В";
-                                        }
-                                        else
-                                        {
-                                            color = Color.PowderBlue;
-                                            text = "";
-                                        }
-
-                                        for (int k = 0; k < day.Length; k++)
-                                        {
-                                            if (day[k] != 0)
-                                            {
-                                                for (int y = 0; y < pair.Length; y++)
-                                                {
-                                                    if (pair[y] != 0)
-                                                    {
-                                                        for (int f = 0; f < week.Length; f++)
-                                                        {
-                                                            if (week[f] != 0)
-                                                            {
-                                                                System.Windows.Forms.Label label = new System.Windows.Forms.Label
-                                                                {
-                                                                    Size = new Size(40, 35),
-                                                                    TextAlign = ContentAlignment.MiddleCenter,
-                                                                    BackColor = color,
-                                                                    Text = text
-                                                                };
-                                                                label.Click += Label_Click;
-
-                                                                if (week[f] % 2 == 1)
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 2, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                                else
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 1, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                TextAndColor(teacher.Value.wishes[day, pair, week][0]);
                             }
-                        }                        
+                            else
+                            {
+                                color = Color.PowderBlue;
+                                text = "";
+                            }
+
+                            DrawLabel(day, pair, week);
+                        }
                     }
                 }
             }
+        }
 
-            color = Color.PowderBlue;
-            text = "";
-            for (int i = 0; i < 112 - h; i++)
+        public void DrawLabel(int day, int pair, int week)
+        {
+            System.Windows.Forms.Label label = new System.Windows.Forms.Label
             {
-                System.Windows.Forms.Label label2 = new System.Windows.Forms.Label
-                {
-                    Size = new Size(40, 35),
-                    BackColor = color,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Text = text
-                };
-                label2.Click += Label_Click;
+                Size = new Size(34, 34),
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = color,
+                Text = text
+            };
+            label.Click += Label_Click;
 
-                tableLayoutPanel1.Controls.Add(label2);
+            if (week % 2 == 1)
+            {
+                tableLayoutPanel1.Controls.Add(label, day * 2 + 1, pair);
+            }
+            else
+            {
+                tableLayoutPanel1.Controls.Add(label, day * 2, pair);
+            }
+        }
+
+        public void TextAndColor(int wish)
+        {
+            switch (wish)
+            {
+                case 1:
+                    color = Color.LightGreen;
+                    text = "О";
+                    break;
+                case 11:
+                    color = Color.LightCoral;
+                    text = "Д";
+                    break;
+                case 12:
+                    color = Color.Turquoise;
+                    text = "И";
+                    break;
+                case 14:
+                    color = Color.HotPink;
+                    text = "Ф";
+                    break;
+                case 15:
+                    color = Color.CornflowerBlue;
+                    text = "С";
+                    break;
+                case 16:
+                    color = Color.Plum;
+                    text = "К";
+                    break;
+                case 20:
+                    color = Color.Gold;
+                    text = "В";
+                    break;
             }
         }
 
         public void WishGroups()
         {
-            int h = 0;
-            foreach (var groups in sub_groups_info)
+            foreach (var group in sub_groups_info.SelectMany(group => idList.Where(id => group.Value.id == id).Select(id => new { }).Select(_ => group)))
             {
-                foreach (var id in idList)
+                for (int day = 0; day < 7; day++)
                 {
-                    if (groups.Value.id == id)
+                    for (int pair = 0; pair < 8; pair++)
                     {
-                        Dictionary<String, Dictionary<String, Dictionary<String, int[]>>> wishesDay = groups.Value.wishes;
-
-                        if (wishesDay != null)
+                        for (int week = 0; week < 2; week++)
                         {
-                            foreach (var wishDay in wishesDay)
+                            if (group.Value.wishes[day, pair, week] != null)
                             {
-                                int[] day = new int[7];
-
-                                if (wishDay.Key != "all")
-                                    day[0] = Int32.Parse(wishDay.Key) + 1;
-                                else
-                                    for (int o = 0; o < 7; o++)
-                                        day[o] = o + 1;
-
-                                Dictionary<String, Dictionary<String, int[]>> wishesPair = wishDay.Value;
-
-                                foreach (var wishPair in wishesPair)
-                                {
-                                    int[] pair = new int[8];
-
-                                    if (wishPair.Key != "all")
-                                        pair[0] = Int32.Parse(wishPair.Key) + 1;
-                                    else
-                                        for (int o = 0; o < 8; o++)
-                                            pair[o] = o + 1;
-
-                                    Dictionary<String, int[]> wishesWeek = wishPair.Value;
-
-                                    foreach (var wishWeek in wishesWeek)
-                                    {
-                                        int[] week = new int[2];
-
-                                        if (wishWeek.Key != "all")
-                                            week[0] = Int32.Parse(wishWeek.Key) + 1;
-                                        else
-                                            for (int o = 0; o < 2; o++)
-                                                week[o] = o + 1;
-
-                                        int r = wishWeek.Value[0];
-
-                                        if (r == 1)
-                                        {
-                                            color = Color.LightGreen;
-                                            text = "О";
-                                        }
-                                        else if (r == 11)
-                                        {
-                                            color = Color.LightCoral;
-                                            text = "Д";
-                                        }
-                                        else if (r == 12)
-                                        {
-                                            color = Color.Turquoise;
-                                            text = "И";
-                                        }
-                                        else if (r == 14)
-                                        {
-                                            color = Color.HotPink;
-                                            text = "Ф";
-                                        }
-                                        else if (r == 15)
-                                        {
-                                            color = Color.CornflowerBlue;
-                                            text = "С";
-                                        }
-                                        else if (r == 16)
-                                        {
-                                            color = Color.Plum;
-                                            text = "К";
-                                        }
-                                        else if (r == 20)
-                                        {
-                                            color = Color.Gold;
-                                            text = "В";
-                                        }
-                                        else
-                                        {
-                                            color = Color.PowderBlue;
-                                            text = "";
-                                        }
-
-                                        for (int k = 0; k < day.Length; k++)
-                                        {
-                                            if (day[k] != 0)
-                                            {
-                                                for (int y = 0; y < pair.Length; y++)
-                                                {
-                                                    if (pair[y] != 0)
-                                                    {
-                                                        for (int f = 0; f < week.Length; f++)
-                                                        {
-                                                            if (week[f] != 0)
-                                                            {
-                                                                System.Windows.Forms.Label label = new System.Windows.Forms.Label
-                                                                {
-                                                                    Size = new Size(40, 35),
-                                                                    TextAlign = ContentAlignment.MiddleCenter,
-                                                                    BackColor = color,
-                                                                    Text = text
-                                                                };
-                                                                label.Click += Label_Click;
-
-                                                                if (week[f] % 2 == 1)
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 2, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                                else
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 1, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                TextAndColor(group.Value.wishes[day, pair, week][0]);
                             }
+                            else
+                            {
+                                color = Color.PowderBlue;
+                                text = "";
+                            }
+
+                            DrawLabel(day, pair, week);
                         }
                     }
                 }
-            }
-
-            color = Color.PowderBlue;
-            text = "";
-            for (int i = 0; i < 112 - h; i++)
-            {
-                System.Windows.Forms.Label label2 = new System.Windows.Forms.Label
-                {
-                    Size = new Size(40, 35),
-                    BackColor = color,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Text = text
-                };
-                label2.Click += Label_Click;
-
-                tableLayoutPanel1.Controls.Add(label2);
             }
         }
 
         public void WishAuditorys()
         {
-            int h = 0;
-            foreach (var auditori in auditories)
+            foreach (var aud in auditories.SelectMany(aud => idList.Where(id => aud.Value.id == id).Select(id => new { }).Select(_ => aud)))
             {
-                foreach (var id in idList)
+                for (int day = 0; day < 7; day++)
                 {
-                    if (auditori.Value.id == id)
+                    for (int pair = 0; pair < 8; pair++)
                     {
-                        Dictionary<String, Dictionary<String, Dictionary<String, int[]>>> wishesDay = auditori.Value.wishes;
-
-                        if (wishesDay != null)
+                        for (int week = 0; week < 2; week++)
                         {
-                            foreach (var wishDay in wishesDay)
+                            if (aud.Value.wishes[day, pair, week] != null)
                             {
-                                int[] day = new int[7];
-
-                                if (wishDay.Key != "all")
-                                    day[0] = Int32.Parse(wishDay.Key) + 1;
-                                else
-                                    for (int o = 0; o < 7; o++)
-                                        day[o] = o + 1;
-
-                                Dictionary<String, Dictionary<String, int[]>> wishesPair = wishDay.Value;
-
-                                foreach (var wishPair in wishesPair)
-                                {
-                                    int[] pair = new int[8];
-
-                                    if (wishPair.Key != "all")
-                                        pair[0] = Int32.Parse(wishPair.Key) + 1;
-                                    else
-                                        for (int o = 0; o < 8; o++)
-                                            pair[o] = o + 1;
-
-                                    Dictionary<String, int[]> wishesWeek = wishPair.Value;
-
-                                    foreach (var wishWeek in wishesWeek)
-                                    {
-                                        int[] week = new int[2];
-
-                                        if (wishWeek.Key != "all")
-                                            week[0] = Int32.Parse(wishWeek.Key) + 1;
-                                        else
-                                            for (int o = 0; o < 2; o++)
-                                                week[o] = o + 1;
-
-                                        int r = wishWeek.Value[0];
-
-                                        if (r == 1)
-                                        {
-                                            color = Color.LightGreen;
-                                            text = "О";
-                                        }
-                                        else if (r == 11)
-                                        {
-                                            color = Color.LightCoral;
-                                            text = "Д";
-                                        }
-                                        else if (r == 12)
-                                        {
-                                            color = Color.Turquoise;
-                                            text = "И";
-                                        }
-                                        else if (r == 14)
-                                        {
-                                            color = Color.HotPink;
-                                            text = "Ф";
-                                        }
-                                        else if (r == 15)
-                                        {
-                                            color = Color.CornflowerBlue;
-                                            text = "С";
-                                        }
-                                        else if (r == 16)
-                                        {
-                                            color = Color.Plum;
-                                            text = "К";
-                                        }
-                                        else if (r == 20)
-                                        {
-                                            color = Color.Gold;
-                                            text = "В";
-                                        }
-                                        else
-                                        {
-                                            color = Color.PowderBlue;
-                                            text = "";
-                                        }
-
-                                        for (int k = 0; k < day.Length; k++)
-                                        {
-                                            if (day[k] != 0)
-                                            {
-                                                for (int y = 0; y < pair.Length; y++)
-                                                {
-                                                    if (pair[y] != 0)
-                                                    {
-                                                        for (int f = 0; f < week.Length; f++)
-                                                        {
-                                                            if (week[f] != 0)
-                                                            {
-                                                                System.Windows.Forms.Label label = new System.Windows.Forms.Label
-                                                                {
-                                                                    Size = new Size(40, 35),
-                                                                    TextAlign = ContentAlignment.MiddleCenter,
-                                                                    BackColor = color,
-                                                                    Text = text
-                                                                };
-                                                                label.Click += Label_Click;
-
-                                                                if (week[f] % 2 == 1)
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 2, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                                else
-                                                                {
-                                                                    tableLayoutPanel1.Controls.Add(label, day[k] * 2 - 1, pair[y] - 1);
-                                                                    h++;
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
+                                TextAndColor(aud.Value.wishes[day, pair, week][0]);
                             }
+                            else
+                            {
+                                color = Color.PowderBlue;
+                                text = "";
+                            }
+
+                            DrawLabel(day, pair, week);
                         }
                     }
                 }
-            }
-
-            color = Color.PowderBlue;
-            text = "";
-            for (int i = 0; i < 112 - h; i++)
-            {
-                System.Windows.Forms.Label label2 = new System.Windows.Forms.Label
-                {
-                    Size = new Size(40, 35),
-                    BackColor = color,
-                    TextAlign = ContentAlignment.MiddleCenter,
-                    Text = text
-                };
-                label2.Click += Label_Click;
-
-                tableLayoutPanel1.Controls.Add(label2);
             }
         }
 
