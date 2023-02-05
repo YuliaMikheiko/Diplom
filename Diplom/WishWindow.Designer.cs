@@ -47,13 +47,11 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.Accept = new System.Windows.Forms.Button();
             this.Language = new System.Windows.Forms.Button();
             this.PhysicalCulture = new System.Windows.Forms.Button();
             this.Empty = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -131,7 +129,7 @@
             // Release
             // 
             this.Release.BackColor = System.Drawing.Color.LightGreen;
-            this.Release.Location = new System.Drawing.Point(637, 42);
+            this.Release.Location = new System.Drawing.Point(553, 45);
             this.Release.Name = "Release";
             this.Release.Size = new System.Drawing.Size(30, 30);
             this.Release.TabIndex = 1;
@@ -143,7 +141,7 @@
             // Kafedra
             // 
             this.Kafedra.BackColor = System.Drawing.Color.Plum;
-            this.Kafedra.Location = new System.Drawing.Point(637, 85);
+            this.Kafedra.Location = new System.Drawing.Point(553, 88);
             this.Kafedra.Name = "Kafedra";
             this.Kafedra.Size = new System.Drawing.Size(30, 30);
             this.Kafedra.TabIndex = 2;
@@ -155,7 +153,7 @@
             // Sovet
             // 
             this.Sovet.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.Sovet.Location = new System.Drawing.Point(637, 125);
+            this.Sovet.Location = new System.Drawing.Point(553, 128);
             this.Sovet.Name = "Sovet";
             this.Sovet.Size = new System.Drawing.Size(30, 30);
             this.Sovet.TabIndex = 3;
@@ -167,7 +165,7 @@
             // Dovuzovskoye
             // 
             this.Dovuzovskoye.BackColor = System.Drawing.Color.LightCoral;
-            this.Dovuzovskoye.Location = new System.Drawing.Point(637, 165);
+            this.Dovuzovskoye.Location = new System.Drawing.Point(553, 168);
             this.Dovuzovskoye.Name = "Dovuzovskoye";
             this.Dovuzovskoye.Size = new System.Drawing.Size(30, 30);
             this.Dovuzovskoye.TabIndex = 4;
@@ -179,7 +177,7 @@
             // Voyennaya
             // 
             this.Voyennaya.BackColor = System.Drawing.Color.Gold;
-            this.Voyennaya.Location = new System.Drawing.Point(637, 205);
+            this.Voyennaya.Location = new System.Drawing.Point(553, 208);
             this.Voyennaya.Name = "Voyennaya";
             this.Voyennaya.Size = new System.Drawing.Size(30, 30);
             this.Voyennaya.TabIndex = 5;
@@ -242,18 +240,9 @@
             this.label14.Text = "Сб";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label15
-            // 
-            this.label15.Location = new System.Drawing.Point(520, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(80, 40);
-            this.label15.TabIndex = 12;
-            this.label15.Text = "Вс";
-            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // Accept
             // 
-            this.Accept.Location = new System.Drawing.Point(615, 381);
+            this.Accept.Location = new System.Drawing.Point(531, 384);
             this.Accept.Name = "Accept";
             this.Accept.Size = new System.Drawing.Size(75, 23);
             this.Accept.TabIndex = 13;
@@ -264,7 +253,7 @@
             // Language
             // 
             this.Language.BackColor = System.Drawing.Color.Turquoise;
-            this.Language.Location = new System.Drawing.Point(637, 245);
+            this.Language.Location = new System.Drawing.Point(553, 248);
             this.Language.Name = "Language";
             this.Language.Size = new System.Drawing.Size(30, 30);
             this.Language.TabIndex = 14;
@@ -276,7 +265,7 @@
             // PhysicalCulture
             // 
             this.PhysicalCulture.BackColor = System.Drawing.Color.HotPink;
-            this.PhysicalCulture.Location = new System.Drawing.Point(637, 285);
+            this.PhysicalCulture.Location = new System.Drawing.Point(553, 288);
             this.PhysicalCulture.Name = "PhysicalCulture";
             this.PhysicalCulture.Size = new System.Drawing.Size(30, 30);
             this.PhysicalCulture.TabIndex = 15;
@@ -288,7 +277,7 @@
             // Empty
             // 
             this.Empty.BackColor = System.Drawing.Color.PowderBlue;
-            this.Empty.Location = new System.Drawing.Point(637, 325);
+            this.Empty.Location = new System.Drawing.Point(553, 328);
             this.Empty.Name = "Empty";
             this.Empty.Size = new System.Drawing.Size(30, 30);
             this.Empty.TabIndex = 16;
@@ -298,7 +287,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 14;
+            this.tableLayoutPanel1.ColumnCount = 12;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -311,8 +300,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(40, 40);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
@@ -324,14 +312,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(560, 320);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(480, 320);
             this.tableLayoutPanel1.TabIndex = 142;
             // 
             // WishWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(709, 413);
+            this.ClientSize = new System.Drawing.Size(617, 413);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -345,7 +333,6 @@
             this.Controls.Add(this.PhysicalCulture);
             this.Controls.Add(this.Language);
             this.Controls.Add(this.Accept);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
@@ -359,7 +346,6 @@
             this.Controls.Add(this.Release);
             this.Name = "WishWindow";
             this.Text = "WishWindow";
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -384,7 +370,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Button Accept;
         private System.Windows.Forms.Button Language;
         private System.Windows.Forms.Button PhysicalCulture;

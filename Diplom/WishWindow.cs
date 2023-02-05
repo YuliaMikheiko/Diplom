@@ -45,7 +45,7 @@ namespace Diplom
         {
             foreach (var teacher in teachers.SelectMany(teacher => idList.Where(id => teacher.Value.id == id).Select(id => new { }).Select(_ => teacher)))
             {
-                for (int day = 0; day < 7; day++)
+                for (int day = 0; day < 6; day++)
                 {
                     for (int pair = 0; pair < 8; pair++)
                     {
@@ -72,7 +72,7 @@ namespace Diplom
         {
             foreach (var group in sub_groups_info.SelectMany(group => idList.Where(id => group.Value.id == id).Select(id => new { }).Select(_ => group)))
             {
-                for (int day = 0; day < 7; day++)
+                for (int day = 0; day < 6; day++)
                 {
                     for (int pair = 0; pair < 8; pair++)
                     {
@@ -99,7 +99,7 @@ namespace Diplom
         {
             foreach (var aud in auditories.SelectMany(aud => idList.Where(id => aud.Value.id == id).Select(id => new { }).Select(_ => aud)))
             {
-                for (int day = 0; day < 7; day++)
+                for (int day = 0; day < 6; day++)
                 {
                     for (int pair = 0; pair < 8; pair++)
                     {
