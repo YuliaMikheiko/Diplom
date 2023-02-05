@@ -66,6 +66,60 @@ namespace Diplom
             }
         }
 
+        public void WishGroups()
+        {
+            foreach (var group in sub_groups_info.SelectMany(group => idList.Where(id => group.Value.id == id).Select(id => new { }).Select(_ => group)))
+            {
+                for (int day = 0; day < 7; day++)
+                {
+                    for (int pair = 0; pair < 8; pair++)
+                    {
+                        for (int week = 0; week < 2; week++)
+                        {
+                            if (group.Value.wishes[day, pair, week] != null)
+                            {
+                                TextAndColor(group.Value.wishes[day, pair, week][0]);
+                            }
+                            else
+                            {
+                                color = Color.PowderBlue;
+                                text = "";
+                            }
+
+                            DrawLabel(day, pair, week);
+                        }
+                    }
+                }
+            }
+        }
+
+        public void WishAuditorys()
+        {
+            foreach (var aud in auditories.SelectMany(aud => idList.Where(id => aud.Value.id == id).Select(id => new { }).Select(_ => aud)))
+            {
+                for (int day = 0; day < 7; day++)
+                {
+                    for (int pair = 0; pair < 8; pair++)
+                    {
+                        for (int week = 0; week < 2; week++)
+                        {
+                            if (aud.Value.wishes[day, pair, week] != null)
+                            {
+                                TextAndColor(aud.Value.wishes[day, pair, week][0]);
+                            }
+                            else
+                            {
+                                color = Color.PowderBlue;
+                                text = "";
+                            }
+
+                            DrawLabel(day, pair, week);
+                        }
+                    }
+                }
+            }
+        }
+
         public void DrawLabel(int day, int pair, int week)
         {
             System.Windows.Forms.Label label = new System.Windows.Forms.Label
@@ -119,60 +173,6 @@ namespace Diplom
                     color = Color.Gold;
                     text = "В";
                     break;
-            }
-        }
-
-        public void WishGroups()
-        {
-            foreach (var group in sub_groups_info.SelectMany(group => idList.Where(id => group.Value.id == id).Select(id => new { }).Select(_ => group)))
-            {
-                for (int day = 0; day < 7; day++)
-                {
-                    for (int pair = 0; pair < 8; pair++)
-                    {
-                        for (int week = 0; week < 2; week++)
-                        {
-                            if (group.Value.wishes[day, pair, week] != null)
-                            {
-                                TextAndColor(group.Value.wishes[day, pair, week][0]);
-                            }
-                            else
-                            {
-                                color = Color.PowderBlue;
-                                text = "";
-                            }
-
-                            DrawLabel(day, pair, week);
-                        }
-                    }
-                }
-            }
-        }
-
-        public void WishAuditorys()
-        {
-            foreach (var aud in auditories.SelectMany(aud => idList.Where(id => aud.Value.id == id).Select(id => new { }).Select(_ => aud)))
-            {
-                for (int day = 0; day < 7; day++)
-                {
-                    for (int pair = 0; pair < 8; pair++)
-                    {
-                        for (int week = 0; week < 2; week++)
-                        {
-                            if (aud.Value.wishes[day, pair, week] != null)
-                            {
-                                TextAndColor(aud.Value.wishes[day, pair, week][0]);
-                            }
-                            else
-                            {
-                                color = Color.PowderBlue;
-                                text = "";
-                            }
-
-                            DrawLabel(day, pair, week);
-                        }
-                    }
-                }
             }
         }
 
