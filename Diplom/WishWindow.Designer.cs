@@ -28,25 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.Pair1 = new System.Windows.Forms.Label();
+            this.Pair2 = new System.Windows.Forms.Label();
+            this.Pair3 = new System.Windows.Forms.Label();
+            this.Pair4 = new System.Windows.Forms.Label();
+            this.Pair5 = new System.Windows.Forms.Label();
+            this.Pair6 = new System.Windows.Forms.Label();
+            this.Pair7 = new System.Windows.Forms.Label();
+            this.Pair8 = new System.Windows.Forms.Label();
             this.Release = new System.Windows.Forms.Button();
             this.Kafedra = new System.Windows.Forms.Button();
             this.Sovet = new System.Windows.Forms.Button();
             this.Dovuzovskoye = new System.Windows.Forms.Button();
             this.Voyennaya = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.Monday = new System.Windows.Forms.Label();
+            this.Tuesday = new System.Windows.Forms.Label();
+            this.Wednesday = new System.Windows.Forms.Label();
+            this.Thursday = new System.Windows.Forms.Label();
+            this.Friday = new System.Windows.Forms.Label();
+            this.Saturday = new System.Windows.Forms.Label();
             this.Accept = new System.Windows.Forms.Button();
             this.Language = new System.Windows.Forms.Button();
             this.PhysicalCulture = new System.Windows.Forms.Button();
@@ -54,77 +54,77 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.SuspendLayout();
             // 
-            // label1
+            // Pair1
             // 
-            this.label1.Location = new System.Drawing.Point(0, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 40);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair1.Location = new System.Drawing.Point(0, 40);
+            this.Pair1.Name = "Pair1";
+            this.Pair1.Size = new System.Drawing.Size(40, 40);
+            this.Pair1.TabIndex = 6;
+            this.Pair1.Text = "1";
+            this.Pair1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // Pair2
             // 
-            this.label2.Location = new System.Drawing.Point(0, 80);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 40);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "2";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair2.Location = new System.Drawing.Point(0, 80);
+            this.Pair2.Name = "Pair2";
+            this.Pair2.Size = new System.Drawing.Size(40, 40);
+            this.Pair2.TabIndex = 7;
+            this.Pair2.Text = "2";
+            this.Pair2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // Pair3
             // 
-            this.label3.Location = new System.Drawing.Point(0, 120);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 40);
-            this.label3.TabIndex = 8;
-            this.label3.Text = "3";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair3.Location = new System.Drawing.Point(0, 120);
+            this.Pair3.Name = "Pair3";
+            this.Pair3.Size = new System.Drawing.Size(40, 40);
+            this.Pair3.TabIndex = 8;
+            this.Pair3.Text = "3";
+            this.Pair3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label4
+            // Pair4
             // 
-            this.label4.Location = new System.Drawing.Point(0, 160);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 40);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "4";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair4.Location = new System.Drawing.Point(0, 160);
+            this.Pair4.Name = "Pair4";
+            this.Pair4.Size = new System.Drawing.Size(40, 40);
+            this.Pair4.TabIndex = 9;
+            this.Pair4.Text = "4";
+            this.Pair4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label5
+            // Pair5
             // 
-            this.label5.Location = new System.Drawing.Point(0, 200);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 40);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "5";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair5.Location = new System.Drawing.Point(0, 200);
+            this.Pair5.Name = "Pair5";
+            this.Pair5.Size = new System.Drawing.Size(40, 40);
+            this.Pair5.TabIndex = 10;
+            this.Pair5.Text = "5";
+            this.Pair5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label6
+            // Pair6
             // 
-            this.label6.Location = new System.Drawing.Point(0, 240);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(40, 40);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "6";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair6.Location = new System.Drawing.Point(0, 240);
+            this.Pair6.Name = "Pair6";
+            this.Pair6.Size = new System.Drawing.Size(40, 40);
+            this.Pair6.TabIndex = 11;
+            this.Pair6.Text = "6";
+            this.Pair6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label7
+            // Pair7
             // 
-            this.label7.Location = new System.Drawing.Point(0, 280);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 40);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair7.Location = new System.Drawing.Point(0, 280);
+            this.Pair7.Name = "Pair7";
+            this.Pair7.Size = new System.Drawing.Size(40, 40);
+            this.Pair7.TabIndex = 12;
+            this.Pair7.Text = "7";
+            this.Pair7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // Pair8
             // 
-            this.label8.Location = new System.Drawing.Point(0, 320);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(40, 40);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "8";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Pair8.Location = new System.Drawing.Point(0, 320);
+            this.Pair8.Name = "Pair8";
+            this.Pair8.Size = new System.Drawing.Size(40, 40);
+            this.Pair8.TabIndex = 13;
+            this.Pair8.Text = "8";
+            this.Pair8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Release
             // 
@@ -186,59 +186,60 @@
             this.Voyennaya.Click += new System.EventHandler(this.Choice_Click);
             this.Voyennaya.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Voyennaya_MouseMove);
             // 
-            // label9
+            // Monday
             // 
-            this.label9.Location = new System.Drawing.Point(40, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(80, 40);
-            this.label9.TabIndex = 6;
-            this.label9.Text = "Пн";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Monday.Location = new System.Drawing.Point(40, 0);
+            this.Monday.Name = "Monday";
+            this.Monday.Size = new System.Drawing.Size(80, 40);
+            this.Monday.TabIndex = 6;
+            this.Monday.Text = "Пн";
+            this.Monday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // Tuesday
             // 
-            this.label10.Location = new System.Drawing.Point(120, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 40);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Вт";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Tuesday.Location = new System.Drawing.Point(120, 0);
+            this.Tuesday.Name = "Tuesday";
+            this.Tuesday.Size = new System.Drawing.Size(80, 40);
+            this.Tuesday.TabIndex = 7;
+            this.Tuesday.Text = "Вт";
+            this.Tuesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label11
+            // Wednesday
             // 
-            this.label11.Location = new System.Drawing.Point(200, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(80, 40);
-            this.label11.TabIndex = 8;
-            this.label11.Text = "Ср";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Wednesday.Location = new System.Drawing.Point(200, 0);
+            this.Wednesday.Name = "Wednesday";
+            this.Wednesday.Size = new System.Drawing.Size(80, 40);
+            this.Wednesday.TabIndex = 8;
+            this.Wednesday.Text = "Ср";
+            this.Wednesday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // Thursday
             // 
-            this.label12.Location = new System.Drawing.Point(280, 0);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 40);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Чт";
-            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Thursday.Location = new System.Drawing.Point(280, 0);
+            this.Thursday.Name = "Thursday";
+            this.Thursday.Size = new System.Drawing.Size(80, 40);
+            this.Thursday.TabIndex = 9;
+            this.Thursday.Text = "Чт";
+            this.Thursday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label13
+            // Friday
             // 
-            this.label13.Location = new System.Drawing.Point(360, 0);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(80, 40);
-            this.label13.TabIndex = 10;
-            this.label13.Text = "Пт";
-            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Friday.Location = new System.Drawing.Point(360, 0);
+            this.Friday.Name = "Friday";
+            this.Friday.Size = new System.Drawing.Size(80, 40);
+            this.Friday.TabIndex = 10;
+            this.Friday.Text = "Пт";
+            this.Friday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label14
+            // Saturday
             // 
-            this.label14.Location = new System.Drawing.Point(440, 0);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(80, 40);
-            this.label14.TabIndex = 11;
-            this.label14.Text = "Сб";
-            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.Saturday.BackColor = System.Drawing.SystemColors.Control;
+            this.Saturday.Location = new System.Drawing.Point(440, 0);
+            this.Saturday.Name = "Saturday";
+            this.Saturday.Size = new System.Drawing.Size(80, 40);
+            this.Saturday.TabIndex = 11;
+            this.Saturday.Text = "Сб";
+            this.Saturday.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Accept
             // 
@@ -321,24 +322,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 413);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Pair8);
+            this.Controls.Add(this.Pair7);
+            this.Controls.Add(this.Pair6);
+            this.Controls.Add(this.Pair5);
+            this.Controls.Add(this.Pair4);
+            this.Controls.Add(this.Pair3);
+            this.Controls.Add(this.Pair2);
+            this.Controls.Add(this.Pair1);
             this.Controls.Add(this.Empty);
             this.Controls.Add(this.PhysicalCulture);
             this.Controls.Add(this.Language);
             this.Controls.Add(this.Accept);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.Saturday);
+            this.Controls.Add(this.Friday);
+            this.Controls.Add(this.Thursday);
+            this.Controls.Add(this.Wednesday);
+            this.Controls.Add(this.Tuesday);
+            this.Controls.Add(this.Monday);
             this.Controls.Add(this.Voyennaya);
             this.Controls.Add(this.Dovuzovskoye);
             this.Controls.Add(this.Sovet);
@@ -346,6 +347,7 @@
             this.Controls.Add(this.Release);
             this.Name = "WishWindow";
             this.Text = "WishWindow";
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WishWindow_MouseMove);
             this.ResumeLayout(false);
 
         }
@@ -356,20 +358,20 @@
         private System.Windows.Forms.Button Sovet;
         private System.Windows.Forms.Button Dovuzovskoye;
         private System.Windows.Forms.Button Voyennaya;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label Pair1;
+        private System.Windows.Forms.Label Pair2;
+        private System.Windows.Forms.Label Pair3;
+        private System.Windows.Forms.Label Pair4;
+        private System.Windows.Forms.Label Pair5;
+        private System.Windows.Forms.Label Pair6;
+        private System.Windows.Forms.Label Pair7;
+        private System.Windows.Forms.Label Pair8;
+        private System.Windows.Forms.Label Monday;
+        private System.Windows.Forms.Label Tuesday;
+        private System.Windows.Forms.Label Wednesday;
+        private System.Windows.Forms.Label Thursday;
+        private System.Windows.Forms.Label Friday;
+        private System.Windows.Forms.Label Saturday;
         private System.Windows.Forms.Button Accept;
         private System.Windows.Forms.Button Language;
         private System.Windows.Forms.Button PhysicalCulture;

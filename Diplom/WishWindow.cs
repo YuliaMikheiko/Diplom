@@ -133,6 +133,9 @@ namespace Diplom
             };
             label.Click += Label_Click;
 
+            DayMouseMove(label, day);
+            PairMouseMove(label, pair);
+
             if (week % 2 == 1)
             {
                 tableLayoutPanel1.Controls.Add(label, day * 2 + 1, pair);
@@ -140,6 +143,62 @@ namespace Diplom
             else
             {
                 tableLayoutPanel1.Controls.Add(label, day * 2, pair);
+            }
+        }
+
+        private void PairMouseMove(System.Windows.Forms.Label label, int pair)
+        {
+            switch (pair)
+            {
+                case 0:
+                    label.MouseMove += Label_MouseMove6;
+                    break;
+                case 1:
+                    label.MouseMove += Label_MouseMove7;
+                    break;
+                case 2:
+                    label.MouseMove += Label_MouseMove8;
+                    break;
+                case 3:
+                    label.MouseMove += Label_MouseMove9;
+                    break;
+                case 4:
+                    label.MouseMove += Label_MouseMove10;
+                    break;
+                case 5:
+                    label.MouseMove += Label_MouseMove11;
+                    break;
+                case 6:
+                    label.MouseMove += Label_MouseMove12;
+                    break;
+                case 7:
+                    label.MouseMove += Label_MouseMove13;
+                    break;
+            }
+        }
+
+        public void DayMouseMove(System.Windows.Forms.Label label, int day)
+        {
+            switch (day)
+            {
+                case 0:
+                    label.MouseMove += Label_MouseMove;
+                    break;
+                case 1:
+                    label.MouseMove += Label_MouseMove1;
+                    break;
+                case 2:
+                    label.MouseMove += Label_MouseMove2;
+                    break;
+                case 3:
+                    label.MouseMove += Label_MouseMove3;
+                    break;
+                case 4:
+                    label.MouseMove += Label_MouseMove4;
+                    break;
+                case 5:
+                    label.MouseMove += Label_MouseMove5;
+                    break;
             }
         }
 
@@ -246,6 +305,181 @@ namespace Diplom
         {
             ToolTip toolTip = new ToolTip();
             toolTip.SetToolTip(sender as Button, "Пусто");
+        }
+
+        private void WishWindow_MouseMove(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.LightSteelBlue;
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove1(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.LightSteelBlue;
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove2(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.LightSteelBlue;
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove3(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.LightSteelBlue;
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove4(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.LightSteelBlue;
+            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove5(object sender, MouseEventArgs e)
+        {
+            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Saturday.BackColor = Color.LightSteelBlue;
+        }
+
+        private void Label_MouseMove6(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.LightSteelBlue;
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove7(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.LightSteelBlue;
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove8(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.LightSteelBlue;
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove9(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.LightSteelBlue;
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove10(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.LightSteelBlue;
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove11(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.LightSteelBlue;
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove12(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.LightSteelBlue;
+            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+        }
+
+        private void Label_MouseMove13(object sender, MouseEventArgs e)
+        {
+            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
+            Pair8.BackColor = Color.LightSteelBlue;
         }
     }
 }
