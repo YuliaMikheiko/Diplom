@@ -5,6 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Diplom
 {
@@ -136,6 +137,59 @@ namespace Diplom
                     }
                 }
                 return result.Count > 0 ? result.ToArray() : null;
+            }
+            set
+            {
+                if (value != null)
+                {
+                    foreach (var dayKey in new[] { day.ToString() })
+                    {
+                        if (this.ContainsKey(dayKey))
+                        {
+                            var dayWish = this[dayKey];
+                            foreach (var pairKey in new[] { pair.ToString() })
+                            {
+                                if (dayWish.ContainsKey(pairKey))
+                                {
+                                    var pairWish = dayWish[pairKey];
+                                    foreach (var weekKey in new[] { week.ToString() })
+                                    {
+                                        if (pairWish.ContainsKey(weekKey))
+                                        {
+                                            var weekWish = pairWish[weekKey];
+                                            pairWish[weekKey] = value;
+                                        }
+                                        else
+                                        { 
+                                            this[dayKey][pairKey].Add(weekKey, value);
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    //var pairWish = new Dictionary<String, int[]>
+                                    //{
+                                    //    { week.ToString(), value }
+                                    //};
+                                    this[dayKey].Add(pairKey, new Dictionary<String, int[]>{{ week.ToString(), value }});
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var pairWish = new Dictionary<String, int[]>();
+                            pairWish.Add(week.ToString(), value);
+                            var dayWish = new Dictionary<String, Dictionary<String, int[]>>();
+                            dayWish.Add(pair.ToString(), pairWish);
+
+                            this.Add(dayKey, dayWish);
+                        }
+                    }
+                }
+                //else
+                //{
+                //    this[day.ToString()][pair.ToString()].Remove(week.ToString());
+                //}
             }
         }
     }

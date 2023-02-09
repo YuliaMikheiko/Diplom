@@ -25,8 +25,19 @@ namespace Diplom
                 return _nagruzka;
             }
         }
-
-        public Dictionary<int, Teacher> teacher;
+        private Dictionary<int, Teacher> _teacher;
+        public Dictionary<int, Teacher> teacher
+        {
+            set
+            {
+                _teacher = value;
+                data.teachers = value;
+            }
+            get
+            {
+                return _teacher;
+            }
+        }
         public Dictionary<int, Auditory> auditory;
         public Dictionary<int, SubGroup> subGroup;
 

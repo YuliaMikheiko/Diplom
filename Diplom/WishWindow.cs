@@ -21,11 +21,14 @@ namespace Diplom
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
+        ScheduleDataModel scheduleDataModel;
+
         internal WishWindow(int type, ScheduleDataModel scheduleDataModel, List<int?> idList)
         {
             InitializeComponent();
 
             this.idList = idList;
+            this.scheduleDataModel = scheduleDataModel;
 
             teachers = scheduleDataModel.GetTeachers();
             auditories = scheduleDataModel.GetAuditories();
@@ -60,7 +63,6 @@ namespace Diplom
                                 color = Color.PowderBlue;
                                 text = "";
                             }
-
                             DrawLabel(day, pair, week);
                         }
                     }
@@ -87,7 +89,6 @@ namespace Diplom
                                 color = Color.PowderBlue;
                                 text = "";
                             }
-
                             DrawLabel(day, pair, week);
                         }
                     }
@@ -114,7 +115,6 @@ namespace Diplom
                                 color = Color.PowderBlue;
                                 text = "";
                             }
-
                             DrawLabel(day, pair, week);
                         }
                     }
@@ -136,13 +136,14 @@ namespace Diplom
             DayMouseMove(label, day);
             PairMouseMove(label, pair);
 
-            if (week % 2 == 1)
+            switch (week % 2)
             {
-                tableLayoutPanel1.Controls.Add(label, day * 2 + 1, pair);
-            }
-            else
-            {
-                tableLayoutPanel1.Controls.Add(label, day * 2, pair);
+                case 1:
+                    tableLayoutPanel1.Controls.Add(label, day * 2 + 1, pair);
+                    break;
+                default:
+                    tableLayoutPanel1.Controls.Add(label, day * 2, pair);
+                    break;
             }
         }
 
@@ -151,28 +152,28 @@ namespace Diplom
             switch (pair)
             {
                 case 0:
-                    label.MouseMove += Label_MouseMove6;
+                    label.MouseMove += Pair1_MouseMove;
                     break;
                 case 1:
-                    label.MouseMove += Label_MouseMove7;
+                    label.MouseMove += Pair2_MouseMove;
                     break;
                 case 2:
-                    label.MouseMove += Label_MouseMove8;
+                    label.MouseMove += Pair3_MouseMove;
                     break;
                 case 3:
-                    label.MouseMove += Label_MouseMove9;
+                    label.MouseMove += Pair4_MouseMove;
                     break;
                 case 4:
-                    label.MouseMove += Label_MouseMove10;
+                    label.MouseMove += Pair5_MouseMove;
                     break;
                 case 5:
-                    label.MouseMove += Label_MouseMove11;
+                    label.MouseMove += Pair6_MouseMove;
                     break;
                 case 6:
-                    label.MouseMove += Label_MouseMove12;
+                    label.MouseMove += Pair7_MouseMove;
                     break;
                 case 7:
-                    label.MouseMove += Label_MouseMove13;
+                    label.MouseMove += Pair8_MouseMove;
                     break;
             }
         }
@@ -182,22 +183,22 @@ namespace Diplom
             switch (day)
             {
                 case 0:
-                    label.MouseMove += Label_MouseMove;
+                    label.MouseMove += Monday_MouseMove;
                     break;
                 case 1:
-                    label.MouseMove += Label_MouseMove1;
+                    label.MouseMove += Tuesday_MouseMove;
                     break;
                 case 2:
-                    label.MouseMove += Label_MouseMove2;
+                    label.MouseMove += Wednesday_MouseMove;
                     break;
                 case 3:
-                    label.MouseMove += Label_MouseMove3;
+                    label.MouseMove += Thursday_MouseMove;
                     break;
                 case 4:
-                    label.MouseMove += Label_MouseMove4;
+                    label.MouseMove += Friday_MouseMove;
                     break;
                 case 5:
-                    label.MouseMove += Label_MouseMove5;
+                    label.MouseMove += Saturday_MouseMove;
                     break;
             }
         }
@@ -256,7 +257,83 @@ namespace Diplom
 
         private void Accept_Click(object sender, EventArgs e)
         {
+            Save();
+            (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
+            scheduleDataModel.Save();
             this.DialogResult = DialogResult.OK;
+        }
+
+        public void Save()
+        {
+            foreach (var teacher in teachers.SelectMany(teacher => idList.Where(id => teacher.Value.id == id).Select(id => new { }).Select(_ => teacher)))
+            {
+                for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
+                {
+                    for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
+                    {
+                        int wish = 0;
+                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
+                        {
+                            case "О":
+                                wish = 1;
+                                break;
+                            case "Д":
+                                wish = 11;
+                                break;
+                            case "И":
+                                wish = 12;
+                                break;
+                            case "Ф":
+                                wish = 14;
+                                break;
+                            case "С":
+                                wish = 15;
+                                break;
+                            case "К":
+                                wish = 16;
+                                break;
+                            case "В":
+                                wish = 20;
+                                break;
+                        }
+
+                        if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
+                        {
+                            if (i % 2 == 0)
+                            {
+                                if (teacher.Value.wishes[i / 2, j, 0] == null)
+                                    teacher.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                                else
+                                    teacher.Value.wishes[i / 2, j, 0][0] = wish;
+                            }
+                            else
+                            {
+                                if (teacher.Value.wishes[(i - 1) / 2, j, 0] == null)
+                                    teacher.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                else
+                                    teacher.Value.wishes[(i - 1) / 2, j, 1][0] = wish;
+                            }
+                        }
+                        //else
+                        //{
+                        //    if (i % 2 == 0)
+                        //    {
+                        //        if (teacher.Value.wishes[i / 2, j, 0] != null)
+                        //        {
+                        //            teacher.Value.wishes[i / 2, j, 0] = null;
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        if (teacher.Value.wishes[(i - 1) / 2, j, 0] != null)
+                        //        {
+                        //            teacher.Value.wishes[(i - 1) / 2, j, 0] = null;
+                        //        }
+                        //    }
+                        //}
+                    }
+                }
+            }
         }
 
         private void Release_MouseMove(object sender, MouseEventArgs e)
@@ -326,7 +403,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove(object sender, MouseEventArgs e)
+        private void Monday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.LightSteelBlue;
             Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -336,7 +413,7 @@ namespace Diplom
             Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove1(object sender, MouseEventArgs e)
+        private void Tuesday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
             Tuesday.BackColor = Color.LightSteelBlue;
@@ -346,7 +423,7 @@ namespace Diplom
             Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove2(object sender, MouseEventArgs e)
+        private void Wednesday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
             Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -356,7 +433,7 @@ namespace Diplom
             Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove3(object sender, MouseEventArgs e)
+        private void Thursday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
             Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -366,7 +443,7 @@ namespace Diplom
             Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove4(object sender, MouseEventArgs e)
+        private void Friday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
             Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -376,7 +453,7 @@ namespace Diplom
             Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove5(object sender, MouseEventArgs e)
+        private void Saturday_MouseMove(object sender, MouseEventArgs e)
         {
             Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
             Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -386,7 +463,7 @@ namespace Diplom
             Saturday.BackColor = Color.LightSteelBlue;
         }
 
-        private void Label_MouseMove6(object sender, MouseEventArgs e)
+        private void Pair1_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.LightSteelBlue;
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -398,7 +475,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove7(object sender, MouseEventArgs e)
+        private void Pair2_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.LightSteelBlue;
@@ -410,7 +487,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove8(object sender, MouseEventArgs e)
+        private void Pair3_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -422,7 +499,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove9(object sender, MouseEventArgs e)
+        private void Pair4_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -434,7 +511,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove10(object sender, MouseEventArgs e)
+        private void Pair5_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -446,7 +523,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove11(object sender, MouseEventArgs e)
+        private void Pair6_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -458,7 +535,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove12(object sender, MouseEventArgs e)
+        private void Pair7_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
@@ -470,7 +547,7 @@ namespace Diplom
             Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
         }
 
-        private void Label_MouseMove13(object sender, MouseEventArgs e)
+        private void Pair8_MouseMove(object sender, MouseEventArgs e)
         {
             Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
             Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
