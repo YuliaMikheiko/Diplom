@@ -142,54 +142,52 @@ namespace Diplom
             {
                 if (value != null)
                 {
-                    foreach (var dayKey in new[] { day.ToString() })
+                    if (this.ContainsKey(day.ToString()))
                     {
-                        if (this.ContainsKey(dayKey))
+                        var dayWish = this[day.ToString()];
+                        if (dayWish.ContainsKey(pair.ToString()))
                         {
-                            var dayWish = this[dayKey];
-                            foreach (var pairKey in new[] { pair.ToString() })
+                            var pairWish = dayWish[pair.ToString()];
+                            if (pairWish.ContainsKey(week.ToString()))
                             {
-                                if (dayWish.ContainsKey(pairKey))
-                                {
-                                    var pairWish = dayWish[pairKey];
-                                    foreach (var weekKey in new[] { week.ToString() })
-                                    {
-                                        if (pairWish.ContainsKey(weekKey))
-                                        {
-                                            var weekWish = pairWish[weekKey];
-                                            pairWish[weekKey] = value;
-                                        }
-                                        else
-                                        { 
-                                            this[dayKey][pairKey].Add(weekKey, value);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    //var pairWish = new Dictionary<String, int[]>
-                                    //{
-                                    //    { week.ToString(), value }
-                                    //};
-                                    this[dayKey].Add(pairKey, new Dictionary<String, int[]>{{ week.ToString(), value }});
-                                }
+                                pairWish[week.ToString()] = value;
+                            }
+                            else
+                            {
+                                this[day.ToString()][pair.ToString()].Add(week.ToString(), value);
                             }
                         }
                         else
                         {
-                            var pairWish = new Dictionary<String, int[]>();
-                            pairWish.Add(week.ToString(), value);
-                            var dayWish = new Dictionary<String, Dictionary<String, int[]>>();
-                            dayWish.Add(pair.ToString(), pairWish);
-
-                            this.Add(dayKey, dayWish);
+                            this[day.ToString()].Add(pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } });
+                        }
+                    }
+                    else
+                    {
+                        this.Add(day.ToString(), new Dictionary<String, Dictionary<String, int[]>> { { pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } } } });
+                    }
+                }
+                else
+                {
+                    if (this.ContainsKey(day.ToString()))
+                    {
+                        if (this[day.ToString()].ContainsKey(pair.ToString()))
+                        {
+                            if (this[day.ToString()][pair.ToString()].ContainsKey(week.ToString()))
+                            {
+                                this[day.ToString()][pair.ToString()].Remove(week.ToString());
+                                if (this[day.ToString()][pair.ToString()].Count == 0)
+                                {
+                                    this[day.ToString()].Remove(pair.ToString());
+                                    if (this[day.ToString()].Count == 0)
+                                    {
+                                        this.Remove(day.ToString());
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-                //else
-                //{
-                //    this[day.ToString()][pair.ToString()].Remove(week.ToString());
-                //}
             }
         }
     }

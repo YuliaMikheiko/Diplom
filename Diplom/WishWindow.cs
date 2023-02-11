@@ -295,42 +295,33 @@ namespace Diplom
                             case "В":
                                 wish = 20;
                                 break;
+                            case "":
+                                wish = 10;
+                                break;
                         }
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
                             if (i % 2 == 0)
                             {
-                                if (teacher.Value.wishes[i / 2, j, 0] == null)
-                                    teacher.Value.wishes[i / 2, j, 0] = new int[] { wish };
-                                else
-                                    teacher.Value.wishes[i / 2, j, 0][0] = wish;
+                                teacher.Value.wishes[i / 2, j, 0] = new int[] { wish };
                             }
                             else
                             {
-                                if (teacher.Value.wishes[(i - 1) / 2, j, 0] == null)
-                                    teacher.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
-                                else
-                                    teacher.Value.wishes[(i - 1) / 2, j, 1][0] = wish;
+                                teacher.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
                             }
                         }
-                        //else
-                        //{
-                        //    if (i % 2 == 0)
-                        //    {
-                        //        if (teacher.Value.wishes[i / 2, j, 0] != null)
-                        //        {
-                        //            teacher.Value.wishes[i / 2, j, 0] = null;
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        if (teacher.Value.wishes[(i - 1) / 2, j, 0] != null)
-                        //        {
-                        //            teacher.Value.wishes[(i - 1) / 2, j, 0] = null;
-                        //        }
-                        //    }
-                        //}
+                        else
+                        {
+                            if (i % 2 == 0)
+                            {
+                                teacher.Value.wishes[i / 2, j, 0] = null;
+                            }
+                            else
+                            {
+                                teacher.Value.wishes[(i - 1) / 2, j, 1] = null;
+                            }
+                        }
                     }
                 }
             }
