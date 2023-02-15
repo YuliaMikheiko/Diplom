@@ -58,13 +58,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NtTextBox = new System.Windows.Forms.TextBox();
             this.KursTextBox = new System.Windows.Forms.TextBox();
+            this.Reset = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Filter
             // 
             this.Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Filter.Location = new System.Drawing.Point(423, 252);
+            this.Filter.Location = new System.Drawing.Point(423, 237);
             this.Filter.Name = "Filter";
             this.Filter.Size = new System.Drawing.Size(75, 23);
             this.Filter.TabIndex = 1;
@@ -112,7 +113,7 @@
             this.tableLayoutPanel1.Controls.Add(this.KursTextBox, 2, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -120,8 +121,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 232);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 203);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // KursButton
@@ -482,11 +482,23 @@
             this.KursTextBox.TabIndex = 21;
             this.KursTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
+            // Reset
+            // 
+            this.Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Reset.Location = new System.Drawing.Point(6, 237);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(75, 23);
+            this.Reset.TabIndex = 3;
+            this.Reset.Text = "Сброс";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // FilterWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 284);
+            this.ClientSize = new System.Drawing.Size(510, 273);
+            this.Controls.Add(this.Reset);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Filter);
             this.Name = "FilterWindow";
@@ -529,5 +541,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox NtTextBox;
         private System.Windows.Forms.TextBox KursTextBox;
+        private System.Windows.Forms.Button Reset;
     }
 }

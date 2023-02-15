@@ -20,6 +20,31 @@ namespace Diplom
         List<int?> idsList = new List<int?>();
         List<string> titleList = new List<string>();
 
+        public enum Type : int
+        {
+            Teachers,
+            Groups,
+            Auditorys
+        }
+
+        List<string> titleShortListGroups = new List<string>();
+        List<string> titleListGroups = new List<string>();
+        List<string> titleListKafedra = new List<string>();
+        List<string> titleListTeacher = new List<string>();
+        List<string> titleListAuditorys = new List<string>();
+        List<string> titleListDiscipline = new List<string>();
+        List<string> titleListKurs = new List<string>();
+        List<string> idListNt = new List<string>();
+        List<string> titleListNt = new List<string>();
+
+        bool auditoryCheck;
+        bool groupCheck;
+        bool teacherCheck;
+        bool kafedraCheck;
+        bool disciplineCheck;
+        bool kursCheck;
+        bool ntCheck;
+
         public MainWindows()
         {
             InitializeComponent();
@@ -116,13 +141,6 @@ namespace Diplom
             }
         }
 
-        public enum Type : int
-        {
-            Teachers,
-            Groups,
-            Auditorys
-        }
-
         public string ModalWindow(int row, Type type, string columnName)
         {
             object dataItem = (InformationDGV.Rows[row].DataBoundItem as ObjectView<ScheduleRowDataGridRowItem>).Object;
@@ -206,9 +224,30 @@ namespace Diplom
 
         private void FilterMenuItem_Click(object sender, EventArgs e)
         {
-            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr);
+            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleShortListGroups, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, idListNt, titleListNt, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck);
+            
             if (filter.ShowDialog() == DialogResult.OK)
+            {
+                titleListAuditorys = filter.titleListAuditorys;
+                titleShortListGroups = filter.titleShortListGroups;
+                titleListGroups = filter.titleListGroups;
+                titleListTeacher = filter.titleListTeacher;
+                titleListKafedra = filter.titleListKafedra;
+                titleListDiscipline = filter.titleListDiscipline;
+                titleListKurs = filter.titleListKurs;
+                idListNt = filter.idListNt;
+                titleListNt = filter.titleListNt;
+
+                auditoryCheck = filter.auditoryCheck;
+                groupCheck = filter.groupCheck;
+                teacherCheck = filter.teacherCheck;
+                kafedraCheck = filter.kafedraCheck;
+                disciplineCheck = filter.disciplineCheck;
+                kursCheck = filter.kursCheck;
+                ntCheck = filter.ntCheck;
+
                 FilterData(filter);
+            }
         }
 
         private void FilterData(FilterWindow filter)
@@ -217,13 +256,13 @@ namespace Diplom
             {
                 List<(bool, List<string>, string)> list = new List<(bool, List<string>, string)>
                 {
-                    (filter.auditoryCheck, filter.titleListAuditorys, x.Auds),
-                    (filter.groupCheck, filter.titleListGroups, x.Sub_groups),
-                    (filter.teacherCheck, filter.titleListTeacher, x.Teachers),
-                    (filter.kafedraCheck, filter.titleListKafedra, x.Kaf),
-                    (filter.disciplineCheck, filter.titleListDiscipline, x.Discipline),
-                    (filter.kursCheck, filter.titleListKurs, x.Kurs),
-                    (filter.ntCheck, filter.idListNt, x.NT.ToString())
+                    (auditoryCheck, titleListAuditorys, x.Auds),
+                    (groupCheck, titleShortListGroups, x.Sub_groups),
+                    (teacherCheck, titleListTeacher, x.Teachers),
+                    (kafedraCheck, titleListKafedra, x.Kaf),
+                    (disciplineCheck, titleListDiscipline, x.Discipline),
+                    (kursCheck, titleListKurs, x.Kurs),
+                    (ntCheck, idListNt, x.NT.ToString())
                 };
 
                 bool allResult = true;
@@ -268,10 +307,8 @@ namespace Diplom
                 {
                     WishWindow wish = new WishWindow((int)Type.Teachers, activeScheduleDataModel, idsList);
 
-                    if (wish.ShowDialog() == DialogResult.OK)
-                    {
-
-                    }
+                    wish.ShowDialog();
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
@@ -296,10 +333,8 @@ namespace Diplom
                 {
                     WishWindow wish = new WishWindow((int)Type.Groups, activeScheduleDataModel, idsList);
 
-                    if (wish.ShowDialog() == DialogResult.OK)
-                    {
-
-                    }
+                    wish.ShowDialog();
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
@@ -324,10 +359,8 @@ namespace Diplom
                 {
                     WishWindow wish = new WishWindow((int)Type.Auditorys, activeScheduleDataModel, idsList);
 
-                    if (wish.ShowDialog() == DialogResult.OK)
-                    {
-
-                    }
+                    wish.ShowDialog();
+                    this.DialogResult = DialogResult.OK;
                 }
                 else
                 {
