@@ -27,7 +27,7 @@ namespace Diplom
             Auditorys
         }
 
-        List<string> titleShortListGroups = new List<string>();
+        //List<string> titleShortListGroups = new List<string>();
         List<string> titleListGroups = new List<string>();
         List<string> titleListKafedra = new List<string>();
         List<string> titleListTeacher = new List<string>();
@@ -224,12 +224,11 @@ namespace Diplom
 
         private void FilterMenuItem_Click(object sender, EventArgs e)
         {
-            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleShortListGroups, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, idListNt, titleListNt, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck);
+            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, idListNt, titleListNt, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck);
             
             if (filter.ShowDialog() == DialogResult.OK)
             {
                 titleListAuditorys = filter.titleListAuditorys;
-                titleShortListGroups = filter.titleShortListGroups;
                 titleListGroups = filter.titleListGroups;
                 titleListTeacher = filter.titleListTeacher;
                 titleListKafedra = filter.titleListKafedra;
@@ -257,7 +256,7 @@ namespace Diplom
                 List<(bool, List<string>, string)> list = new List<(bool, List<string>, string)>
                 {
                     (auditoryCheck, titleListAuditorys, x.Auds),
-                    (groupCheck, titleShortListGroups, x.Sub_groups),
+                    (groupCheck, filter.titleShortListGroups, x.Sub_groups),
                     (teacherCheck, titleListTeacher, x.Teachers),
                     (kafedraCheck, titleListKafedra, x.Kaf),
                     (disciplineCheck, titleListDiscipline, x.Discipline),

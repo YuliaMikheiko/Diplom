@@ -34,7 +34,7 @@ namespace Diplom
         List<string> kursList;
         List<KeyValuePair<int, string>> ntList;
 
-        internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr, List<string> titleShortListGroups, List<string> titleListGroups, List<string> titleListKafedra, List<string> titleListTeacher, List<string> titleListAuditorys, List<string> titleListDiscipline, List<string> titleListKurs, List<string> idListNt, List<string> titleListNt, bool auditoryCheck, bool groupCheck, bool teacherCheck, bool kafedraCheck, bool disciplineCheck, bool kursCheck, bool ntCheck)
+        internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr, List<string> titleListGroups, List<string> titleListKafedra, List<string> titleListTeacher, List<string> titleListAuditorys, List<string> titleListDiscipline, List<string> titleListKurs, List<string> idListNt, List<string> titleListNt, bool auditoryCheck, bool groupCheck, bool teacherCheck, bool kafedraCheck, bool disciplineCheck, bool kursCheck, bool ntCheck)
         {
             InitializeComponent();
 
@@ -44,7 +44,6 @@ namespace Diplom
             this.titleListDiscipline = titleListDiscipline;
             this.titleListKafedra = titleListKafedra;
             this.titleListAuditorys = titleListAuditorys;
-            this.titleShortListGroups = titleShortListGroups;
             this.titleListGroups = titleListGroups;
             this.titleListTeacher = titleListTeacher;
             this.titleListKurs = titleListKurs;
@@ -74,6 +73,8 @@ namespace Diplom
             KafedraCheckBox.Checked = kafedraCheck;
             KursCheckBox.Checked = kursCheck;
             NtCheckBox.Checked = ntCheck;
+
+            titleShortListGroups = new List<string>();
         }
 
         private void GroupsButton_Click(object sender, EventArgs e)

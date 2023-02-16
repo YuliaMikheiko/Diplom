@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FilterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пожеланияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TeacherWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,18 +50,9 @@
             this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FilterMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пожеланияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TeacherWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // InformationDGV
@@ -82,6 +82,75 @@
             this.InformationDGV.TabIndex = 4;
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OpenMenuItem,
+            this.SaveMenuItem,
+            this.FilterMenuItem,
+            this.пожеланияToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1302, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // OpenMenuItem
+            // 
+            this.OpenMenuItem.Name = "OpenMenuItem";
+            this.OpenMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.OpenMenuItem.Text = "Открыть";
+            this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
+            // 
+            // SaveMenuItem
+            // 
+            this.SaveMenuItem.Name = "SaveMenuItem";
+            this.SaveMenuItem.Size = new System.Drawing.Size(78, 20);
+            this.SaveMenuItem.Text = "Сохранить";
+            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
+            // 
+            // FilterMenuItem
+            // 
+            this.FilterMenuItem.Name = "FilterMenuItem";
+            this.FilterMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.FilterMenuItem.Text = "Фильтр";
+            this.FilterMenuItem.Click += new System.EventHandler(this.FilterMenuItem_Click);
+            // 
+            // пожеланияToolStripMenuItem
+            // 
+            this.пожеланияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TeacherWishMenuItem,
+            this.GroupWishMenuItem,
+            this.AudsWishToolStripMenuItem});
+            this.пожеланияToolStripMenuItem.Name = "пожеланияToolStripMenuItem";
+            this.пожеланияToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
+            this.пожеланияToolStripMenuItem.Text = "Пожелания";
+            // 
+            // TeacherWishMenuItem
+            // 
+            this.TeacherWishMenuItem.Name = "TeacherWishMenuItem";
+            this.TeacherWishMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.TeacherWishMenuItem.Text = "Преподаватели";
+            this.TeacherWishMenuItem.Click += new System.EventHandler(this.TeacherWishMenuItem_Click);
+            // 
+            // GroupWishMenuItem
+            // 
+            this.GroupWishMenuItem.Name = "GroupWishMenuItem";
+            this.GroupWishMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.GroupWishMenuItem.Text = "Группы";
+            this.GroupWishMenuItem.Click += new System.EventHandler(this.GroupWishMenuItem_Click);
+            // 
+            // AudsWishToolStripMenuItem
+            // 
+            this.AudsWishToolStripMenuItem.Name = "AudsWishToolStripMenuItem";
+            this.AudsWishToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
+            this.AudsWishToolStripMenuItem.Text = "Аудиториии";
+            this.AudsWishToolStripMenuItem.Click += new System.EventHandler(this.AudsWishToolStripMenuItem_Click);
+            // 
+            // scheduleRowDataGridRowItemBindingSource
+            // 
+            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
+            // 
             // HColumn
             // 
             this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -95,7 +164,6 @@
             this.NtColumn.DataPropertyName = "NT";
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Name = "NtColumn";
-            this.NtColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TeachersColumn
@@ -163,75 +231,7 @@
             this.OnlineColumn.DataPropertyName = "Is_online";
             this.OnlineColumn.HeaderText = "Занятие онлайн";
             this.OnlineColumn.Name = "OnlineColumn";
-            // 
-            // scheduleRowDataGridRowItemBindingSource
-            // 
-            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.OpenMenuItem,
-            this.SaveMenuItem,
-            this.FilterMenuItem,
-            this.пожеланияToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1302, 24);
-            this.menuStrip1.TabIndex = 5;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // OpenMenuItem
-            // 
-            this.OpenMenuItem.Name = "OpenMenuItem";
-            this.OpenMenuItem.Size = new System.Drawing.Size(66, 20);
-            this.OpenMenuItem.Text = "Открыть";
-            this.OpenMenuItem.Click += new System.EventHandler(this.OpenMenuItem_Click);
-            // 
-            // SaveMenuItem
-            // 
-            this.SaveMenuItem.Name = "SaveMenuItem";
-            this.SaveMenuItem.Size = new System.Drawing.Size(78, 20);
-            this.SaveMenuItem.Text = "Сохранить";
-            this.SaveMenuItem.Click += new System.EventHandler(this.SaveMenuItem_Click);
-            // 
-            // FilterMenuItem
-            // 
-            this.FilterMenuItem.Name = "FilterMenuItem";
-            this.FilterMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.FilterMenuItem.Text = "Фильтр";
-            this.FilterMenuItem.Click += new System.EventHandler(this.FilterMenuItem_Click);
-            // 
-            // пожеланияToolStripMenuItem
-            // 
-            this.пожеланияToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TeacherWishMenuItem,
-            this.GroupWishMenuItem,
-            this.AudsWishToolStripMenuItem});
-            this.пожеланияToolStripMenuItem.Name = "пожеланияToolStripMenuItem";
-            this.пожеланияToolStripMenuItem.Size = new System.Drawing.Size(83, 20);
-            this.пожеланияToolStripMenuItem.Text = "Пожелания";
-            // 
-            // TeacherWishMenuItem
-            // 
-            this.TeacherWishMenuItem.Name = "TeacherWishMenuItem";
-            this.TeacherWishMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.TeacherWishMenuItem.Text = "Преподаватели";
-            this.TeacherWishMenuItem.Click += new System.EventHandler(this.TeacherWishMenuItem_Click);
-            // 
-            // GroupWishMenuItem
-            // 
-            this.GroupWishMenuItem.Name = "GroupWishMenuItem";
-            this.GroupWishMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.GroupWishMenuItem.Text = "Группы";
-            this.GroupWishMenuItem.Click += new System.EventHandler(this.GroupWishMenuItem_Click);
-            // 
-            // AudsWishToolStripMenuItem
-            // 
-            this.AudsWishToolStripMenuItem.Name = "AudsWishToolStripMenuItem";
-            this.AudsWishToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.AudsWishToolStripMenuItem.Text = "Аудиториии";
-            this.AudsWishToolStripMenuItem.Click += new System.EventHandler(this.AudsWishToolStripMenuItem_Click);
+            this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // MainWindows
             // 
@@ -243,9 +243,9 @@
             this.Name = "MainWindows";
             this.Text = "MainWindows";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
