@@ -27,7 +27,6 @@ namespace Diplom
             Auditorys
         }
 
-        //List<string> titleShortListGroups = new List<string>();
         List<string> titleListGroups = new List<string>();
         List<string> titleListKafedra = new List<string>();
         List<string> titleListTeacher = new List<string>();

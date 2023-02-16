@@ -164,7 +164,6 @@
             this.NtColumn.DataPropertyName = "NT";
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Name = "NtColumn";
-            this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TeachersColumn
             // 

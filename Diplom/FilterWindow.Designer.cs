@@ -59,13 +59,23 @@
             this.NtTextBox = new System.Windows.Forms.TextBox();
             this.KursTextBox = new System.Windows.Forms.TextBox();
             this.Reset = new System.Windows.Forms.Button();
+            this.FacCheckBox = new System.Windows.Forms.CheckBox();
+            this.OwnersCheckBox = new System.Windows.Forms.CheckBox();
+            this.FacTextBox = new System.Windows.Forms.TextBox();
+            this.OwnersTextBox = new System.Windows.Forms.TextBox();
+            this.FacButton = new System.Windows.Forms.Button();
+            this.OwnersButton = new System.Windows.Forms.Button();
+            this.ZaochCheckBox = new System.Windows.Forms.CheckBox();
+            this.OchCheckBox = new System.Windows.Forms.CheckBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Filter
             // 
             this.Filter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Filter.Location = new System.Drawing.Point(423, 237);
+            this.Filter.Location = new System.Drawing.Point(423, 323);
             this.Filter.Name = "Filter";
             this.Filter.Size = new System.Drawing.Size(75, 23);
             this.Filter.TabIndex = 1;
@@ -83,6 +93,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0047F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 54.68567F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 8.003757F));
+            this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.KursButton, 3, 6);
             this.tableLayoutPanel1.Controls.Add(this.NtButton, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.KursCheckBox, 1, 6);
@@ -111,9 +123,15 @@
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.NtTextBox, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.KursTextBox, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.FacCheckBox, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.OwnersCheckBox, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.FacTextBox, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.OwnersTextBox, 2, 8);
+            this.tableLayoutPanel1.Controls.Add(this.FacButton, 3, 7);
+            this.tableLayoutPanel1.Controls.Add(this.OwnersButton, 3, 8);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -121,7 +139,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 203);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 261);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // KursButton
@@ -485,7 +505,7 @@
             // Reset
             // 
             this.Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Reset.Location = new System.Drawing.Point(6, 237);
+            this.Reset.Location = new System.Drawing.Point(6, 323);
             this.Reset.Name = "Reset";
             this.Reset.Size = new System.Drawing.Size(75, 23);
             this.Reset.TabIndex = 3;
@@ -493,11 +513,125 @@
             this.Reset.UseVisualStyleBackColor = true;
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
+            // FacCheckBox
+            // 
+            this.FacCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FacCheckBox.AutoSize = true;
+            this.FacCheckBox.Location = new System.Drawing.Point(141, 206);
+            this.FacCheckBox.Name = "FacCheckBox";
+            this.FacCheckBox.Size = new System.Drawing.Size(44, 23);
+            this.FacCheckBox.TabIndex = 31;
+            this.FacCheckBox.Text = "не";
+            this.FacCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // OwnersCheckBox
+            // 
+            this.OwnersCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OwnersCheckBox.AutoSize = true;
+            this.OwnersCheckBox.Location = new System.Drawing.Point(141, 235);
+            this.OwnersCheckBox.Name = "OwnersCheckBox";
+            this.OwnersCheckBox.Size = new System.Drawing.Size(44, 23);
+            this.OwnersCheckBox.TabIndex = 32;
+            this.OwnersCheckBox.Text = "не";
+            this.OwnersCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // FacTextBox
+            // 
+            this.FacTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.FacTextBox.Location = new System.Drawing.Point(191, 206);
+            this.FacTextBox.Name = "FacTextBox";
+            this.FacTextBox.ReadOnly = true;
+            this.FacTextBox.Size = new System.Drawing.Size(271, 20);
+            this.FacTextBox.TabIndex = 33;
+            // 
+            // OwnersTextBox
+            // 
+            this.OwnersTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OwnersTextBox.Location = new System.Drawing.Point(191, 235);
+            this.OwnersTextBox.Name = "OwnersTextBox";
+            this.OwnersTextBox.ReadOnly = true;
+            this.OwnersTextBox.Size = new System.Drawing.Size(271, 20);
+            this.OwnersTextBox.TabIndex = 34;
+            // 
+            // FacButton
+            // 
+            this.FacButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.FacButton.Location = new System.Drawing.Point(468, 206);
+            this.FacButton.Name = "FacButton";
+            this.FacButton.Size = new System.Drawing.Size(36, 23);
+            this.FacButton.TabIndex = 35;
+            this.FacButton.Text = "...";
+            this.FacButton.UseVisualStyleBackColor = true;
+            // 
+            // OwnersButton
+            // 
+            this.OwnersButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.OwnersButton.Location = new System.Drawing.Point(468, 235);
+            this.OwnersButton.Name = "OwnersButton";
+            this.OwnersButton.Size = new System.Drawing.Size(36, 23);
+            this.OwnersButton.TabIndex = 36;
+            this.OwnersButton.Text = "...";
+            this.OwnersButton.UseVisualStyleBackColor = true;
+            // 
+            // ZaochCheckBox
+            // 
+            this.ZaochCheckBox.AutoSize = true;
+            this.ZaochCheckBox.Location = new System.Drawing.Point(12, 286);
+            this.ZaochCheckBox.Name = "ZaochCheckBox";
+            this.ZaochCheckBox.Size = new System.Drawing.Size(74, 17);
+            this.ZaochCheckBox.TabIndex = 4;
+            this.ZaochCheckBox.Text = "Заочники";
+            this.ZaochCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // OchCheckBox
+            // 
+            this.OchCheckBox.AutoSize = true;
+            this.OchCheckBox.Location = new System.Drawing.Point(105, 286);
+            this.OchCheckBox.Name = "OchCheckBox";
+            this.OchCheckBox.Size = new System.Drawing.Size(63, 17);
+            this.OchCheckBox.TabIndex = 5;
+            this.OchCheckBox.Text = "Очники";
+            this.OchCheckBox.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 203);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 29);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Факультеты";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(3, 232);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(132, 29);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Диспечер";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // FilterWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(510, 273);
+            this.ClientSize = new System.Drawing.Size(510, 359);
+            this.Controls.Add(this.OchCheckBox);
+            this.Controls.Add(this.ZaochCheckBox);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.Filter);
@@ -542,5 +676,15 @@
         private System.Windows.Forms.TextBox NtTextBox;
         private System.Windows.Forms.TextBox KursTextBox;
         private System.Windows.Forms.Button Reset;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox FacCheckBox;
+        private System.Windows.Forms.CheckBox OwnersCheckBox;
+        private System.Windows.Forms.TextBox FacTextBox;
+        private System.Windows.Forms.TextBox OwnersTextBox;
+        private System.Windows.Forms.Button FacButton;
+        private System.Windows.Forms.Button OwnersButton;
+        private System.Windows.Forms.CheckBox ZaochCheckBox;
+        private System.Windows.Forms.CheckBox OchCheckBox;
     }
 }
