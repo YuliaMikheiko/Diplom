@@ -87,7 +87,34 @@ namespace Diplom
         }
         public string Discipline { get; set; }
         public bool Is_online { get; set; }
+        public string Owners
+        {
+            get
+            {
+                return String.Join("; ", x.owners);
+            }
+            set
+            {
 
+            }
+        }
+
+        public string Fac
+        {
+            get
+            {
+                return String.Join(
+                "; ",
+                x.sub_groups
+                .Where(y => y.HasValue && DSub_groups.ContainsKey(y.Value))
+                .Select(y => DSub_groups[y.Value].fac)
+                );
+            }
+            set
+            {
+
+            }
+        }
         public override string ToString()
         {
             return $"{Teachers}%{Sub_groups}%{Auds}";

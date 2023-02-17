@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
+            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,7 +39,6 @@
             this.TeacherWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,9 +50,10 @@
             this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.OwnevsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // InformationDGV
@@ -72,7 +73,8 @@
             this.AuditoriesColumn,
             this.AColumn,
             this.DisciplineColumn,
-            this.OnlineColumn});
+            this.OnlineColumn,
+            this.OwnevsColumn});
             this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
             this.InformationDGV.DataSource = this.scheduleRowDataGridRowItemBindingSource;
             this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -81,6 +83,10 @@
             this.InformationDGV.Size = new System.Drawing.Size(1302, 394);
             this.InformationDGV.TabIndex = 4;
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
+            // 
+            // scheduleRowDataGridRowItemBindingSource
+            // 
+            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
             // 
             // menuStrip1
             // 
@@ -146,10 +152,6 @@
             this.AudsWishToolStripMenuItem.Size = new System.Drawing.Size(159, 22);
             this.AudsWishToolStripMenuItem.Text = "Аудиториии";
             this.AudsWishToolStripMenuItem.Click += new System.EventHandler(this.AudsWishToolStripMenuItem_Click);
-            // 
-            // scheduleRowDataGridRowItemBindingSource
-            // 
-            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
             // 
             // HColumn
             // 
@@ -232,6 +234,13 @@
             this.OnlineColumn.Name = "OnlineColumn";
             this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
+            // OwnevsColumn
+            // 
+            this.OwnevsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OwnevsColumn.DataPropertyName = "Owners";
+            this.OwnevsColumn.HeaderText = "Диспечер";
+            this.OwnevsColumn.Name = "OwnevsColumn";
+            // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -242,9 +251,9 @@
             this.Name = "MainWindows";
             this.Text = "MainWindows";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -273,6 +282,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn AColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisciplineColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnevsColumn;
     }
 }
 

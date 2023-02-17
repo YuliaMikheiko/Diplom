@@ -35,7 +35,10 @@ namespace Diplom
         List<string> titleListKurs = new List<string>();
         List<string> idListNt = new List<string>();
         List<string> titleListNt = new List<string>();
+        List<string> titleListOwners = new List<string>();
+        List<string> titleListFac = new List<string>();
 
+        bool ownersCheck;
         bool auditoryCheck;
         bool groupCheck;
         bool teacherCheck;
@@ -43,6 +46,9 @@ namespace Diplom
         bool disciplineCheck;
         bool kursCheck;
         bool ntCheck;
+        bool facCheck;
+        bool zaochCheck;
+        bool ochCheck;
 
         public MainWindows()
         {
@@ -85,7 +91,7 @@ namespace Diplom
                     NT = x.nt,
                     Kaf = x.kaf,
                     Discipline = x.discipline,
-                    Is_online = x.is_online.Equals(1),
+                    Is_online = x.is_online.Equals(1)
                 }).ToList()
             );
         }
@@ -223,10 +229,12 @@ namespace Diplom
 
         private void FilterMenuItem_Click(object sender, EventArgs e)
         {
-            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, idListNt, titleListNt, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck);
+            FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, titleListOwners, idListNt, titleListNt, titleListFac, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck, ownersCheck, facCheck, zaochCheck, ochCheck);
             
             if (filter.ShowDialog() == DialogResult.OK)
             {
+                titleListFac = filter.titleListFac;
+                titleListOwners = filter.titleListOwners;
                 titleListAuditorys = filter.titleListAuditorys;
                 titleListGroups = filter.titleListGroups;
                 titleListTeacher = filter.titleListTeacher;
@@ -236,6 +244,8 @@ namespace Diplom
                 idListNt = filter.idListNt;
                 titleListNt = filter.titleListNt;
 
+                facCheck = filter.facCheck;
+                ownersCheck = filter.ownersCheck;
                 auditoryCheck = filter.auditoryCheck;
                 groupCheck = filter.groupCheck;
                 teacherCheck = filter.teacherCheck;
@@ -243,6 +253,8 @@ namespace Diplom
                 disciplineCheck = filter.disciplineCheck;
                 kursCheck = filter.kursCheck;
                 ntCheck = filter.ntCheck;
+                zaochCheck = filter.zaochCheck;
+                ochCheck = filter.ochCheck;
 
                 FilterData(filter);
             }
@@ -260,7 +272,8 @@ namespace Diplom
                     (kafedraCheck, titleListKafedra, x.Kaf),
                     (disciplineCheck, titleListDiscipline, x.Discipline),
                     (kursCheck, titleListKurs, x.Kurs),
-                    (ntCheck, idListNt, x.NT.ToString())
+                    (ntCheck, idListNt, x.NT.ToString()),
+                    (ownersCheck, titleListOwners, x.Owners)
                 };
 
                 bool allResult = true;
@@ -287,9 +300,51 @@ namespace Diplom
                         else
                             result = true;
                     }
-                    allResult &= result;                         
+                    allResult &= result;
                 }
-                return allResult;
+
+                bool resultFac = false;
+
+                if (facCheck)
+                {
+                    resultFac = true;
+
+                    if (titleListFac.Count() > 0)
+                        foreach (var _ in x.Fac.Split(';').Where(item => titleListFac.Contains(item.Trim())).Select(item => new { }))
+                            resultFac = false;
+                    else
+                        resultFac = false;
+                }
+                else
+                {
+                    if (titleListFac.Count() > 0)
+                        foreach (var _ in x.Fac.Split(';').Where(item => titleListFac.Contains(item.Trim())).Select(item => new { }))
+                            resultFac = true;
+                    else
+                        resultFac = true;
+                }
+
+                bool resultZaoch = false;
+
+                if (zaochCheck)
+                {
+                    if (x.Sub_groups.Contains("(И,З)"))
+                        resultZaoch = true;
+                }
+                else
+                    resultZaoch = true;
+
+                bool resultOch = false;
+
+                if (ochCheck)
+                {
+                    if (x.Sub_groups.Contains("(И,О)"))
+                        resultOch = true;
+                }
+                else
+                    resultOch = true;
+
+                return allResult & resultFac & resultZaoch & resultOch;
             });
         }
 

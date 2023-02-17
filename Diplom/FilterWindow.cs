@@ -20,7 +20,10 @@ namespace Diplom
         public List<string> titleListKurs;
         public List<string> idListNt;
         public List<string> titleListNt;
+        public List<string> titleListOwners;
+        public List<string> titleListFac;
 
+        public bool ownersCheck;
         public bool teacherCheck;
         public bool auditoryCheck;
         public bool groupCheck;
@@ -28,19 +31,26 @@ namespace Diplom
         public bool disciplineCheck;
         public bool kursCheck;
         public bool ntCheck;
+        public bool facCheck;
+        public bool zaochCheck;
+        public bool ochCheck;
 
         List<string> disciplineList;
         List<string> kafedraList;
         List<string> kursList;
+        List<string> ownersList;
+        List<string> facList;
+
         List<KeyValuePair<int, string>> ntList;
 
-        internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr, List<string> titleListGroups, List<string> titleListKafedra, List<string> titleListTeacher, List<string> titleListAuditorys, List<string> titleListDiscipline, List<string> titleListKurs, List<string> idListNt, List<string> titleListNt, bool auditoryCheck, bool groupCheck, bool teacherCheck, bool kafedraCheck, bool disciplineCheck, bool kursCheck, bool ntCheck)
+        internal FilterWindow(ScheduleDataModel scheduleDataModel, ScheduleRow[] nagr, List<string> titleListGroups, List<string> titleListKafedra, List<string> titleListTeacher, List<string> titleListAuditorys, List<string> titleListDiscipline, List<string> titleListKurs, List<string> titleListOwners, List<string> idListNt, List<string> titleListNt, List<string> titleListFac, bool auditoryCheck, bool groupCheck, bool teacherCheck, bool kafedraCheck, bool disciplineCheck, bool kursCheck, bool ntCheck, bool ownersCheck, bool facCheck, bool zaochCheck, bool ochCheck)
         {
             InitializeComponent();
 
             this.scheduleDataModel = scheduleDataModel;
             this.nagr = nagr;
 
+            this.titleListOwners = titleListOwners;
             this.titleListDiscipline = titleListDiscipline;
             this.titleListKafedra = titleListKafedra;
             this.titleListAuditorys = titleListAuditorys;
@@ -49,7 +59,9 @@ namespace Diplom
             this.titleListKurs = titleListKurs;
             this.idListNt = idListNt;
             this.titleListNt = titleListNt;
+            this.titleListFac = titleListFac;
 
+            this.ownersCheck = ownersCheck;
             this.teacherCheck = teacherCheck;
             this.auditoryCheck = auditoryCheck;
             this.groupCheck = groupCheck;
@@ -57,7 +69,11 @@ namespace Diplom
             this.disciplineCheck = disciplineCheck;
             this.kursCheck = kursCheck;
             this.ntCheck = ntCheck;
+            this.facCheck = facCheck;
+            this.zaochCheck = zaochCheck;
+            this.ochCheck = ochCheck;
 
+            OwnersTextBox.Text = String.Join("; ", titleListOwners);
             GroupsTextBox.Text = String.Join("; ", titleListGroups);
             DisciplineTextBox.Text = String.Join("; ", titleListDiscipline);
             KafedraTextBox.Text = String.Join("; ", titleListKafedra);
@@ -65,7 +81,9 @@ namespace Diplom
             TeacherTextBox.Text = String.Join("; ", titleListTeacher);
             KursTextBox.Text = String.Join("; ", titleListKurs);
             NtTextBox.Text = String.Join("; ", titleListNt);
+            FacTextBox.Text = String.Join("; ", titleListFac);
 
+            OwnersCheckBox.Checked = ownersCheck;
             TeacherCheckBox.Checked = teacherCheck;
             AuditorysCheckBox.Checked = auditoryCheck;
             GroupsCheckBox.Checked = groupCheck;
@@ -73,6 +91,9 @@ namespace Diplom
             KafedraCheckBox.Checked = kafedraCheck;
             KursCheckBox.Checked = kursCheck;
             NtCheckBox.Checked = ntCheck;
+            FacCheckBox.Checked = facCheck;
+            ZaochCheckBox.Checked = zaochCheck;
+            OchCheckBox.Checked = ochCheck;
 
             titleShortListGroups = new List<string>();
         }
@@ -192,6 +213,46 @@ namespace Diplom
             }
         }
 
+        private void OwnersButton_Click(object sender, EventArgs e)
+        {
+            List<string> allOwners = new List<string>();
+
+            Dictionary<int, SubGroup> dSub_groups = scheduleDataModel.GetGroups();
+
+            allOwners.AddRange(dSub_groups.Where(item => item.Value.owner != null).Select(item => item.Value.owner));
+
+            ownersList = allOwners.Distinct().ToList();
+
+            ItemsSelectorModalWindow owners = new ItemsSelectorModalWindow(titleListOwners, ownersList);
+
+            if (owners.ShowDialog() == DialogResult.OK)
+            {
+                titleListOwners = owners.titleList;
+
+                OwnersTextBox.Text = String.Join("; ", titleListOwners);
+            }
+        }
+
+        private void FacButton_Click(object sender, EventArgs e)
+        {
+            List<string> allFac = new List<string>();
+
+            Dictionary<int, SubGroup> dSub_groups = scheduleDataModel.GetGroups();
+
+            allFac.AddRange(dSub_groups.Select(item => item.Value.fac.ToString()));
+
+            facList = allFac.Distinct().ToList();
+
+            ItemsSelectorModalWindow fac = new ItemsSelectorModalWindow(titleListFac, facList);
+
+            if (fac.ShowDialog() == DialogResult.OK)
+            {
+                titleListFac = fac.titleList;
+
+                FacTextBox.Text = String.Join("; ", titleListFac);
+            }
+        }
+
         private void Filter_Click(object sender, EventArgs e)
         {
             teacherCheck = TeacherCheckBox.Checked;
@@ -201,6 +262,10 @@ namespace Diplom
             kafedraCheck = KafedraCheckBox.Checked;
             kursCheck = KursCheckBox.Checked;
             ntCheck = NtCheckBox.Checked;
+            ownersCheck = OwnersCheckBox.Checked; 
+            facCheck = FacCheckBox.Checked;
+            zaochCheck = ZaochCheckBox.Checked;
+            ochCheck = OchCheckBox.Checked;
 
             this.DialogResult = DialogResult.OK;
         }
@@ -213,6 +278,7 @@ namespace Diplom
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            titleListOwners = new List<string>();
             titleShortListGroups = new List<string>();
             titleListGroups = new List<string>();
             titleListKafedra = new List<string>();
@@ -222,7 +288,9 @@ namespace Diplom
             titleListKurs = new List<string>();
             idListNt = new List<string>();
             titleListNt = new List<string>();
+            titleListFac = new List<string>();
 
+            OwnersTextBox.Clear();
             GroupsTextBox.Clear();
             DisciplineTextBox.Clear();
             KafedraTextBox.Clear();
@@ -230,7 +298,9 @@ namespace Diplom
             TeacherTextBox.Clear();
             KursTextBox.Clear();
             NtTextBox.Clear();
+            FacTextBox.Clear();
 
+            ownersCheck = false;
             teacherCheck = false;
             auditoryCheck = false;
             groupCheck = false;
@@ -238,7 +308,11 @@ namespace Diplom
             disciplineCheck = false;
             kursCheck = false;
             ntCheck = false;
+            facCheck= false;
+            zaochCheck = false;
+            ochCheck = false;
 
+            OwnersCheckBox.Checked = false;
             TeacherCheckBox.Checked = false;
             AuditorysCheckBox.Checked = false;
             GroupsCheckBox.Checked = false;
@@ -246,6 +320,9 @@ namespace Diplom
             KafedraCheckBox.Checked = false;
             KursCheckBox.Checked = false;
             NtCheckBox.Checked = false;
+            FacCheckBox.Checked = false;
+            ZaochCheckBox.Checked = false;
+            OchCheckBox.Checked = false;
         }
     }
 }

@@ -30,6 +30,8 @@
         {
             this.Filter = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.KursButton = new System.Windows.Forms.Button();
             this.NtButton = new System.Windows.Forms.Button();
             this.KursCheckBox = new System.Windows.Forms.CheckBox();
@@ -58,17 +60,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.NtTextBox = new System.Windows.Forms.TextBox();
             this.KursTextBox = new System.Windows.Forms.TextBox();
-            this.Reset = new System.Windows.Forms.Button();
             this.FacCheckBox = new System.Windows.Forms.CheckBox();
             this.OwnersCheckBox = new System.Windows.Forms.CheckBox();
             this.FacTextBox = new System.Windows.Forms.TextBox();
             this.OwnersTextBox = new System.Windows.Forms.TextBox();
             this.FacButton = new System.Windows.Forms.Button();
             this.OwnersButton = new System.Windows.Forms.Button();
+            this.Reset = new System.Windows.Forms.Button();
             this.ZaochCheckBox = new System.Windows.Forms.CheckBox();
             this.OchCheckBox = new System.Windows.Forms.CheckBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -143,6 +143,28 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(507, 261);
             this.tableLayoutPanel1.TabIndex = 2;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label9.Location = new System.Drawing.Point(3, 232);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(132, 29);
+            this.label9.TabIndex = 37;
+            this.label9.Text = "Диспечер";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label8.Location = new System.Drawing.Point(3, 203);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(132, 29);
+            this.label8.TabIndex = 6;
+            this.label8.Text = "Факультеты";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // KursButton
             // 
@@ -502,17 +524,6 @@
             this.KursTextBox.TabIndex = 21;
             this.KursTextBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TextBox_MouseMove);
             // 
-            // Reset
-            // 
-            this.Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.Reset.Location = new System.Drawing.Point(6, 323);
-            this.Reset.Name = "Reset";
-            this.Reset.Size = new System.Drawing.Size(75, 23);
-            this.Reset.TabIndex = 3;
-            this.Reset.Text = "Сброс";
-            this.Reset.UseVisualStyleBackColor = true;
-            this.Reset.Click += new System.EventHandler(this.Reset_Click);
-            // 
             // FacCheckBox
             // 
             this.FacCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -570,6 +581,7 @@
             this.FacButton.TabIndex = 35;
             this.FacButton.Text = "...";
             this.FacButton.UseVisualStyleBackColor = true;
+            this.FacButton.Click += new System.EventHandler(this.FacButton_Click);
             // 
             // OwnersButton
             // 
@@ -582,6 +594,18 @@
             this.OwnersButton.TabIndex = 36;
             this.OwnersButton.Text = "...";
             this.OwnersButton.UseVisualStyleBackColor = true;
+            this.OwnersButton.Click += new System.EventHandler(this.OwnersButton_Click);
+            // 
+            // Reset
+            // 
+            this.Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.Reset.Location = new System.Drawing.Point(6, 323);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(75, 23);
+            this.Reset.TabIndex = 3;
+            this.Reset.Text = "Сброс";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
             // 
             // ZaochCheckBox
             // 
@@ -602,28 +626,6 @@
             this.OchCheckBox.TabIndex = 5;
             this.OchCheckBox.Text = "Очники";
             this.OchCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 203);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(132, 29);
-            this.label8.TabIndex = 6;
-            this.label8.Text = "Факультеты";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(3, 232);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(132, 29);
-            this.label9.TabIndex = 37;
-            this.label9.Text = "Диспечер";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // FilterWindow
             // 
