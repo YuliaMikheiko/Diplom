@@ -36,6 +36,7 @@
             this.ValueColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rowCheckedItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Filter = new System.Windows.Forms.TextBox();
+            this.Reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ItemsDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rowCheckedItemBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -105,11 +106,23 @@
             this.Filter.TabIndex = 4;
             this.Filter.TextChanged += new System.EventHandler(this.Filter_TextChanged);
             // 
+            // Reset
+            // 
+            this.Reset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Reset.Location = new System.Drawing.Point(363, 160);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(100, 23);
+            this.Reset.TabIndex = 5;
+            this.Reset.Text = "Сброс";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // ItemsSelectorModalWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(469, 224);
+            this.Controls.Add(this.Reset);
             this.Controls.Add(this.Filter);
             this.Controls.Add(this.Choice);
             this.Controls.Add(this.ItemsDGV);
@@ -131,5 +144,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn checkedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn keyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ValueColumn;
+        private System.Windows.Forms.Button Reset;
     }
 }

@@ -102,7 +102,7 @@ namespace Diplom
                 {
                     Value = x,
                     Checked = titleText.Contains(x)
-                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Value).ToList()
+                }).OrderBy(x => x.Value).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
@@ -114,7 +114,7 @@ namespace Diplom
                     Key = x.Key,
                     Value = x.Value,
                     Checked = titleText.Contains(x.Value)
-                }).OrderByDescending(x => x.Checked).OrderBy(x => x.Key).ToList()
+                }).OrderBy(x => x.Key).OrderByDescending(x => x.Checked).ToList()
             );
         }
 
@@ -148,6 +148,18 @@ namespace Diplom
             {
                 return Filter.Text == "" || x.Value.ToUpper().Contains(Filter.Text.ToUpper());
             });
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            Filter.Clear();
+
+            (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).RemoveFilter();
+
+            foreach (DataGridViewRow rows in ItemsDGV.Rows)
+                rows.Cells[0].Value = false;
+
+
         }
     }
 

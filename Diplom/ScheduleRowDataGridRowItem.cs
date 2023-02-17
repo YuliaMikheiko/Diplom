@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Diplom
 {
@@ -82,7 +80,6 @@ namespace Diplom
             }
             set
             {
-
             }
         }
         public string Discipline { get; set; }
@@ -95,10 +92,8 @@ namespace Diplom
             }
             set
             {
-
             }
         }
-
         public string Fac
         {
             get
@@ -112,7 +107,6 @@ namespace Diplom
             }
             set
             {
-
             }
         }
         public override string ToString()
