@@ -20,7 +20,7 @@ namespace Diplom
         }
 
         public int H { get; set; }
-        public object NT { get; set; }
+        public int NT { get; set; }
         public string Teachers
         {
             get

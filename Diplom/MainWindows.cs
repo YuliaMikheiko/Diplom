@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -68,6 +69,9 @@ namespace Diplom
             NtColumn.ValueMember = "Key";
 
             path = Properties.Settings.Default.path.ToString();
+
+            KeyPreview = true;
+            KeyDown += new KeyEventHandler(Reset_KeyDown);
 
             if (path.Length > 0)
                 ReadData();
@@ -423,6 +427,180 @@ namespace Diplom
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private void InformationDGV_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultTeach = false;
+
+                    foreach (var _ in taech.Where(i => x.Teachers.Contains(i)).Select(i => new { }))
+                        resultTeach = true;
+
+                    return resultTeach;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultGroups = false;
+
+                    foreach (var _ in group.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
+                        resultGroups = true;
+
+                    return resultGroups;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultAud = false;
+
+                    foreach (var _ in x.Auds.Split(';').Where(item => aud.Contains(item.Trim())).Select(item => new { }))
+                        resultAud = true;
+
+                    return resultAud;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultDis = false;
+
+                    foreach (var _ in x.Discipline.Split(';').Where(item => dis.Contains(item.Trim())).Select(item => new { }))
+                        resultDis = true;
+
+                    return resultDis;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultKaf = false;
+
+                    foreach (var _ in x.Kaf.Split(';').Where(item => kaf.Contains(item.Trim())).Select(item => new { }))
+                        resultKaf = true;
+
+                    return resultKaf;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultOwn = false;
+
+                    foreach (var _ in x.Owners.Split(';').Where(item => own.Contains(item.Trim())).Select(item => new { }))
+                        resultOwn = true;
+
+                    return resultOwn;
+                });
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                {
+                    bool resultNt = false;
+
+                    if (nt.Contains(x.NT))
+                        resultNt = true;
+
+                    return resultNt;
+                });
+            }
+
+            taech = new List<string>();
+            group = new List<string>();
+            aud = new List<string>();
+            dis = new List<string>();
+            kaf = new List<string>();
+            own = new List<string>();
+            nt = new List<int>();
+        }
+
+        List<string> taech = new List<string>();
+        List<string> group = new List<string>();
+        List<string> aud = new List<string>();
+        List<string> dis = new List<string>();
+        List<string> kaf = new List<string>();
+        List<string> own = new List<string>();
+        List<int> nt = new List<int>();
+
+        private void InformationDGV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
+            {
+                if (e.RowIndex > -1)
+                    taech.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
+            {
+                if (e.RowIndex > -1)
+                    group.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
+            {
+                if (e.RowIndex > -1)
+                    aud.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
+            {
+                if (e.RowIndex > -1)
+                    dis.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
+            {
+                if (e.RowIndex > -1)
+                    kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
+            {
+                if (e.RowIndex > -1)
+                    kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
+            {
+                if (e.RowIndex > -1)
+                    own.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+
+            if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
+            {
+                if (e.RowIndex > -1)
+                    nt.Add((int)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+            }
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
+        }
+
+        private void Reset_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.Z)
+            {
+                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
             }
         }
     }

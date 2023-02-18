@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
-            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,6 +38,8 @@
             this.TeacherWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.Reset = new System.Windows.Forms.Button();
+            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,16 +51,19 @@
             this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.OwnevsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OwnersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // InformationDGV
             // 
             this.InformationDGV.AllowUserToAddRows = false;
             this.InformationDGV.AllowUserToDeleteRows = false;
+            this.InformationDGV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.InformationDGV.AutoGenerateColumns = false;
             this.InformationDGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.InformationDGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -74,19 +78,16 @@
             this.AColumn,
             this.DisciplineColumn,
             this.OnlineColumn,
-            this.OwnevsColumn});
+            this.OwnersColumn});
             this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
             this.InformationDGV.DataSource = this.scheduleRowDataGridRowItemBindingSource;
-            this.InformationDGV.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.InformationDGV.Location = new System.Drawing.Point(0, 24);
+            this.InformationDGV.Location = new System.Drawing.Point(0, 47);
             this.InformationDGV.Name = "InformationDGV";
-            this.InformationDGV.Size = new System.Drawing.Size(1302, 394);
+            this.InformationDGV.Size = new System.Drawing.Size(1302, 367);
             this.InformationDGV.TabIndex = 4;
+            this.InformationDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellClick);
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
-            // 
-            // scheduleRowDataGridRowItemBindingSource
-            // 
-            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
+            this.InformationDGV.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_ColumnHeaderMouseDoubleClick);
             // 
             // menuStrip1
             // 
@@ -153,6 +154,21 @@
             this.AudsWishToolStripMenuItem.Text = "Аудиториии";
             this.AudsWishToolStripMenuItem.Click += new System.EventHandler(this.AudsWishToolStripMenuItem_Click);
             // 
+            // Reset
+            // 
+            this.Reset.Location = new System.Drawing.Point(0, 22);
+            this.Reset.Name = "Reset";
+            this.Reset.Size = new System.Drawing.Size(103, 23);
+            this.Reset.TabIndex = 6;
+            this.Reset.Text = "Сброс фильтров";
+            this.Reset.UseVisualStyleBackColor = true;
+            this.Reset.Click += new System.EventHandler(this.Reset_Click);
+            this.Reset.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Reset_KeyDown);
+            // 
+            // scheduleRowDataGridRowItemBindingSource
+            // 
+            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
+            // 
             // HColumn
             // 
             this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -173,6 +189,7 @@
             this.TeachersColumn.DataPropertyName = "Teachers";
             this.TeachersColumn.HeaderText = "Преподаватель";
             this.TeachersColumn.Name = "TeachersColumn";
+            this.TeachersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // TColumn
             // 
@@ -234,26 +251,28 @@
             this.OnlineColumn.Name = "OnlineColumn";
             this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // OwnevsColumn
+            // OwnersColumn
             // 
-            this.OwnevsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OwnevsColumn.DataPropertyName = "Owners";
-            this.OwnevsColumn.HeaderText = "Диспечер";
-            this.OwnevsColumn.Name = "OwnevsColumn";
+            this.OwnersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OwnersColumn.DataPropertyName = "Owners";
+            this.OwnersColumn.HeaderText = "Диспечер";
+            this.OwnersColumn.Name = "OwnersColumn";
+            this.OwnersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 418);
+            this.Controls.Add(this.Reset);
             this.Controls.Add(this.InformationDGV);
             this.Controls.Add(this.menuStrip1);
             this.Name = "MainWindows";
             this.Text = "MainWindows";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,6 +290,7 @@
         private System.Windows.Forms.ToolStripMenuItem TeacherWishMenuItem;
         private System.Windows.Forms.ToolStripMenuItem GroupWishMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AudsWishToolStripMenuItem;
+        private System.Windows.Forms.Button Reset;
         private System.Windows.Forms.DataGridViewTextBoxColumn HColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn NtColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn TeachersColumn;
@@ -282,7 +302,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn AColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DisciplineColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OwnevsColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OwnersColumn;
     }
 }
 
