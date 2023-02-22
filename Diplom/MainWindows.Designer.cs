@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
+            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +40,6 @@
             this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reset = new System.Windows.Forms.Button();
-            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,8 +53,8 @@
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OwnersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
-            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // InformationDGV
@@ -87,7 +87,12 @@
             this.InformationDGV.TabIndex = 4;
             this.InformationDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellClick);
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
+            this.InformationDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_CellMouseClick);
             this.InformationDGV.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_ColumnHeaderMouseDoubleClick);
+            // 
+            // scheduleRowDataGridRowItemBindingSource
+            // 
+            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
             // 
             // menuStrip1
             // 
@@ -165,10 +170,6 @@
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             this.Reset.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Reset_KeyDown);
             // 
-            // scheduleRowDataGridRowItemBindingSource
-            // 
-            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
-            // 
             // HColumn
             // 
             this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -182,6 +183,7 @@
             this.NtColumn.DataPropertyName = "NT";
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Name = "NtColumn";
+            this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TeachersColumn
             // 
@@ -189,6 +191,7 @@
             this.TeachersColumn.DataPropertyName = "Teachers";
             this.TeachersColumn.HeaderText = "Преподаватель";
             this.TeachersColumn.Name = "TeachersColumn";
+            this.TeachersColumn.ReadOnly = true;
             this.TeachersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // TColumn
@@ -205,6 +208,7 @@
             this.GroupsColumn.DataPropertyName = "Sub_groups";
             this.GroupsColumn.HeaderText = "Список групп";
             this.GroupsColumn.Name = "GroupsColumn";
+            this.GroupsColumn.ReadOnly = true;
             // 
             // GColumn
             // 
@@ -227,6 +231,7 @@
             this.AuditoriesColumn.DataPropertyName = "Auds";
             this.AuditoriesColumn.HeaderText = "Список аудиторий";
             this.AuditoriesColumn.Name = "AuditoriesColumn";
+            this.AuditoriesColumn.ReadOnly = true;
             // 
             // AColumn
             // 
@@ -257,7 +262,6 @@
             this.OwnersColumn.DataPropertyName = "Owners";
             this.OwnersColumn.HeaderText = "Диспечер";
             this.OwnersColumn.Name = "OwnersColumn";
-            this.OwnersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainWindows
             // 
@@ -270,9 +274,9 @@
             this.Name = "MainWindows";
             this.Text = "MainWindows";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

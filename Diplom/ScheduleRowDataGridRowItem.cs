@@ -84,16 +84,16 @@ namespace Diplom
         }
         public string Discipline { get; set; }
         public bool Is_online { get; set; }
-        public string Owners
-        {
-            get
-            {
-                return String.Join("; ", x.owners);
-            }
-            set
-            {
-            }
-        }
+        public string Owners { get; set; }
+        //{
+        //    get
+        //    {
+        //        return String.Join("; ", x.owners);
+        //    }
+        //    set
+        //    {
+        //    }
+        //}
         public string Fac
         {
             get

@@ -215,13 +215,7 @@ namespace Diplom
 
         private void OwnersButton_Click(object sender, EventArgs e)
         {
-            List<string> allOwners = new List<string>();
-
-            Dictionary<int, SubGroup> dSub_groups = scheduleDataModel.GetGroups();
-
-            allOwners.AddRange(dSub_groups.Where(item => item.Value.owner != null).Select(item => item.Value.owner));
-
-            ownersList = allOwners.Distinct().ToList();
+            ownersList = nagr.Where(item => item.owners != null).SelectMany(item => item.owners.Where(i => i != "" & i != " ").Select(i => i.Trim())).ToList().Distinct().ToList();
 
             ItemsSelectorModalWindow owners = new ItemsSelectorModalWindow(titleListOwners, ownersList);
 
