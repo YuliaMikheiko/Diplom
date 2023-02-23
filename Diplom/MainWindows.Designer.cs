@@ -85,7 +85,6 @@
             this.InformationDGV.Name = "InformationDGV";
             this.InformationDGV.Size = new System.Drawing.Size(1302, 367);
             this.InformationDGV.TabIndex = 4;
-            this.InformationDGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellClick);
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
             this.InformationDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_CellMouseClick);
             this.InformationDGV.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_ColumnHeaderMouseDoubleClick);
@@ -176,6 +175,7 @@
             this.HColumn.DataPropertyName = "H";
             this.HColumn.HeaderText = "Количество часов";
             this.HColumn.Name = "HColumn";
+            this.HColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // NtColumn
             // 
@@ -183,7 +183,6 @@
             this.NtColumn.DataPropertyName = "NT";
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Name = "NtColumn";
-            this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TeachersColumn
             // 
@@ -209,6 +208,7 @@
             this.GroupsColumn.HeaderText = "Список групп";
             this.GroupsColumn.Name = "GroupsColumn";
             this.GroupsColumn.ReadOnly = true;
+            this.GroupsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // GColumn
             // 
@@ -224,6 +224,7 @@
             this.KafColumn.DataPropertyName = "Kaf";
             this.KafColumn.HeaderText = "Кафедра";
             this.KafColumn.Name = "KafColumn";
+            this.KafColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AuditoriesColumn
             // 
@@ -232,6 +233,7 @@
             this.AuditoriesColumn.HeaderText = "Список аудиторий";
             this.AuditoriesColumn.Name = "AuditoriesColumn";
             this.AuditoriesColumn.ReadOnly = true;
+            this.AuditoriesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AColumn
             // 
@@ -247,6 +249,7 @@
             this.DisciplineColumn.DataPropertyName = "Discipline";
             this.DisciplineColumn.HeaderText = "Название дисциплины";
             this.DisciplineColumn.Name = "DisciplineColumn";
+            this.DisciplineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // OnlineColumn
             // 
@@ -254,7 +257,6 @@
             this.OnlineColumn.DataPropertyName = "Is_online";
             this.OnlineColumn.HeaderText = "Занятие онлайн";
             this.OnlineColumn.Name = "OnlineColumn";
-            this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // OwnersColumn
             // 
@@ -262,6 +264,7 @@
             this.OwnersColumn.DataPropertyName = "Owners";
             this.OwnersColumn.HeaderText = "Диспечер";
             this.OwnersColumn.Name = "OwnersColumn";
+            this.OwnersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // MainWindows
             // 

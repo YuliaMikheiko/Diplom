@@ -38,6 +38,7 @@ namespace Diplom
         List<string> titleListNt = new List<string>();
         List<string> titleListOwners = new List<string>();
         List<string> titleListFac = new List<string>();
+        List<string> titleShortListGroups = new List<string>();
 
         bool ownersCheck;
         bool auditoryCheck;
@@ -50,6 +51,14 @@ namespace Diplom
         bool facCheck;
         bool zaochCheck;
         bool ochCheck;
+
+        List<string> taech = new List<string>();
+        List<string> group = new List<string>();
+        List<string> aud = new List<string>();
+        List<string> dis = new List<string>();
+        List<string> kaf = new List<string>();
+        List<string> own = new List<string>();
+        List<string> nt = new List<string>();
 
         public MainWindows()
         {
@@ -256,6 +265,8 @@ namespace Diplom
                 idListNt = filter.idListNt;
                 titleListNt = filter.titleListNt;
 
+                titleShortListGroups = filter.titleShortListGroups;
+
                 facCheck = filter.facCheck;
                 ownersCheck = filter.ownersCheck;
                 auditoryCheck = filter.auditoryCheck;
@@ -268,18 +279,18 @@ namespace Diplom
                 zaochCheck = filter.zaochCheck;
                 ochCheck = filter.ochCheck;
 
-                FilterData(filter);
+                FilterData();
             }
         }
 
-        private void FilterData(FilterWindow filter)
+        private void FilterData()
         {
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
             {
                 List<(bool, List<string>, string)> list = new List<(bool, List<string>, string)>
                 {
                     (auditoryCheck, titleListAuditorys, x.Auds),
-                    (groupCheck, filter.titleShortListGroups, x.Sub_groups),
+                    (groupCheck, titleShortListGroups, x.Sub_groups),
                     (teacherCheck, titleListTeacher, x.Teachers),
                     (kafedraCheck, titleListKafedra, x.Kaf),
                     (disciplineCheck, titleListDiscipline, x.Discipline),
@@ -442,120 +453,119 @@ namespace Diplom
         {
             if (e.Button == MouseButtons.Right)
             {
-                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
-
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultTeach = false;
+                    titleListTeacher = taech;
+                    teacherCheck = false;
 
-                        if (taech.Count() > 0)
-                            foreach (var _ in taech.Where(i => x.Teachers.Contains(i)).Select(i => new { }))
-                                resultTeach = true;
-                        else
-                            resultTeach = true;
-
-                        return resultTeach;
-                    });
+                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultGroups = false;
+                    titleShortListGroups = group;
+                    groupCheck = false;
 
-                        if (group.Count > 0)
-                            foreach (var _ in group.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
-                                resultGroups = true;
-                        else
-                            resultGroups = true;
+                    FilterData();
+                    //bool resultGroups = false;
 
-                        return resultGroups;
-                    });
+                    //if (group.Count > 0)
+                    //    foreach (var _ in group.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
+                    //        resultGroups = true;
+                    //else
+                    //    resultGroups = true;
+
+                    //result = resultGroups;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultAud = false;
+                    titleListAuditorys = aud;
+                    auditoryCheck = false;
 
-                        if (aud.Count > 0)
-                            foreach (var _ in x.Auds.Split(';').Where(item => aud.Contains(item.Trim())).Select(item => new { }))
-                                resultAud = true;
-                        else
-                            resultAud = true;
+                    FilterData();
 
-                        return resultAud;
-                    });
+                    //bool resultAud = false;
+
+                    //if (aud.Count > 0)
+                    //    foreach (var _ in x.Auds.Split(';').Where(item => aud.Contains(item.Trim())).Select(item => new { }))
+                    //        resultAud = true;
+                    //else
+                    //    resultAud = true;
+
+                    //result = resultAud;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultDis = false;
+                    titleListDiscipline = dis;
+                    disciplineCheck = false;
 
-                        if (dis.Count > 0)
-                            foreach (var _ in x.Discipline.Split(';').Where(item => dis.Contains(item.Trim())).Select(item => new { }))
-                                resultDis = true;
-                        else
-                            resultDis = true;
+                    FilterData();
+                    //bool resultDis = false;
 
-                        return resultDis;
-                    });
+                    //if (dis.Count > 0)
+                    //    foreach (var _ in x.Discipline.Split(';').Where(item => dis.Contains(item.Trim())).Select(item => new { }))
+                    //        resultDis = true;
+                    //else
+                    //    resultDis = true;
+
+                    //result = resultDis;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultKaf = false;
+                    titleListKafedra = kaf;
+                    kafedraCheck = false;
 
-                        if (kaf.Count > 0)
-                            foreach (var _ in x.Kaf.Split(';').Where(item => kaf.Contains(item.Trim())).Select(item => new { }))
-                                resultKaf = true;
-                        else
-                            resultKaf = true;
+                    FilterData();
 
-                        return resultKaf;
-                    });
+                    //bool resultKaf = false;
+
+                    //if (kaf.Count > 0)
+                    //    foreach (var _ in x.Kaf.Split(';').Where(item => kaf.Contains(item.Trim())).Select(item => new { }))
+                    //        resultKaf = true;
+                    //else
+                    //    resultKaf = true;
+
+                    //result = resultKaf;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultOwn = false;
+                    titleListOwners = kaf;
+                    ownersCheck = false;
 
-                        if (own.Count > 0)
-                            foreach (var _ in x.Owners.Split(';').Where(item => own.Contains(item.Trim())).Select(item => new { }))
-                                resultOwn = true;
-                        else
-                            resultOwn = true;
+                    FilterData();
 
-                        return resultOwn;
-                    });
+                    //bool resultOwn = false;
+
+                    //if (own.Count > 0)
+                    //    foreach (var _ in x.Owners.Split(';').Where(item => own.Contains(item.Trim())).Select(item => new { }))
+                    //        resultOwn = true;
+                    //else
+                    //    resultOwn = true;
+
+                    //result = resultOwn;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
                 {
-                    (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
-                    {
-                        bool resultNt = false;
+                    idListNt = nt;
+                    ntCheck = false;
 
-                        if (nt.Count > 0)
-                        {
-                            if (nt.Contains(x.NT))
-                                resultNt = true;
-                        }
-                        else
-                            resultNt = true;
+                    FilterData();
+                    //bool resultNt = false;
 
-                        return resultNt;
-                    });
+                    //if (nt.Count > 0)
+                    //{
+                    //    if (nt.Contains(x.NT))
+                    //        resultNt = true;
+                    //}
+                    //else
+                    //    resultNt = true;
+
+                    //result = resultNt;
                 }
 
                 taech = new List<string>();
@@ -564,21 +574,8 @@ namespace Diplom
                 dis = new List<string>();
                 kaf = new List<string>();
                 own = new List<string>();
-                nt = new List<int>();
+                nt = new List<string>();
             }
-        }
-
-        List<string> taech = new List<string>();
-        List<string> group = new List<string>();
-        List<string> aud = new List<string>();
-        List<string> dis = new List<string>();
-        List<string> kaf = new List<string>();
-        List<string> own = new List<string>();
-        List<int> nt = new List<int>();
-
-        private void InformationDGV_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -624,7 +621,7 @@ namespace Diplom
                         own.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
 
                     if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
-                        nt.Add((int)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+                        nt.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
                 }
             }
         }
