@@ -195,50 +195,55 @@ namespace Diplom
             return value;
         }
 
+        List<string> titleT = null;
+        List<string> titleG = null;
+        List<string> titleA = null;
+
+        List<int?> idT = new List<int?>();
+        List<int?> idG = new List<int?>();
+        List<int?> idA = new List<int?>();
+
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
             {
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn" && ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
                 {
-                    if (ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
                     {
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            if (idsList.Count > 0)
-                                item.teachers = idsList.ToArray();
-                            else
-                                Array.Clear(item.teachers, 0, item.teachers.Length);
-                        }
+                        if (idsList.Count > 0)
+                            item.teachers = idsList.ToArray();
+                        else
+                            Array.Clear(item.teachers, 0, item.teachers.Length);
                     }
+                    idT = idsList;
+                    titleT = titleList;
                 }
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn" && ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
                 {
-                    if (ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
                     {
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            if (idsList.Count > 0)
-                                item.teachers = idsList.ToArray();
-                            else
-                                Array.Clear(item.teachers, 0, item.teachers.Length);
-                        }
+                        if (idsList.Count > 0)
+                            item.sub_groups = idsList.ToArray();
+                        else
+                            Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
                     }
+                    idG = idsList;
+                    titleG = titleList;
                 }
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn" && ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
                 {
-                    if (ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
                     {
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            if (idsList.Count > 0)
-                                item.teachers = idsList.ToArray();
-                            else
-                                Array.Clear(item.teachers, 0, item.teachers.Length);
-                        }
+                        if (idsList.Count > 0)
+                            item.auds = idsList.ToArray();
+                        else
+                            Array.Clear(item.auds, 0, item.auds.Length);
                     }
+                    idA = idsList;
+                    titleA = titleList;
                 }
             }
         }
@@ -249,6 +254,7 @@ namespace Diplom
             OpenFileDialog openFileDialog = new OpenFileDialog();
             if (openFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
+
             path = openFileDialog.FileName;
             Properties.Settings.Default.path = path;
             Properties.Settings.Default.Save();
@@ -259,6 +265,19 @@ namespace Diplom
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
+
+            titleListGroups = new List<string>();
+            titleListKafedra = new List<string>();
+            titleListTeacher = new List<string>();
+            titleListAuditorys = new List<string>();
+            titleListDiscipline = new List<string>();
+            titleListKurs = new List<string>();
+            idListNt = new List<string>();
+            titleListNt = new List<string>();
+            titleListOwners = new List<string>();
+            titleListFac = new List<string>();
+            titleShortListGroups = new List<string>();
+
             SaveData();
         }
 
@@ -586,7 +605,75 @@ namespace Diplom
 
         private void Distribute_Click(object sender, EventArgs e)
         {
+            string value;
 
+            foreach (DataGridViewColumn column in InformationDGV.Columns)
+            {
+                if (column.Name == "TeachersColumn")
+                {
+                    if (titleT != null)
+                    {
+                        value = String.Join("; ", titleT);
+
+                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                        {
+                            InformationDGV[column.Index, row.Index].Value = value;
+
+                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            {
+                                if (idT.Count > 0)
+                                    item.teachers = idT.ToArray();
+                                else
+                                    Array.Clear(item.teachers, 0, item.teachers.Length);
+                            }
+                        }
+                    }
+                }
+                if (column.Name == "AuditoriesColumn")
+                {
+                    if (titleA != null)
+                    {
+                        value = String.Join("; ", titleA);
+
+                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                        {
+                            InformationDGV[column.Index, row.Index].Value = value;
+
+                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            {
+                                if (idA.Count > 0)
+                                    item.auds = idA.ToArray();
+                                else
+                                    Array.Clear(item.auds, 0, item.auds.Length);
+                            }
+                        }
+                    }
+                }
+                if (column.Name == "GroupsColumn")
+                {
+                    if (titleG != null)
+                    {
+                        value = String.Join("; ", titleG);
+
+                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                        {
+                            InformationDGV[column.Index, row.Index].Value = value;
+
+                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            {
+                                if (idG.Count > 0)
+                                    item.sub_groups = idG.ToArray();
+                                else
+                                    Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
+                            }
+                        }
+                    }
+                }
+            }
+
+            titleT = null;
+            titleG = null;
+            titleA = null;
         }
     }
 }
