@@ -19,6 +19,7 @@ namespace Diplom
             this.DSub_groups = DSub_groups;
         }
 
+        public int Id { get; set; }
         public int H { get; set; }
         public int NT { get; set; }
         public string Teachers

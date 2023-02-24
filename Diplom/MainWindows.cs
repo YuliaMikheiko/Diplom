@@ -101,6 +101,7 @@ namespace Diplom
             InformationDGV.DataSource = new BindingListView<ScheduleRowDataGridRowItem>(
                 nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups)
                 {
+                    Id = x.id,
                     H = x.h,
                     NT = x.nt,
                     Kaf = x.kaf,
@@ -202,10 +203,13 @@ namespace Diplom
                 {
                     if (ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
                     {
-                        if (idsList.Count > 0)
-                            nagr[e.RowIndex].teachers = idsList.ToArray();
-                        else
-                            Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.teachers = idsList.ToArray();
+                            else
+                                Array.Clear(item.teachers, 0, item.teachers.Length);
+                        }
                     }
                 }
 
@@ -213,10 +217,13 @@ namespace Diplom
                 {
                     if (ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
                     {
-                        if (idsList.Count > 0)
-                            nagr[e.RowIndex].sub_groups = idsList.ToArray();
-                        else
-                            Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.teachers = idsList.ToArray();
+                            else
+                                Array.Clear(item.teachers, 0, item.teachers.Length);
+                        }
                     }
                 }
 
@@ -224,10 +231,13 @@ namespace Diplom
                 {
                     if (ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
                     {
-                        if (idsList.Count > 0)
-                            nagr[e.RowIndex].auds = idsList.ToArray();
-                        else
-                            Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.teachers = idsList.ToArray();
+                            else
+                                Array.Clear(item.teachers, 0, item.teachers.Length);
+                        }
                     }
                 }
             }
@@ -459,60 +469,47 @@ namespace Diplom
             {
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
                 {
-
                     titleListTeacher = taech;
                     teacherCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
                 {
                     titleShortListGroups = group;
                     groupCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
                 {
                     titleListAuditorys = aud;
                     auditoryCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
                 {
                     titleListDiscipline = dis;
                     disciplineCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
                 {
                     titleListKafedra = kaf;
                     kafedraCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
                 {
                     titleListOwners = own;
                     ownersCheck = false;
-
-                    FilterData();
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
                 {
                     idListNt = nt;
-                    ntCheck = false;
-
-                    FilterData();                    
+                    ntCheck = false;                
                 }
+
+                FilterData();
 
                 taech = new List<string>();
                 group = new List<string>();
@@ -522,11 +519,6 @@ namespace Diplom
                 own = new List<string>();
                 nt = new List<string>();
             }            
-        }
-
-        private DataGridView ColumnHeadersBorderStyleChanged(MainWindows mainWindows, DataGridViewCellMouseEventArgs e)
-        {
-            throw new NotImplementedException();
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -590,6 +582,11 @@ namespace Diplom
                 own = new List<string>();
                 nt = new List<string>();
             }
+        }
+
+        private void Distribute_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
