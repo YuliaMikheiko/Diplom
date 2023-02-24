@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.InformationDGV = new System.Windows.Forms.DataGridView();
-            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.OpenMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,21 +39,22 @@
             this.GroupWishMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AudsWishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Reset = new System.Windows.Forms.Button();
-            this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NtColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TColumn = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.GroupsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.KafColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AuditoriesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OwnersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TeachersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GroupsColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AuditoriesColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // InformationDGV
@@ -88,10 +88,6 @@
             this.InformationDGV.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.InformationDGV_CellContentClick);
             this.InformationDGV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_CellMouseClick);
             this.InformationDGV.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.InformationDGV_ColumnHeaderMouseDoubleClick);
-            // 
-            // scheduleRowDataGridRowItemBindingSource
-            // 
-            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
             // 
             // menuStrip1
             // 
@@ -169,29 +165,13 @@
             this.Reset.Click += new System.EventHandler(this.Reset_Click);
             this.Reset.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Reset_KeyDown);
             // 
-            // HColumn
-            // 
-            this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.HColumn.DataPropertyName = "H";
-            this.HColumn.HeaderText = "Количество часов";
-            this.HColumn.Name = "HColumn";
-            this.HColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
             // NtColumn
             // 
             this.NtColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.NtColumn.DataPropertyName = "NT";
             this.NtColumn.HeaderText = "Тип занятия";
             this.NtColumn.Name = "NtColumn";
-            // 
-            // TeachersColumn
-            // 
-            this.TeachersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.TeachersColumn.DataPropertyName = "Teachers";
-            this.TeachersColumn.HeaderText = "Преподаватель";
-            this.TeachersColumn.Name = "TeachersColumn";
-            this.TeachersColumn.ReadOnly = true;
-            this.TeachersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.NtColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // TColumn
             // 
@@ -200,15 +180,6 @@
             this.TColumn.Name = "TColumn";
             this.TColumn.ReadOnly = true;
             this.TColumn.Width = 25;
-            // 
-            // GroupsColumn
-            // 
-            this.GroupsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.GroupsColumn.DataPropertyName = "Sub_groups";
-            this.GroupsColumn.HeaderText = "Список групп";
-            this.GroupsColumn.Name = "GroupsColumn";
-            this.GroupsColumn.ReadOnly = true;
-            this.GroupsColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // GColumn
             // 
@@ -224,16 +195,6 @@
             this.KafColumn.DataPropertyName = "Kaf";
             this.KafColumn.HeaderText = "Кафедра";
             this.KafColumn.Name = "KafColumn";
-            this.KafColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // AuditoriesColumn
-            // 
-            this.AuditoriesColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.AuditoriesColumn.DataPropertyName = "Auds";
-            this.AuditoriesColumn.HeaderText = "Список аудиторий";
-            this.AuditoriesColumn.Name = "AuditoriesColumn";
-            this.AuditoriesColumn.ReadOnly = true;
-            this.AuditoriesColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AColumn
             // 
@@ -249,14 +210,6 @@
             this.DisciplineColumn.DataPropertyName = "Discipline";
             this.DisciplineColumn.HeaderText = "Название дисциплины";
             this.DisciplineColumn.Name = "DisciplineColumn";
-            this.DisciplineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // OnlineColumn
-            // 
-            this.OnlineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OnlineColumn.DataPropertyName = "Is_online";
-            this.OnlineColumn.HeaderText = "Занятие онлайн";
-            this.OnlineColumn.Name = "OnlineColumn";
             // 
             // OwnersColumn
             // 
@@ -264,7 +217,49 @@
             this.OwnersColumn.DataPropertyName = "Owners";
             this.OwnersColumn.HeaderText = "Диспечер";
             this.OwnersColumn.Name = "OwnersColumn";
-            this.OwnersColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // HColumn
+            // 
+            this.HColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.HColumn.DataPropertyName = "H";
+            this.HColumn.HeaderText = "Количество часов";
+            this.HColumn.Name = "HColumn";
+            // 
+            // TeachersColumn
+            // 
+            this.TeachersColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.TeachersColumn.DataPropertyName = "Teachers";
+            this.TeachersColumn.HeaderText = "Преподаватель";
+            this.TeachersColumn.Name = "TeachersColumn";
+            this.TeachersColumn.ReadOnly = true;
+            // 
+            // GroupsColumn
+            // 
+            this.GroupsColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.GroupsColumn.DataPropertyName = "Sub_groups";
+            this.GroupsColumn.HeaderText = "Список групп";
+            this.GroupsColumn.Name = "GroupsColumn";
+            this.GroupsColumn.ReadOnly = true;
+            // 
+            // AuditoriesColumn
+            // 
+            this.AuditoriesColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.AuditoriesColumn.DataPropertyName = "Auds";
+            this.AuditoriesColumn.HeaderText = "Список аудиторий";
+            this.AuditoriesColumn.Name = "AuditoriesColumn";
+            this.AuditoriesColumn.ReadOnly = true;
+            // 
+            // OnlineColumn
+            // 
+            this.OnlineColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OnlineColumn.DataPropertyName = "Is_online";
+            this.OnlineColumn.HeaderText = "Занятие онлайн";
+            this.OnlineColumn.Name = "OnlineColumn";
+            this.OnlineColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // scheduleRowDataGridRowItemBindingSource
+            // 
+            this.scheduleRowDataGridRowItemBindingSource.DataSource = typeof(Diplom.ScheduleRowDataGridRowItem);
             // 
             // MainWindows
             // 
@@ -277,9 +272,9 @@
             this.Name = "MainWindows";
             this.Text = "MainWindows";
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

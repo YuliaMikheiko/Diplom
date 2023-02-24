@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -195,36 +196,39 @@ namespace Diplom
 
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
-            {              
-                if (ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
-                {
-                    if (idsList.Count > 0)
-                        nagr[e.RowIndex].teachers = idsList.ToArray();
-                    else
-                        Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
-                }
-            }
-
-            if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
+            if (e.RowIndex > -1)
             {
-                if (ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn")
                 {
-                    if (idsList.Count > 0)
-                        nagr[e.RowIndex].sub_groups = idsList.ToArray();
-                    else
-                        Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
+                    if (ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
+                    {
+                        if (idsList.Count > 0)
+                            nagr[e.RowIndex].teachers = idsList.ToArray();
+                        else
+                            Array.Clear(nagr[e.RowIndex].teachers, 0, nagr[e.RowIndex].teachers.Length);
+                    }
                 }
-            }
 
-            if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
-            {
-                if (ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn")
                 {
-                    if (idsList.Count > 0)
-                        nagr[e.RowIndex].auds = idsList.ToArray();
-                    else
-                        Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
+                    if (ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
+                    {
+                        if (idsList.Count > 0)
+                            nagr[e.RowIndex].sub_groups = idsList.ToArray();
+                        else
+                            Array.Clear(nagr[e.RowIndex].sub_groups, 0, nagr[e.RowIndex].sub_groups.Length);
+                    }
+                }
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn")
+                {
+                    if (ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
+                    {
+                        if (idsList.Count > 0)
+                            nagr[e.RowIndex].auds = idsList.ToArray();
+                        else
+                            Array.Clear(nagr[e.RowIndex].auds, 0, nagr[e.RowIndex].auds.Length);
+                    }
                 }
             }
         }
@@ -290,13 +294,13 @@ namespace Diplom
                 List<(bool, List<string>, string)> list = new List<(bool, List<string>, string)>
                 {
                     (auditoryCheck, titleListAuditorys, x.Auds),
-                    (groupCheck, titleShortListGroups, x.Sub_groups),
                     (teacherCheck, titleListTeacher, x.Teachers),
                     (kafedraCheck, titleListKafedra, x.Kaf),
                     (disciplineCheck, titleListDiscipline, x.Discipline),
                     (kursCheck, titleListKurs, x.Kurs),
                     (ntCheck, idListNt, x.NT.ToString()),
-                    (ownersCheck, titleListOwners, x.Owners)
+                    (ownersCheck, titleListOwners, x.Owners),
+                    (facCheck, titleListFac, x.Fac)
                 };
 
                 bool allResult = true;
@@ -310,7 +314,7 @@ namespace Diplom
                         result = true;
 
                         if (item.Item2.Count() > 0)
-                            foreach (var _ in item.Item2.Where(i => item.Item3.Contains(i)).Select(i => new { }))
+                            foreach (var _ in item.Item3.Split(';').Where(i => item.Item2.Contains(i.Trim())).Select(i => new { }))
                                 result = false;
                         else
                             result = false;
@@ -318,7 +322,7 @@ namespace Diplom
                     else
                     {
                         if (item.Item2.Count() > 0)
-                            foreach (var _ in item.Item2.Where(i => item.Item3.Contains(i)).Select(i => new { }))
+                            foreach (var _ in item.Item3.Split(';').Where(i => item.Item2.Contains(i.Trim())).Select(i => new { }))
                                 result = true;
                         else
                             result = true;
@@ -326,25 +330,25 @@ namespace Diplom
                     allResult &= result;
                 }
 
-                bool resultFac = false;
+                bool resultGroup = false;
 
-                if (facCheck)
+                if (groupCheck)
                 {
-                    resultFac = true;
+                    resultGroup = true;
 
-                    if (titleListFac.Count() > 0)
-                        foreach (var _ in x.Fac.Split(';').Where(item => titleListFac.Contains(item.Trim())).Select(item => new { }))
-                            resultFac = false;
+                    if (titleShortListGroups.Count() > 0)
+                        foreach (var _ in titleShortListGroups.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
+                            resultGroup = false;
                     else
-                        resultFac = false;
+                        resultGroup = false;
                 }
                 else
                 {
-                    if (titleListFac.Count() > 0)
-                        foreach (var _ in x.Fac.Split(';').Where(item => titleListFac.Contains(item.Trim())).Select(item => new { }))
-                            resultFac = true;
+                    if (titleShortListGroups.Count() > 0)
+                        foreach (var _ in titleShortListGroups.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
+                            resultGroup = true;
                     else
-                        resultFac = true;
+                        resultGroup = true;
                 }
 
                 bool resultZaoch = false;
@@ -367,7 +371,7 @@ namespace Diplom
                 else
                     resultOch = true;
 
-                return allResult & resultFac & resultZaoch & resultOch;
+                return allResult & resultGroup & resultZaoch & resultOch;
             });
         }
 
@@ -455,6 +459,7 @@ namespace Diplom
             {
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
                 {
+
                     titleListTeacher = taech;
                     teacherCheck = false;
 
@@ -467,15 +472,6 @@ namespace Diplom
                     groupCheck = false;
 
                     FilterData();
-                    //bool resultGroups = false;
-
-                    //if (group.Count > 0)
-                    //    foreach (var _ in group.Where(i => x.Sub_groups.Contains(i)).Select(i => new { }))
-                    //        resultGroups = true;
-                    //else
-                    //    resultGroups = true;
-
-                    //result = resultGroups;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
@@ -484,16 +480,6 @@ namespace Diplom
                     auditoryCheck = false;
 
                     FilterData();
-
-                    //bool resultAud = false;
-
-                    //if (aud.Count > 0)
-                    //    foreach (var _ in x.Auds.Split(';').Where(item => aud.Contains(item.Trim())).Select(item => new { }))
-                    //        resultAud = true;
-                    //else
-                    //    resultAud = true;
-
-                    //result = resultAud;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
@@ -502,15 +488,6 @@ namespace Diplom
                     disciplineCheck = false;
 
                     FilterData();
-                    //bool resultDis = false;
-
-                    //if (dis.Count > 0)
-                    //    foreach (var _ in x.Discipline.Split(';').Where(item => dis.Contains(item.Trim())).Select(item => new { }))
-                    //        resultDis = true;
-                    //else
-                    //    resultDis = true;
-
-                    //result = resultDis;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
@@ -519,34 +496,14 @@ namespace Diplom
                     kafedraCheck = false;
 
                     FilterData();
-
-                    //bool resultKaf = false;
-
-                    //if (kaf.Count > 0)
-                    //    foreach (var _ in x.Kaf.Split(';').Where(item => kaf.Contains(item.Trim())).Select(item => new { }))
-                    //        resultKaf = true;
-                    //else
-                    //    resultKaf = true;
-
-                    //result = resultKaf;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
                 {
-                    titleListOwners = kaf;
+                    titleListOwners = own;
                     ownersCheck = false;
 
                     FilterData();
-
-                    //bool resultOwn = false;
-
-                    //if (own.Count > 0)
-                    //    foreach (var _ in x.Owners.Split(';').Where(item => own.Contains(item.Trim())).Select(item => new { }))
-                    //        resultOwn = true;
-                    //else
-                    //    resultOwn = true;
-
-                    //result = resultOwn;
                 }
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
@@ -554,18 +511,7 @@ namespace Diplom
                     idListNt = nt;
                     ntCheck = false;
 
-                    FilterData();
-                    //bool resultNt = false;
-
-                    //if (nt.Count > 0)
-                    //{
-                    //    if (nt.Contains(x.NT))
-                    //        resultNt = true;
-                    //}
-                    //else
-                    //    resultNt = true;
-
-                    //result = resultNt;
+                    FilterData();                    
                 }
 
                 taech = new List<string>();
@@ -575,7 +521,12 @@ namespace Diplom
                 kaf = new List<string>();
                 own = new List<string>();
                 nt = new List<string>();
-            }
+            }            
+        }
+
+        private DataGridView ColumnHeadersBorderStyleChanged(MainWindows mainWindows, DataGridViewCellMouseEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void Reset_Click(object sender, EventArgs e)
@@ -597,6 +548,8 @@ namespace Diplom
             {
                 if (e.RowIndex > -1)
                 {
+                    InformationDGV.ClearSelection();
+
                     InformationDGV[e.ColumnIndex, e.RowIndex].Selected = true;
 
                     if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
@@ -621,8 +574,21 @@ namespace Diplom
                         own.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
 
                     if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
-                        nt.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+                    {
+                        int intNT = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                        nt.Add(intNT.ToString());
+                    }
                 }
+            }
+            else
+            {
+                taech = new List<string>();
+                group = new List<string>();
+                aud = new List<string>();
+                dis = new List<string>();
+                kaf = new List<string>();
+                own = new List<string>();
+                nt = new List<string>();
             }
         }
     }
