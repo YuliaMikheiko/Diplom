@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -494,6 +492,7 @@ namespace Diplom
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
                 {
+                    titleListGroups = group;
                     titleShortListGroups = group;
                     groupCheck = false;
                 }
@@ -524,6 +523,35 @@ namespace Diplom
 
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
                 {
+                    titleListNt = new List<string>();
+
+                    foreach ( var i in nt)
+                    {
+                        switch (i)
+                        {
+                            case "1":
+                                titleListNt.Add("Лекция");
+                                break;
+                            case "2":
+                                titleListNt.Add("Практика");
+                                break;
+                            case "3":
+                                titleListNt.Add("Лаба");
+                                break;
+                            case "4":
+                                titleListNt.Add("Консультация");
+                                break;
+                            case "5":
+                                titleListNt.Add("Экзамен консультация");
+                                break;
+                            case "6":
+                                titleListNt.Add("Экзамен");
+                                break;
+                            case "7":
+                                titleListNt.Add("Зачет");
+                                break;
+                        }
+                    }
                     idListNt = nt;
                     ntCheck = false;                
                 }
@@ -542,6 +570,26 @@ namespace Diplom
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            taech = new List<string>();
+            group = new List<string>();
+            aud = new List<string>();
+            dis = new List<string>();
+            kaf = new List<string>();
+            own = new List<string>();
+            nt = new List<string>();
+
+            titleListGroups = new List<string>();
+            titleListKafedra = new List<string>();
+            titleListTeacher = new List<string>();
+            titleListAuditorys = new List<string>();
+            titleListDiscipline = new List<string>();
+            titleListKurs = new List<string>();
+            idListNt = new List<string>();
+            titleListNt = new List<string>();
+            titleListOwners = new List<string>();
+            titleListFac = new List<string>();
+            titleShortListGroups = new List<string>();
+
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
         }
 
@@ -549,6 +597,26 @@ namespace Diplom
         {
             if (e.Control && e.KeyCode == Keys.Z)
             {
+                taech = new List<string>();
+                group = new List<string>();
+                aud = new List<string>();
+                dis = new List<string>();
+                kaf = new List<string>();
+                own = new List<string>();
+                nt = new List<string>();
+
+                titleListGroups = new List<string>();
+                titleListKafedra = new List<string>();
+                titleListTeacher = new List<string>();
+                titleListAuditorys = new List<string>();
+                titleListDiscipline = new List<string>();
+                titleListKurs = new List<string>();
+                idListNt = new List<string>();
+                titleListNt = new List<string>();
+                titleListOwners = new List<string>();
+                titleListFac = new List<string>();
+                titleShortListGroups = new List<string>();
+
                 (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
             }
         }
@@ -574,9 +642,6 @@ namespace Diplom
 
                     if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
                         dis.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
-
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
-                        kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
 
                     if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
                         kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
