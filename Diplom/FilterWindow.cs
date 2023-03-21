@@ -100,7 +100,7 @@ namespace Diplom
 
         private void GroupsButton_Click(object sender, EventArgs e)
         {
-           ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups);
+           ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups, 1);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -130,7 +130,7 @@ namespace Diplom
 
         private void TeacherButton_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, titleListTeacher);
+            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, titleListTeacher, 1);
 
             if (teachers.ShowDialog() == DialogResult.OK)
             {
@@ -142,7 +142,7 @@ namespace Diplom
 
         private void AuditorysButton_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, titleListAuditorys);
+            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, titleListAuditorys, 1);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {

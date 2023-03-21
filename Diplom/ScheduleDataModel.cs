@@ -37,6 +37,11 @@ namespace Diplom
             throw new NotImplementedException();
         }
 
+        public virtual Dictionary<int, int[]> GetZanlist()
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual ScheduleRow[] GetNagruzka()
         {
             throw new NotImplementedException();

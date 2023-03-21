@@ -20,7 +20,7 @@ namespace Diplom
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText)
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText, int y)
         {
             InitializeComponent();
 
@@ -36,7 +36,16 @@ namespace Diplom
                 ReadGroups();
             if (type == 2)
                 ReadAuditorys();
-        }
+
+
+            if (y==2)
+            {
+                Choice.Visible = false;
+                Reset.Visible = false;
+
+                ItemsDGV.MouseDoubleClick += new MouseEventHandler(ItemsDGV_MouseDoubleClick);
+            }
+        }        
 
         internal ItemsSelectorModalWindow(List<string> titleText, List<string> title)
         {
@@ -158,8 +167,30 @@ namespace Diplom
 
             foreach (DataGridViewRow rows in ItemsDGV.Rows)
                 rows.Cells[0].Value = false;
+        }
 
+        private void ItemsDGV_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            idsList = new List<int?>();
+            titleList = new List<string>();
 
+            (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).RemoveFilter();
+
+            var items = (ItemsDGV.DataSource as BindingListView<RowCheckedItem>).Where(x => x.Checked);
+
+            foreach (DataGridViewRow rows in ItemsDGV.Rows)
+            {
+                if (rows.Cells[0].Value != null)
+                {
+                    if ((bool)rows.Cells[0].Value)
+                    {
+                        idsList.Add((int)rows.Cells[1].Value);
+                    }
+                }
+            }
+            titleList = items.Select(x => x.Value).ToList();
+
+            this.DialogResult = DialogResult.OK;
         }
     }
 

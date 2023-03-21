@@ -38,8 +38,10 @@ namespace Diplom
                 return _teacher;
             }
         }
+
         public Dictionary<int, Auditory> auditory;
         public Dictionary<int, SubGroup> subGroup;
+        public Dictionary<int, int[]> zanlist;
 
         string _filePath = "";
         public Data data { get; set; }
@@ -76,6 +78,12 @@ namespace Diplom
         {
             subGroup = data.sub_groups_info;
             return subGroup;
+        }
+
+        public override Dictionary<int, int[]> GetZanlist()
+        {
+            zanlist = data.zanlist;
+            return zanlist;
         }
 
         public override ScheduleRow[] GetNagruzka()
