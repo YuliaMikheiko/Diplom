@@ -154,16 +154,28 @@ namespace Diplom
                             }
                             else
                             {
+                                if (pairWish.ContainsKey("all"))
+                                {
+                                    this[day.ToString()][pair.ToString()].Remove("all");
+                                }
                                 this[day.ToString()][pair.ToString()].Add(week.ToString(), value);
                             }
                         }
                         else
                         {
+                            if (dayWish.ContainsKey("all"))
+                            {
+                                this[day.ToString()].Remove("all");
+                            }
                             this[day.ToString()].Add(pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } });
                         }
                     }
                     else
                     {
+                        if (this.ContainsKey("all"))
+                        {
+                            this[day.ToString()].Remove("all");
+                        }
                         this.Add(day.ToString(), new Dictionary<String, Dictionary<String, int[]>> { { pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } } } });
                     }
                 }
@@ -185,7 +197,19 @@ namespace Diplom
                                     }
                                 }
                             }
+                            else if (this[day.ToString()][pair.ToString()].ContainsKey("all"))
+                            {
+                                this[day.ToString()][pair.ToString()].Remove("all");
+                            }
                         }
+                        else if (this[day.ToString()].ContainsKey("all"))
+                        {
+                            this[day.ToString()].Remove("all");
+                        }
+                    }
+                    else if (this.ContainsKey("all"))
+                    {
+                        this.Remove("all");
                     }
                 }
             }
