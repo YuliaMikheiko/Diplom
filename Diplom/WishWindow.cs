@@ -16,6 +16,7 @@ namespace Diplom
         string text;
         Color color;
         List<int?> idList;
+        int type;
 
         Dictionary<int, Teacher> teachers;
         Dictionary<int, Auditory> auditories;
@@ -29,6 +30,7 @@ namespace Diplom
 
             this.idList = idList;
             this.scheduleDataModel = scheduleDataModel;
+            this.type = type;
 
             teachers = scheduleDataModel.GetTeachers();
             auditories = scheduleDataModel.GetAuditories();
@@ -257,13 +259,26 @@ namespace Diplom
 
         private void Accept_Click(object sender, EventArgs e)
         {
-            Save();
+            if (type == 0)
+            {
+                SaveTeacher();
+                (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
+            }
+            if (type == 1)
+            {
+                SaveGroup();
+                (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
+            }
+                SaveGroup();
+            if (type == 2)
+                SaveAud();
+
             (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
             scheduleDataModel.Save();
             this.DialogResult = DialogResult.OK;
         }
 
-        public void Save()
+        public void SaveTeacher()
         {
             foreach (var teacher in teachers.SelectMany(teacher => idList.Where(id => teacher.Value.id == id).Select(id => new { }).Select(_ => teacher)))
             {
@@ -320,6 +335,134 @@ namespace Diplom
                             else
                             {
                                 teacher.Value.wishes[(i - 1) / 2, j, 1] = null;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void SaveGroup()
+        {
+            foreach (var group in sub_groups_info.SelectMany(group => idList.Where(id => group.Value.id == id).Select(id => new { }).Select(_ => group)))
+            {
+                for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
+                {
+                    for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
+                    {
+                        int wish = 0;
+                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
+                        {
+                            case "О":
+                                wish = 1;
+                                break;
+                            case "Д":
+                                wish = 11;
+                                break;
+                            case "И":
+                                wish = 12;
+                                break;
+                            case "Ф":
+                                wish = 14;
+                                break;
+                            case "С":
+                                wish = 15;
+                                break;
+                            case "К":
+                                wish = 16;
+                                break;
+                            case "В":
+                                wish = 20;
+                                break;
+                            case "":
+                                wish = 10;
+                                break;
+                        }
+
+                        if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
+                        {
+                            if (i % 2 == 0)
+                            {
+                                group.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                            }
+                            else
+                            {
+                                group.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                            }
+                        }
+                        else
+                        {
+                            if (i % 2 == 0)
+                            {
+                                group.Value.wishes[i / 2, j, 0] = null;
+                            }
+                            else
+                            {
+                                group.Value.wishes[(i - 1) / 2, j, 1] = null;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public void SaveAud()
+        {
+            foreach (var aud in auditories.SelectMany(aud => idList.Where(id => aud.Value.id == id).Select(id => new { }).Select(_ => aud)))
+            {
+                for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
+                {
+                    for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
+                    {
+                        int wish = 0;
+                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
+                        {
+                            case "О":
+                                wish = 1;
+                                break;
+                            case "Д":
+                                wish = 11;
+                                break;
+                            case "И":
+                                wish = 12;
+                                break;
+                            case "Ф":
+                                wish = 14;
+                                break;
+                            case "С":
+                                wish = 15;
+                                break;
+                            case "К":
+                                wish = 16;
+                                break;
+                            case "В":
+                                wish = 20;
+                                break;
+                            case "":
+                                wish = 10;
+                                break;
+                        }
+
+                        if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
+                        {
+                            if (i % 2 == 0)
+                            {
+                                aud.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                            }
+                            else
+                            {
+                                aud.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                            }
+                        }
+                        else
+                        {
+                            if (i % 2 == 0)
+                            {
+                                aud.Value.wishes[i / 2, j, 0] = null;
+                            }
+                            else
+                            {
+                                aud.Value.wishes[(i - 1) / 2, j, 1] = null;
                             }
                         }
                     }

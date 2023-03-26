@@ -25,6 +25,7 @@ namespace Diplom
                 return _nagruzka;
             }
         }
+
         private Dictionary<int, Teacher> _teacher;
         public Dictionary<int, Teacher> teacher
         {
@@ -39,8 +40,35 @@ namespace Diplom
             }
         }
 
-        public Dictionary<int, Auditory> auditory;
-        public Dictionary<int, SubGroup> subGroup;
+        private Dictionary<int, Auditory> _auditory;
+        public Dictionary<int, Auditory> auditory
+        {
+            set
+            {
+                _auditory = value;
+                data.auditories = value;
+            }
+            get
+            {
+                return _auditory;
+            }
+        }
+
+
+        private Dictionary<int, SubGroup> _subGroup;
+        public Dictionary<int, SubGroup> subGroup
+        {
+            set
+            {
+                _subGroup = value;
+                data.sub_groups_info = value;
+            }
+            get
+            {
+                return _subGroup;
+            }
+        }
+
         public Dictionary<int, int[]> zanlist;
 
         string _filePath = "";
