@@ -137,100 +137,6 @@ namespace Diplom
             return false;
         }
 
-        private void SaveData()
-        {
-            if (path == null)
-            {
-                MessageBox.Show(
-                "Откройте файл",
-                "Сообщение",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
-            }
-            else
-            {
-                InformationDGV.EndEdit();
-
-                foreach (DataGridViewRow row in InformationDGV.Rows)
-                {
-                    foreach (var item in nagr.Where(item => (int)InformationDGV[0, row.Index].Value == item.id))
-                    {
-                        foreach (DataGridViewColumn column in InformationDGV.Columns)
-                        {
-                            if (column.Name == "HColumn")
-                                item.h = (int)InformationDGV[column.Index, row.Index].Value;
-
-                            if (column.Name == "NtColumn")
-                                item.nt = (int)InformationDGV[column.Index, row.Index].Value;
-
-                            if (column.Name == "KafColumn")
-                                item.kaf = (string)InformationDGV[column.Index, row.Index].Value;
-
-                            if (column.Name == "DisciplineColumn")
-                                item.discipline = (string)InformationDGV[column.Index, row.Index].Value;
-
-                            if (column.Name == "OnlineColumn")
-                            {
-                                if (InformationDGV[column.Index, row.Index].Value.Equals(true))
-                                    item.is_online = 1;
-                                else
-                                    item.is_online = 0;
-                            }
-                        }
-
-                        break;
-                    }
-
-                    //    for (int i = 0; i < nagr.Length; i++)
-                    //{
-                    //    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", i].Value))
-                    //    //{
-                    //    //    for (int i = 0; i < nagr.Length; i++)
-                    //    {
-                    //        foreach (DataGridViewColumn column in InformationDGV.Columns)
-                    //        {
-                    //            if (column.Name == "HColumn")
-                    //                item.h = (int)InformationDGV[column.Index, i].Value;
-
-                    //            if (column.Name == "NtColumn")
-                    //                item.nt = (int)InformationDGV[column.Index, i].Value;
-
-                    //            if (column.Name == "KafColumn")
-                    //                item.kaf = (string)InformationDGV[column.Index, i].Value;
-
-                    //            if (column.Name == "DisciplineColumn")
-                    //                item.discipline = (string)InformationDGV[column.Index, i].Value;
-
-                    //            if (column.Name == "OnlineColumn")
-                    //            {
-                    //                if (InformationDGV[column.Index, i].Value.Equals(true))
-                    //                    item.is_online = 1;
-                    //                else
-                    //                    item.is_online = 0;
-                    //            }
-
-                    //            //if (column.Name == "OwnersColumn")
-                    //            //{
-                    //            //    var y = (string)InformationDGV[column.Index, i].Value;
-                    //            //    nagr[i].owners = y.Split(';');
-
-                    //            //}
-                    //        }
-                    //    }
-                    //}
-
-                    //(activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
-                    //activeScheduleDataModel.Save();
-
-                    //MessageBox.Show(
-                    //"Сохранено",
-                    //"Сообщение",
-                    //MessageBoxButtons.OK,
-                    //MessageBoxIcon.Information);
-                }
-            }
-        }
-           
         private void InformationDGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex > -1)
@@ -273,6 +179,62 @@ namespace Diplom
                     idA = idsList;
                     titleA = titleList;
                 }
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "HColumn")
+                {
+                    InformationDGV.EndEdit();
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.h = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                }
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
+                {
+                    InformationDGV.EndEdit();
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.nt = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                }
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
+                {
+                    InformationDGV.EndEdit();
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.kaf = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                }
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
+                {
+                    InformationDGV.EndEdit();
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.discipline = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                }
+
+
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "OnlineColumn")
+                {
+                    InformationDGV.EndEdit();
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
+                            item.is_online = 1;
+                        else
+                            item.is_online = 0;
+                    }
+                }
+
+                //if (column.Name == "OwnersColumn")
+                //{
+                //    var y = (string)InformationDGV[column.Index, i].Value;
+                //    nagr[i].owners = y.Split(';');
+
+                //}
             }
         }
 
@@ -318,7 +280,7 @@ namespace Diplom
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
+            //(InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
 
             titleListGroups = new List<string>();
             titleListKafedra = new List<string>();
@@ -332,7 +294,8 @@ namespace Diplom
             titleListFac = new List<string>();
             titleShortListGroups = new List<string>();
 
-            SaveData();
+            (activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
+            activeScheduleDataModel.Save();
         }
 
         private void FilterMenuItem_Click(object sender, EventArgs e)
