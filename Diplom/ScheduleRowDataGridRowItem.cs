@@ -10,13 +10,15 @@ namespace Diplom
         Dictionary<int, Teacher> DTeachers;
         Dictionary<int, Auditory> DAuditories;
         Dictionary<int, SubGroup> DSub_groups;
+        Dictionary<int, int[]> dZanlist;
 
-        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups)
+        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups, Dictionary<int, int[]> dZanlist)
         {
             this.x = x;
             this.DTeachers = DTeachers;
             this.DAuditories = DAuditories;
             this.DSub_groups = DSub_groups;
+            this.dZanlist = dZanlist;
         }
 
         public int Id { get; set; }
@@ -110,6 +112,25 @@ namespace Diplom
             {
             }
         }
+
+        public bool Zanlist { get; set; }
+        //{
+        //    get
+        //    {
+        //        //foreach (var j in dZanlist.Values)
+        //        //{
+        //        //    foreach (int v in j)
+        //        //    {
+        //        //        if (x.id == v)
+        //        //            return true;
+        //        //    }
+        //        //}
+        //        //return false;
+        //    }
+        //    set
+        //    {
+        //    }
+        //}
         public override string ToString()
         {
             return $"{Teachers}%{Sub_groups}%{Auds}";

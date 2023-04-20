@@ -58,6 +58,7 @@
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OwnersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.zanlist = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scheduleRowDataGridRowItemBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -87,7 +88,8 @@
             this.DisciplineColumn,
             this.OnlineColumn,
             this.OwnersColumn,
-            this.zanlist});
+            this.zanlist,
+            this.Column1});
             this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
             this.InformationDGV.DataSource = this.scheduleRowDataGridRowItemBindingSource;
             this.InformationDGV.Location = new System.Drawing.Point(0, 47);
@@ -312,11 +314,18 @@
             // 
             // zanlist
             // 
-            this.zanlist.HeaderText = "Column1";
+            this.zanlist.DataPropertyName = "Zanlist";
+            this.zanlist.HeaderText = "Объединенные в список";
             this.zanlist.Name = "zanlist";
             this.zanlist.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.zanlist.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.zanlist.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "";
+            this.Column1.MinimumWidth = 25;
+            this.Column1.Name = "Column1";
+            this.Column1.Width = 25;
             // 
             // MainWindows
             // 
@@ -371,6 +380,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OwnersColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn zanlist;
+        private System.Windows.Forms.DataGridViewButtonColumn Column1;
     }
 }
 

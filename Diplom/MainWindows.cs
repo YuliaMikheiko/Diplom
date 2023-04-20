@@ -110,7 +110,7 @@ namespace Diplom
             dZanlist = activeScheduleDataModel.GetZanlist();
 
             InformationDGV.DataSource = new BindingListView<ScheduleRowDataGridRowItem>(
-                nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups)
+                nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups, dZanlist)
                 {
                     Id = x.id,
                     H = x.h,
@@ -118,23 +118,23 @@ namespace Diplom
                     Kaf = x.kaf,
                     Discipline = x.discipline,
                     Is_online = x.is_online.Equals(1),
-                    Owners = String.Join("; ", x.owners)
+                    Owners = String.Join("; ", x.owners),
+                    Zanlist = ReadZanlist(x.id)
                 }).ToList()
             );
+        }
 
-            //for(int u=0; u< InformationDGV.RowCount; u++)
-            //{
-            //    foreach (var i in dZanlist)
-            //    {
-            //        foreach (var t in i.Value)
-            //        {
-            //            if ((int)InformationDGV[0, u].Value == t)
-            //            {
-            //                InformationDGV[13, u].Value = true;
-            //            }
-            //        }
-            //    }
-            //}
+        private bool ReadZanlist(int id)
+        {
+            foreach (var values in dZanlist.Values)
+            {
+                foreach (int value in values)
+                {
+                    if (id == value)
+                        return true;
+                }
+            }
+            return false;
         }
 
         private void SaveData()
@@ -150,47 +150,84 @@ namespace Diplom
             else
             {
                 InformationDGV.EndEdit();
-                for (int i = 0; i < nagr.Length; i++)
+
+                foreach (DataGridViewRow row in InformationDGV.Rows)
                 {
-                    foreach (DataGridViewColumn column in InformationDGV.Columns)
+                    foreach (var item in nagr.Where(item => (int)InformationDGV[0, row.Index].Value == item.id))
                     {
-                        if (column.Name == "HColumn")
-                            nagr[i].h = (int)InformationDGV[column.Index, i].Value;
-
-                        if (column.Name == "NtColumn")
-                            nagr[i].nt = (int)InformationDGV[column.Index, i].Value;
-
-                        if (column.Name == "KafColumn")
-                            nagr[i].kaf= (string)InformationDGV[column.Index, i].Value;
-
-                        if (column.Name == "DisciplineColumn")
-                            nagr[i].discipline = (string)InformationDGV[column.Index, i].Value;
-
-                        if (column.Name == "OnlineColumn")
+                        foreach (DataGridViewColumn column in InformationDGV.Columns)
                         {
-                            if (InformationDGV[column.Index, i].Value.Equals(true))
-                                nagr[i].is_online = 1;
-                            else
-                                nagr[i].is_online = 0;
+                            if (column.Name == "HColumn")
+                                item.h = (int)InformationDGV[column.Index, row.Index].Value;
+
+                            if (column.Name == "NtColumn")
+                                item.nt = (int)InformationDGV[column.Index, row.Index].Value;
+
+                            if (column.Name == "KafColumn")
+                                item.kaf = (string)InformationDGV[column.Index, row.Index].Value;
+
+                            if (column.Name == "DisciplineColumn")
+                                item.discipline = (string)InformationDGV[column.Index, row.Index].Value;
+
+                            if (column.Name == "OnlineColumn")
+                            {
+                                if (InformationDGV[column.Index, row.Index].Value.Equals(true))
+                                    item.is_online = 1;
+                                else
+                                    item.is_online = 0;
+                            }
                         }
 
-                        //if (column.Name == "OwnersColumn")
-                        //{
-                        //    var y = (string)InformationDGV[column.Index, i].Value;
-                        //    nagr[i].owners = y.Split(';');
-                            
-                        //}
+                        break;
                     }
+
+                    //    for (int i = 0; i < nagr.Length; i++)
+                    //{
+                    //    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", i].Value))
+                    //    //{
+                    //    //    for (int i = 0; i < nagr.Length; i++)
+                    //    {
+                    //        foreach (DataGridViewColumn column in InformationDGV.Columns)
+                    //        {
+                    //            if (column.Name == "HColumn")
+                    //                item.h = (int)InformationDGV[column.Index, i].Value;
+
+                    //            if (column.Name == "NtColumn")
+                    //                item.nt = (int)InformationDGV[column.Index, i].Value;
+
+                    //            if (column.Name == "KafColumn")
+                    //                item.kaf = (string)InformationDGV[column.Index, i].Value;
+
+                    //            if (column.Name == "DisciplineColumn")
+                    //                item.discipline = (string)InformationDGV[column.Index, i].Value;
+
+                    //            if (column.Name == "OnlineColumn")
+                    //            {
+                    //                if (InformationDGV[column.Index, i].Value.Equals(true))
+                    //                    item.is_online = 1;
+                    //                else
+                    //                    item.is_online = 0;
+                    //            }
+
+                    //            //if (column.Name == "OwnersColumn")
+                    //            //{
+                    //            //    var y = (string)InformationDGV[column.Index, i].Value;
+                    //            //    nagr[i].owners = y.Split(';');
+
+                    //            //}
+                    //        }
+                    //    }
+                    //}
+
+                    //(activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
+                    //activeScheduleDataModel.Save();
+
+                    //MessageBox.Show(
+                    //"Сохранено",
+                    //"Сообщение",
+                    //MessageBoxButtons.OK,
+                    //MessageBoxIcon.Information);
                 }
-
-                (activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
-                activeScheduleDataModel.Save();
-
-                MessageBox.Show(
-                "Сохранено",
-                "Сообщение",
-                MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
             }
         }
            
