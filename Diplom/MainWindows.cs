@@ -138,112 +138,106 @@ namespace Diplom
         {
             if (e.RowIndex > -1)
             {
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "TColumn" && ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null)
+                switch (InformationDGV.Columns[e.ColumnIndex].Name)
                 {
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        if (idsList.Count > 0)
-                            item.teachers = idsList.ToArray();
-                        else
-                            Array.Clear(item.teachers, 0, item.teachers.Length);
-                    }
-                    idT = idsList;
-                    titleT = titleList;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "GColumn" && ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null)
-                {
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        if (idsList.Count > 0)
-                            item.sub_groups = idsList.ToArray();
-                        else
-                            Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
-                    }
-                    idG = idsList;
-                    titleG = titleList;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "AColumn" && ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null)
-                {
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        if (idsList.Count > 0)
-                            item.auds = idsList.ToArray();
-                        else
-                            Array.Clear(item.auds, 0, item.auds.Length);
-                    }
-                    idA = idsList;
-                    titleA = titleList;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "ZColumn")
-                {
-                    int key = 0;
-                    foreach (var j in dZanlist.SelectMany(j => j.Value.Where(values => (int)InformationDGV["IdColumn", e.RowIndex].Value == values).Select(values => j)))
-                    {
-                        key = j.Key;
+                    case "TColumn" when ModalWindow(e.RowIndex, Type.Teachers, "TeachersColumn") != null:
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.teachers = idsList.ToArray();
+                            else
+                                Array.Clear(item.teachers, 0, item.teachers.Length);
+                        }
+                        idT = idsList;
+                        titleT = titleList;
                         break;
-                    }
 
-                    List<string> list = new List<string>();
-                    if (key != 0)
-                    {
-                        list.AddRange(dZanlist[key].Select(item => item.ToString()));
-                        ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list);
-                        zanlist.ShowDialog();
-                    }
+                    case "GColumn" when ModalWindow(e.RowIndex, Type.Groups, "GroupsColumn") != null:
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.sub_groups = idsList.ToArray();
+                            else
+                                Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
+                        }
+                        idG = idsList;
+                        titleG = titleList;
+                        break;
+
+                    case "AColumn" when ModalWindow(e.RowIndex, Type.Auditorys, "AuditoriesColumn") != null:
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (idsList.Count > 0)
+                                item.auds = idsList.ToArray();
+                            else
+                                Array.Clear(item.auds, 0, item.auds.Length);
+                        }
+                        idA = idsList;
+                        titleA = titleList;
+                        break;
+
+                    case "ZColumn":
+                        int key = 0;
+                        foreach (var j in dZanlist.SelectMany(j => j.Value.Where(values => (int)InformationDGV["IdColumn", e.RowIndex].Value == values).Select(values => j)))
+                        {
+                            key = j.Key;
+                            break;
+                        }
+
+                        List<string> list = new List<string>();
+                        if (key != 0)
+                        {
+                            list.AddRange(dZanlist[key].Select(item => item.ToString()));
+                            ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list);
+                            zanlist.ShowDialog();
+                        }
+                        break;
+
+                    case "HColumn":
+                        InformationDGV.EndEdit();
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            item.h = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                        }
+                        break;
+
+                    case "NtColumn":
+                        InformationDGV.EndEdit();
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            item.nt = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                        }
+                        break;
+
+                    case "KafColumn":
+                        InformationDGV.EndEdit();
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            item.kaf = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                        }
+                        break;
+
+                    case "DisciplineColumn":
+                        InformationDGV.EndEdit();
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            item.discipline = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                        }
+                        break;
+
+                    case "OnlineColumn":
+                        InformationDGV.EndEdit();
+                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                        {
+                            if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
+                                item.is_online = 1;
+                            else
+                                item.is_online = 0;
+                        }
+                        break;
                 }
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "HColumn")
-                {
-                    InformationDGV.EndEdit();
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        item.h = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                    }
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
-                {
-                    InformationDGV.EndEdit();
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        item.nt = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                    }
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
-                {
-                    InformationDGV.EndEdit();
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        item.kaf = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                    }
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
-                {
-                    InformationDGV.EndEdit();
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        item.discipline = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                    }
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "OnlineColumn")
-                {
-                    InformationDGV.EndEdit();
-                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                    {
-                        if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
-                            item.is_online = 1;
-                        else
-                            item.is_online = 0;
-                    }
-                }
-
-                //if (column.Name == "OwnersColumn")
+                //else if (column.Name == "OwnersColumn")
                 //{
                 //    var y = (string)InformationDGV[column.Index, i].Value;
                 //    nagr[i].owners = y.Split(';');
