@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Diplom
@@ -36,12 +32,18 @@ namespace Diplom
             auditories = scheduleDataModel.GetAuditories();
             sub_groups_info = scheduleDataModel.GetGroups();
 
-            if (type == 0)
-                WishTeacher();
-            if (type == 1)
-                WishGroups();
-            if (type == 2)
-                WishAuditorys();
+            switch (type)
+            {
+                case 0:
+                    WishTeacher();
+                    break;
+                case 1:
+                    WishGroups();
+                    break;
+                case 2:
+                    WishAuditorys();
+                    break;
+            }
 
             text = null;
         }
@@ -126,7 +128,7 @@ namespace Diplom
 
         public void DrawLabel(int day, int pair, int week)
         {
-            System.Windows.Forms.Label label = new System.Windows.Forms.Label
+            Label label = new Label
             {
                 Size = new Size(34, 34),
                 TextAlign = ContentAlignment.MiddleCenter,
@@ -149,7 +151,7 @@ namespace Diplom
             }
         }
 
-        private void PairMouseMove(System.Windows.Forms.Label label, int pair)
+        private void PairMouseMove(Label label, int pair)
         {
             switch (pair)
             {
@@ -180,7 +182,7 @@ namespace Diplom
             }
         }
 
-        public void DayMouseMove(System.Windows.Forms.Label label, int day)
+        public void DayMouseMove(Label label, int day)
         {
             switch (day)
             {
@@ -244,7 +246,7 @@ namespace Diplom
         {
             if (text != null)
             {
-                var label = sender as System.Windows.Forms.Label;
+                var label = sender as Label;
                 label.Text = text;
                 label.BackColor = color;
             }
@@ -269,7 +271,7 @@ namespace Diplom
                 SaveGroup();
                 (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
             }
-                SaveGroup();
+            SaveGroup();
             if (type == 2)
                 SaveAud();
 
@@ -317,24 +319,26 @@ namespace Diplom
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                teacher.Value.wishes[i / 2, j, 0] = new int[] { wish };
-                            }
-                            else
-                            {
-                                teacher.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                case 0:
+                                    teacher.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                                    break;
+                                default:
+                                    teacher.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                    break;
                             }
                         }
                         else
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                teacher.Value.wishes[i / 2, j, 0] = null;
-                            }
-                            else
-                            {
-                                teacher.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                case 0:
+                                    teacher.Value.wishes[i / 2, j, 0] = null;
+                                    break;
+                                default:
+                                    teacher.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                    break;
                             }
                         }
                     }
@@ -381,24 +385,26 @@ namespace Diplom
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                group.Value.wishes[i / 2, j, 0] = new int[] { wish };
-                            }
-                            else
-                            {
-                                group.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                case 0:
+                                    group.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                                    break;
+                                default:
+                                    group.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                    break;
                             }
                         }
                         else
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                group.Value.wishes[i / 2, j, 0] = null;
-                            }
-                            else
-                            {
-                                group.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                case 0:
+                                    group.Value.wishes[i / 2, j, 0] = null;
+                                    break;
+                                default:
+                                    group.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                    break;
                             }
                         }
                     }
@@ -445,24 +451,26 @@ namespace Diplom
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                aud.Value.wishes[i / 2, j, 0] = new int[] { wish };
-                            }
-                            else
-                            {
-                                aud.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                case 0:
+                                    aud.Value.wishes[i / 2, j, 0] = new int[] { wish };
+                                    break;
+                                default:
+                                    aud.Value.wishes[(i - 1) / 2, j, 1] = new int[] { wish };
+                                    break;
                             }
                         }
                         else
                         {
-                            if (i % 2 == 0)
+                            switch (i % 2)
                             {
-                                aud.Value.wishes[i / 2, j, 0] = null;
-                            }
-                            else
-                            {
-                                aud.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                case 0:
+                                    aud.Value.wishes[i / 2, j, 0] = null;
+                                    break;
+                                default:
+                                    aud.Value.wishes[(i - 1) / 2, j, 1] = null;
+                                    break;
                             }
                         }
                     }

@@ -10,20 +10,21 @@ namespace Diplom
         Dictionary<int, Teacher> DTeachers;
         Dictionary<int, Auditory> DAuditories;
         Dictionary<int, SubGroup> DSub_groups;
-        Dictionary<int, int[]> dZanlist;
 
-        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups, Dictionary<int, int[]> dZanlist)
+        public ScheduleRowDataGridRowItem(ScheduleRow x, Dictionary<int, Teacher> DTeachers, Dictionary<int, Auditory> DAuditories, Dictionary<int, SubGroup> DSub_groups)
         {
             this.x = x;
             this.DTeachers = DTeachers;
             this.DAuditories = DAuditories;
             this.DSub_groups = DSub_groups;
-            this.dZanlist = dZanlist;
         }
 
         public int Id { get; set; }
+
         public int H { get; set; }
+
         public int NT { get; set; }
+
         public string Teachers
         {
             get
@@ -39,6 +40,7 @@ namespace Diplom
             {
             }
         }
+
         public string Sub_groups
         {
             get
@@ -54,6 +56,7 @@ namespace Diplom
             {
             }
         }
+
         public string Kurs
         {
             get
@@ -69,7 +72,9 @@ namespace Diplom
             {
             }
         }
+
         public string Kaf { get; set; }
+
         public string Auds
         {
             get
@@ -85,8 +90,11 @@ namespace Diplom
             {
             }
         }
+
         public string Discipline { get; set; }
+
         public bool Is_online { get; set; }
+
         public string Owners { get; set; }
         //{
         //    get
@@ -97,6 +105,7 @@ namespace Diplom
         //    {
         //    }
         //}
+
         public string Fac
         {
             get
@@ -114,23 +123,7 @@ namespace Diplom
         }
 
         public bool Zanlist { get; set; }
-        //{
-        //    get
-        //    {
-        //        //foreach (var j in dZanlist.Values)
-        //        //{
-        //        //    foreach (int v in j)
-        //        //    {
-        //        //        if (x.id == v)
-        //        //            return true;
-        //        //    }
-        //        //}
-        //        //return false;
-        //    }
-        //    set
-        //    {
-        //    }
-        //}
+  
         public override string ToString()
         {
             return $"{Teachers}%{Sub_groups}%{Auds}";

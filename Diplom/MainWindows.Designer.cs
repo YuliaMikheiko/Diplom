@@ -42,7 +42,7 @@
             this.Distribute = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
+            this.MergeList = new System.Windows.Forms.Button();
             this.scheduleRowDataGridRowItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IdColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,8 +57,8 @@
             this.DisciplineColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OnlineColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.OwnersColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.zanlist = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.ZanlistColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ZColumn = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.InformationDGV)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
@@ -88,8 +88,8 @@
             this.DisciplineColumn,
             this.OnlineColumn,
             this.OwnersColumn,
-            this.zanlist,
-            this.Column1});
+            this.ZanlistColumn,
+            this.ZColumn});
             this.InformationDGV.Cursor = System.Windows.Forms.Cursors.Default;
             this.InformationDGV.DataSource = this.scheduleRowDataGridRowItemBindingSource;
             this.InformationDGV.Location = new System.Drawing.Point(0, 47);
@@ -199,15 +199,15 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(80, 22);
             this.toolStripMenuItem2.Text = "1";
             // 
-            // button1
+            // MergeList
             // 
-            this.button1.Location = new System.Drawing.Point(308, 22);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(123, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Объединитьв лист";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.MergeList.Location = new System.Drawing.Point(308, 22);
+            this.MergeList.Name = "MergeList";
+            this.MergeList.Size = new System.Drawing.Size(123, 23);
+            this.MergeList.TabIndex = 8;
+            this.MergeList.Text = "Объединить в лист";
+            this.MergeList.UseVisualStyleBackColor = true;
+            this.MergeList.Click += new System.EventHandler(this.MergeList_Click);
             // 
             // scheduleRowDataGridRowItemBindingSource
             // 
@@ -312,27 +312,27 @@
             this.OwnersColumn.HeaderText = "Диспечер";
             this.OwnersColumn.Name = "OwnersColumn";
             // 
-            // zanlist
+            // ZanlistColumn
             // 
-            this.zanlist.DataPropertyName = "Zanlist";
-            this.zanlist.HeaderText = "Объединенные в список";
-            this.zanlist.Name = "zanlist";
-            this.zanlist.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.zanlist.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ZanlistColumn.DataPropertyName = "Zanlist";
+            this.ZanlistColumn.HeaderText = "Объединенные в список";
+            this.ZanlistColumn.Name = "ZanlistColumn";
+            this.ZanlistColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ZanlistColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // Column1
+            // ZColumn
             // 
-            this.Column1.HeaderText = "";
-            this.Column1.MinimumWidth = 25;
-            this.Column1.Name = "Column1";
-            this.Column1.Width = 25;
+            this.ZColumn.HeaderText = "";
+            this.ZColumn.MinimumWidth = 25;
+            this.ZColumn.Name = "ZColumn";
+            this.ZColumn.Width = 25;
             // 
             // MainWindows
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1302, 418);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.MergeList);
             this.Controls.Add(this.Distribute);
             this.Controls.Add(this.Reset);
             this.Controls.Add(this.InformationDGV);
@@ -365,7 +365,7 @@
         private System.Windows.Forms.Button Distribute;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button MergeList;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn HColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn NtColumn;
@@ -379,8 +379,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn DisciplineColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn OnlineColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OwnersColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn zanlist;
-        private System.Windows.Forms.DataGridViewButtonColumn Column1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ZanlistColumn;
+        private System.Windows.Forms.DataGridViewButtonColumn ZColumn;
     }
 }
 

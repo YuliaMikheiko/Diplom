@@ -2,11 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.Common;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using static System.Runtime.CompilerServices.RuntimeHelpers;
 
 namespace Diplom
 {
@@ -110,7 +107,7 @@ namespace Diplom
             dZanlist = activeScheduleDataModel.GetZanlist();
 
             InformationDGV.DataSource = new BindingListView<ScheduleRowDataGridRowItem>(
-                nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups, dZanlist)
+                nagr.Select(x => new ScheduleRowDataGridRowItem(x, dTeachers, dAuditories, dSub_groups)
                 {
                     Id = x.id,
                     H = x.h,
@@ -216,7 +213,6 @@ namespace Diplom
                     }
                 }
 
-
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "OnlineColumn")
                 {
                     InformationDGV.EndEdit();
@@ -280,8 +276,6 @@ namespace Diplom
 
         private void SaveMenuItem_Click(object sender, EventArgs e)
         {
-            //(InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
-
             titleListGroups = new List<string>();
             titleListKafedra = new List<string>();
             titleListTeacher = new List<string>();
@@ -301,7 +295,7 @@ namespace Diplom
         private void FilterMenuItem_Click(object sender, EventArgs e)
         {
             FilterWindow filter = new FilterWindow(activeScheduleDataModel, nagr, titleListGroups, titleListKafedra, titleListTeacher, titleListAuditorys, titleListDiscipline, titleListKurs, titleListOwners, idListNt, titleListNt, titleListFac, auditoryCheck, groupCheck, teacherCheck, kafedraCheck, disciplineCheck, kursCheck, ntCheck, ownersCheck, facCheck, zaochCheck, ochCheck);
-            
+
             if (filter.ShowDialog() == DialogResult.OK)
             {
                 titleListFac = filter.titleListFac;
@@ -424,7 +418,7 @@ namespace Diplom
         private void TeacherWishMenuItem_Click(object sender, EventArgs e)
         {
             ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Teachers, activeScheduleDataModel, new List<string>(), 2);
-            
+
             if (modalWindow.ShowDialog() == DialogResult.OK)
             {
                 idsList = modalWindow.idsList;
@@ -501,45 +495,54 @@ namespace Diplom
 
         private void InformationDGV_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Right)
+            switch (e.Button)
             {
-                if (e.RowIndex > -1)
-                {
-                    InformationDGV.ClearSelection();
+                case MouseButtons.Right:
+                    {
+                        if (e.RowIndex > -1)
+                        {
+                            InformationDGV.ClearSelection();
 
-                    InformationDGV[e.ColumnIndex, e.RowIndex].Selected = true;
+                            InformationDGV[e.ColumnIndex, e.RowIndex].Selected = true;
 
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
-                        taech.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(t => t.Trim()));
+                            switch (InformationDGV.Columns[e.ColumnIndex].Name)
+                            {
+                                case "TeachersColumn":
+                                    taech.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(t => t.Trim()));
+                                    break;
+                                case "GroupsColumn":
+                                    group.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(g => g.Trim()));
+                                    break;
+                                case "AuditoriesColumn":
+                                    aud.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(a => a.Trim()));
+                                    break;
+                                case "DisciplineColumn":
+                                    dis.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+                                    break;
+                                case "KafColumn":
+                                    kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
+                                    break;
+                                case "OwnersColumn":
+                                    own.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(o => o.Trim()));
+                                    break;
+                                case "NtColumn":
+                                    nt.Add(((int)InformationDGV[e.ColumnIndex, e.RowIndex].Value).ToString());
+                                    break;
+                            }
+                        }
 
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
-                        group.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(g => g.Trim()));
+                        break;
+                    }
 
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
-                        aud.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(a => a.Trim()));
-
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
-                        dis.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
-
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
-                        kaf.Add((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value);
-
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
-                        own.AddRange(InformationDGV[e.ColumnIndex, e.RowIndex].Value.ToString().Split(';').Select(o => o.Trim()));
-
-                    if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
-                        nt.Add(((int)InformationDGV[e.ColumnIndex, e.RowIndex].Value).ToString());
-                }
-            }
-            else
-            {
-                taech = new List<string>();
-                group = new List<string>();
-                aud = new List<string>();
-                dis = new List<string>();
-                kaf = new List<string>();
-                own = new List<string>();
-                nt = new List<string>();
+                default:
+                    taech = new List<string>();
+                    group = new List<string>();
+                    aud = new List<string>();
+                    dis = new List<string>();
+                    kaf = new List<string>();
+                    own = new List<string>();
+                    nt = new List<string>();
+                    break;
             }
         }
 
@@ -602,67 +605,70 @@ namespace Diplom
 
             foreach (DataGridViewColumn column in InformationDGV.Columns)
             {
-                if (column.Name == "TeachersColumn")
+                switch (column.Name)
                 {
-                    if (titleT != null)
-                    {
-                        value = String.Join("; ", titleT);
-
-                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                    case "TeachersColumn":
+                        if (titleT != null)
                         {
-                            InformationDGV[column.Index, row.Index].Value = value;
+                            value = String.Join("; ", titleT);
 
-                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            foreach (DataGridViewRow row in InformationDGV.Rows)
                             {
-                                if (idT.Count > 0)
-                                    item.teachers = idT.ToArray();
-                                else
-                                    Array.Clear(item.teachers, 0, item.teachers.Length);
+                                InformationDGV[column.Index, row.Index].Value = value;
+
+                                foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                                {
+                                    if (idT.Count > 0)
+                                        item.teachers = idT.ToArray();
+                                    else
+                                        Array.Clear(item.teachers, 0, item.teachers.Length);
+                                }
                             }
                         }
-                    }
-                }
-                if (column.Name == "AuditoriesColumn")
-                {
-                    if (titleA != null)
-                    {
-                        value = String.Join("; ", titleA);
+                        break;
 
-                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                    case "AuditoriesColumn":
+                        if (titleA != null)
                         {
-                            InformationDGV[column.Index, row.Index].Value = value;
+                            value = String.Join("; ", titleA);
 
-                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            foreach (DataGridViewRow row in InformationDGV.Rows)
                             {
-                                if (idA.Count > 0)
-                                    item.auds = idA.ToArray();
-                                else
-                                    Array.Clear(item.auds, 0, item.auds.Length);
+                                InformationDGV[column.Index, row.Index].Value = value;
+
+                                foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                                {
+                                    if (idA.Count > 0)
+                                        item.auds = idA.ToArray();
+                                    else
+                                        Array.Clear(item.auds, 0, item.auds.Length);
+                                }
                             }
                         }
-                    }
-                }
-                if (column.Name == "GroupsColumn")
-                {
-                    if (titleG != null)
-                    {
-                        value = String.Join("; ", titleG);
+                        break;
 
-                        foreach (DataGridViewRow row in InformationDGV.Rows)
+                    case "GroupsColumn":
+                        if (titleG != null)
                         {
-                            InformationDGV[column.Index, row.Index].Value = value;
+                            value = String.Join("; ", titleG);
 
-                            foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                            foreach (DataGridViewRow row in InformationDGV.Rows)
                             {
-                                if (idG.Count > 0)
-                                    item.sub_groups = idG.ToArray();
-                                else
-                                    Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
+                                InformationDGV[column.Index, row.Index].Value = value;
+
+                                foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", row.Index].Value))
+                                {
+                                    if (idG.Count > 0)
+                                        item.sub_groups = idG.ToArray();
+                                    else
+                                        Array.Clear(item.sub_groups, 0, item.sub_groups.Length);
+                                }
                             }
                         }
-                    }
+                        break;
                 }
             }
+
             titleT = null;
             titleG = null;
             titleA = null;
@@ -672,76 +678,66 @@ namespace Diplom
         {
             if (e.Button == MouseButtons.Right)
             {
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "TeachersColumn")
+                switch (InformationDGV.Columns[e.ColumnIndex].Name)
                 {
-                    titleListTeacher = taech;
-                    teacherCheck = false;
-                }
+                    case "TeachersColumn":
+                        titleListTeacher = taech;
+                        teacherCheck = false;
+                        break;
+                    case "GroupsColumn":
+                        titleListGroups = group;
+                        titleShortListGroups = group;
+                        groupCheck = false;
+                        break;
+                    case "AuditoriesColumn":
+                        titleListAuditorys = aud;
+                        auditoryCheck = false;
+                        break;
+                    case "DisciplineColumn":
+                        titleListDiscipline = dis;
+                        disciplineCheck = false;
+                        break;
+                    case "KafColumn":
+                        titleListKafedra = kaf;
+                        kafedraCheck = false;
+                        break;
+                    case "OwnersColumn":
+                        titleListOwners = own;
+                        ownersCheck = false;
+                        break;
+                    case "NtColumn":
+                        titleListNt = new List<string>();
 
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "GroupsColumn")
-                {
-                    titleListGroups = group;
-                    titleShortListGroups = group;
-                    groupCheck = false;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "AuditoriesColumn")
-                {
-                    titleListAuditorys = aud;
-                    auditoryCheck = false;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "DisciplineColumn")
-                {
-                    titleListDiscipline = dis;
-                    disciplineCheck = false;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "KafColumn")
-                {
-                    titleListKafedra = kaf;
-                    kafedraCheck = false;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "OwnersColumn")
-                {
-                    titleListOwners = own;
-                    ownersCheck = false;
-                }
-
-                if (InformationDGV.Columns[e.ColumnIndex].Name == "NtColumn")
-                {
-                    titleListNt = new List<string>();
-
-                    foreach (var i in nt)
-                    {
-                        switch (i)
+                        foreach (var i in nt)
                         {
-                            case "1":
-                                titleListNt.Add("Лекция");
-                                break;
-                            case "2":
-                                titleListNt.Add("Практика");
-                                break;
-                            case "3":
-                                titleListNt.Add("Лаба");
-                                break;
-                            case "4":
-                                titleListNt.Add("Консультация");
-                                break;
-                            case "5":
-                                titleListNt.Add("Экзамен консультация");
-                                break;
-                            case "6":
-                                titleListNt.Add("Экзамен");
-                                break;
-                            case "7":
-                                titleListNt.Add("Зачет");
-                                break;
+                            switch (i)
+                            {
+                                case "1":
+                                    titleListNt.Add("Лекция");
+                                    break;
+                                case "2":
+                                    titleListNt.Add("Практика");
+                                    break;
+                                case "3":
+                                    titleListNt.Add("Лаба");
+                                    break;
+                                case "4":
+                                    titleListNt.Add("Консультация");
+                                    break;
+                                case "5":
+                                    titleListNt.Add("Экзамен консультация");
+                                    break;
+                                case "6":
+                                    titleListNt.Add("Экзамен");
+                                    break;
+                                case "7":
+                                    titleListNt.Add("Зачет");
+                                    break;
+                            }
                         }
-                    }
-                    idListNt = nt;
-                    ntCheck = false;
+                        idListNt = nt;
+                        ntCheck = false;
+                        break;
                 }
 
                 FilterData();
@@ -756,7 +752,7 @@ namespace Diplom
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void MergeList_Click(object sender, EventArgs e)
         {
 
         }

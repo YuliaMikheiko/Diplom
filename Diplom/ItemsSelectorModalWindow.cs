@@ -30,22 +30,28 @@ namespace Diplom
 
             this.titleText = titleText;
 
-            if (type == 0)
-                ReadTeachers();
-            if (type == 1)
-                ReadGroups();
-            if (type == 2)
-                ReadAuditorys();
+            switch (type)
+            {
+                case 0:
+                    ReadTeachers();
+                    break;
+                case 1:
+                    ReadGroups();
+                    break;
+                case 2:
+                    ReadAuditorys();
+                    break;
+            }
 
 
-            if (y==2)
+            if (y == 2)
             {
                 Choice.Visible = false;
                 Reset.Visible = false;
 
                 ItemsDGV.MouseDoubleClick += new MouseEventHandler(ItemsDGV_MouseDoubleClick);
             }
-        }        
+        }
 
         internal ItemsSelectorModalWindow(List<string> titleText, List<string> title)
         {

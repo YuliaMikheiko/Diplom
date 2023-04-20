@@ -100,7 +100,7 @@ namespace Diplom
 
         private void GroupsButton_Click(object sender, EventArgs e)
         {
-           ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups, 1);
+            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups, 1);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -208,7 +208,7 @@ namespace Diplom
             if (kurs.ShowDialog() == DialogResult.OK)
             {
                 titleListKurs = kurs.titleList;
-               
+
                 KursTextBox.Text = String.Join("; ", titleListKurs);
             }
         }
@@ -256,7 +256,7 @@ namespace Diplom
             kafedraCheck = KafedraCheckBox.Checked;
             kursCheck = KursCheckBox.Checked;
             ntCheck = NtCheckBox.Checked;
-            ownersCheck = OwnersCheckBox.Checked; 
+            ownersCheck = OwnersCheckBox.Checked;
             facCheck = FacCheckBox.Checked;
             zaochCheck = ZaochCheckBox.Checked;
             ochCheck = OchCheckBox.Checked;
@@ -302,7 +302,7 @@ namespace Diplom
             disciplineCheck = false;
             kursCheck = false;
             ntCheck = false;
-            facCheck= false;
+            facCheck = false;
             zaochCheck = false;
             ochCheck = false;
 
