@@ -180,26 +180,16 @@ namespace Diplom
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "ZColumn")
                 {
                     int key = 0;
-                    foreach (var j in dZanlist)
+                    foreach (var j in dZanlist.SelectMany(j => j.Value.Where(values => (int)InformationDGV["IdColumn", e.RowIndex].Value == values).Select(values => j)))
                     {
-                        foreach (var values in j.Value)
-                        {
-                            if ((int)InformationDGV["IdColumn", e.RowIndex].Value == values)
-                            {
-                                key = j.Key;
-                                break;
-                            }
-                        }
+                        key = j.Key;
+                        break;
                     }
 
                     List<string> list = new List<string>();
                     if (key != 0)
                     {
-                        foreach (var item in dZanlist[key])
-                        {
-                            list.Add(item.ToString());
-                        }
-
+                        list.AddRange(dZanlist[key].Select(item => item.ToString()));
                         ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list);
                         zanlist.ShowDialog();
                     }
