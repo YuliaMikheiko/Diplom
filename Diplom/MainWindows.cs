@@ -177,6 +177,34 @@ namespace Diplom
                     titleA = titleList;
                 }
 
+                if (InformationDGV.Columns[e.ColumnIndex].Name == "ZColumn")
+                {
+                    int key = 0;
+                    foreach (var j in dZanlist)
+                    {
+                        foreach (var values in j.Value)
+                        {
+                            if ((int)InformationDGV["IdColumn", e.RowIndex].Value == values)
+                            {
+                                key = j.Key;
+                                break;
+                            }
+                        }
+                    }
+
+                    List<string> list = new List<string>();
+                    if (key != 0)
+                    {
+                        foreach (var item in dZanlist[key])
+                        {
+                            list.Add(item.ToString());
+                        }
+
+                        ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list);
+                        zanlist.ShowDialog();
+                    }
+                }
+
                 if (InformationDGV.Columns[e.ColumnIndex].Name == "HColumn")
                 {
                     InformationDGV.EndEdit();
