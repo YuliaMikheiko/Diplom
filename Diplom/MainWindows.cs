@@ -59,6 +59,7 @@ namespace Diplom
         List<string> kaf = new List<string>();
         List<string> own = new List<string>();
         List<string> nt = new List<string>();
+        List<int> zanlist = new List<int>();
 
         List<string> titleT = null;
         List<string> titleG = null;
@@ -193,40 +194,7 @@ namespace Diplom
                         }
                         break;
 
-                    case "HColumn":
-                        InformationDGV.EndEdit();
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            item.h = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                        }
-                        break;
-
-                    case "NtColumn":
-                        InformationDGV.EndEdit();
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            item.nt = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                        }
-                        break;
-
-                    case "KafColumn":
-                        InformationDGV.EndEdit();
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            item.kaf = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                        }
-                        break;
-
-                    case "DisciplineColumn":
-                        InformationDGV.EndEdit();
-                        foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
-                        {
-                            item.discipline = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
-                        }
-                        break;
-
                     case "OnlineColumn":
-                        InformationDGV.EndEdit();
                         foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
                         {
                             if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
@@ -235,14 +203,12 @@ namespace Diplom
                                 item.is_online = 0;
                         }
                         break;
+
+                    case "ZanlistColumn":
+                        if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
+                            zanlist.Add((int)InformationDGV[0, e.RowIndex].Value);
+                        break;
                 }
-
-                //else if (column.Name == "OwnersColumn")
-                //{
-                //    var y = (string)InformationDGV[column.Index, i].Value;
-                //    nagr[i].owners = y.Split(';');
-
-                //}
             }
         }
 
@@ -299,6 +265,8 @@ namespace Diplom
             titleListOwners = new List<string>();
             titleListFac = new List<string>();
             titleShortListGroups = new List<string>();
+
+            InformationDGV.EndEdit();
 
             (activeScheduleDataModel as JsonScheduleDataModel).nagruzka = nagr;
             activeScheduleDataModel.Save();
@@ -542,7 +510,6 @@ namespace Diplom
                                     break;
                             }
                         }
-
                         break;
                     }
 
@@ -766,7 +733,52 @@ namespace Diplom
 
         private void MergeList_Click(object sender, EventArgs e)
         {
+            if (zanlist.Count != 0)
+            {
+                dZanlist.Add(2, zanlist.ToArray());
+                zanlist.Clear();
+            }
+        }
 
+        private void InformationDGV_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            switch (InformationDGV.Columns[e.ColumnIndex].Name)
+            {
+                case "HColumn":
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.h = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                    break;
+
+                case "NtColumn":
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.nt = (int)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                    break;
+
+                case "KafColumn":
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.kaf = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                    break;
+
+                case "DisciplineColumn":
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.discipline = (string)InformationDGV[e.ColumnIndex, e.RowIndex].Value;
+                    }
+                    break;
+
+                case "OwnersColumn":
+                    foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
+                    {
+                        item.owners = ((string)InformationDGV[e.ColumnIndex, e.RowIndex].Value).Split(';');
+                    }
+                    break;
+            }
         }
     }
 }
