@@ -195,6 +195,7 @@ namespace Diplom
                         break;
 
                     case "OnlineColumn":
+                        InformationDGV.EndEdit();
                         foreach (var item in nagr.Where(item => item.id == (int)InformationDGV["IdColumn", e.RowIndex].Value))
                         {
                             if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
@@ -205,6 +206,7 @@ namespace Diplom
                         break;
 
                     case "ZanlistColumn":
+                        InformationDGV.EndEdit();
                         if (InformationDGV[e.ColumnIndex, e.RowIndex].Value.Equals(true))
                             zanlist.Add((int)InformationDGV[0, e.RowIndex].Value);
                         break;
@@ -735,7 +737,7 @@ namespace Diplom
         {
             if (zanlist.Count != 0)
             {
-                dZanlist.Add(2, zanlist.ToArray());
+                dZanlist.Add(dZanlist.Select(x => x.Key).Max() + 1, zanlist.ToArray());
                 zanlist.Clear();
             }
         }
