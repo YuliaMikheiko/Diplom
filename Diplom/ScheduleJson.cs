@@ -140,71 +140,75 @@ namespace Diplom
             }
             set
             {
+                string dayKey = day.ToString();
+                string pairKey = pair.ToString();
+                string weekKey = week.ToString();
+
                 if (value != null)
                 {
-                    if (this.ContainsKey(day.ToString()))
+                    if (this.ContainsKey(dayKey))
                     {
-                        var dayWish = this[day.ToString()];
-                        if (dayWish.ContainsKey(pair.ToString()))
+                        var dayWish = this[dayKey];
+                        if (dayWish.ContainsKey(pairKey))
                         {
-                            var pairWish = dayWish[pair.ToString()];
-                            if (pairWish.ContainsKey(week.ToString()))
+                            var pairWish = dayWish[pairKey];
+                            if (pairWish.ContainsKey(weekKey))
                             {
-                                pairWish[week.ToString()] = value;
+                                pairWish[weekKey] = value;
                             }
                             else
                             {
                                 if (pairWish.ContainsKey("all"))
                                 {
-                                    this[day.ToString()][pair.ToString()].Remove("all");
+                                    this[dayKey][pairKey].Remove("all");
                                 }
-                                this[day.ToString()][pair.ToString()].Add(week.ToString(), value);
+                                this[dayKey][pairKey].Add(weekKey, value);
                             }
                         }
                         else
                         {
                             if (dayWish.ContainsKey("all"))
                             {
-                                this[day.ToString()].Remove("all");
+                                this[dayKey].Remove("all");
                             }
-                            this[day.ToString()].Add(pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } });
+                            this[dayKey].Add(pairKey, new Dictionary<String, int[]> { { weekKey, value } });
                         }
                     }
                     else
                     {
                         if (this.ContainsKey("all"))
                         {
-                            this[day.ToString()].Remove("all");
+                            this[dayKey].Remove("all");
                         }
-                        this.Add(day.ToString(), new Dictionary<String, Dictionary<String, int[]>> { { pair.ToString(), new Dictionary<String, int[]> { { week.ToString(), value } } } });
+                        this.Add(dayKey, new Dictionary<String, Dictionary<String, int[]>> { { pairKey, new Dictionary<String, int[]> { { weekKey, value } } } });
                     }
                 }
                 else
                 {
-                    if (this.ContainsKey(day.ToString()))
+                    if (this.ContainsKey(dayKey))
                     {
-                        if (this[day.ToString()].ContainsKey(pair.ToString()))
+                        if (this[dayKey].ContainsKey(pairKey))
                         {
-                            if (this[day.ToString()][pair.ToString()].ContainsKey(week.ToString()))
+                            if (this[dayKey][pairKey].ContainsKey(weekKey))
                             {
-                                this[day.ToString()][pair.ToString()].Remove(week.ToString());
-                                if (this[day.ToString()][pair.ToString()].Count == 0)
+                                this[dayKey][pairKey].Remove(weekKey);
+                                if (this[dayKey][pairKey].Count == 0)
                                 {
-                                    this[day.ToString()].Remove(pair.ToString());
-                                    if (this[day.ToString()].Count == 0)
+                                    this[dayKey].Remove(pairKey);
+                                    if (this[dayKey].Count == 0)
                                     {
-                                        this.Remove(day.ToString());
+                                        this.Remove(dayKey);
                                     }
                                 }
                             }
-                            else if (this[day.ToString()][pair.ToString()].ContainsKey("all"))
+                            else if (this[dayKey][pairKey].ContainsKey("all"))
                             {
-                                this[day.ToString()][pair.ToString()].Remove("all");
+                                this[dayKey][pairKey].Remove("all");
                             }
                         }
-                        else if (this[day.ToString()].ContainsKey("all"))
+                        else if (this[dayKey].ContainsKey("all"))
                         {
-                            this[day.ToString()].Remove("all");
+                            this[dayKey].Remove("all");
                         }
                     }
                     else if (this.ContainsKey("all"))
