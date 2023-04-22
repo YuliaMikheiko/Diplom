@@ -100,7 +100,7 @@ namespace Diplom
 
         private void GroupsButton_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups, 1);
+            ItemsSelectorModalWindow groups = new ItemsSelectorModalWindow(1, scheduleDataModel, titleListGroups, true);
 
             if (groups.ShowDialog() == DialogResult.OK)
             {
@@ -118,7 +118,7 @@ namespace Diplom
 
             kafedraList = allKafedra.Distinct().ToList();
 
-            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(titleListKafedra, kafedraList);
+            ItemsSelectorModalWindow kafedra = new ItemsSelectorModalWindow(titleListKafedra, kafedraList, true);
 
             if (kafedra.ShowDialog() == DialogResult.OK)
             {
@@ -130,7 +130,7 @@ namespace Diplom
 
         private void TeacherButton_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, titleListTeacher, 1);
+            ItemsSelectorModalWindow teachers = new ItemsSelectorModalWindow(0, scheduleDataModel, titleListTeacher, true);
 
             if (teachers.ShowDialog() == DialogResult.OK)
             {
@@ -142,7 +142,7 @@ namespace Diplom
 
         private void AuditorysButton_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, titleListAuditorys, 1);
+            ItemsSelectorModalWindow auditorys = new ItemsSelectorModalWindow(2, scheduleDataModel, titleListAuditorys, true);
 
             if (auditorys.ShowDialog() == DialogResult.OK)
             {
@@ -158,7 +158,7 @@ namespace Diplom
 
             disciplineList = allDiscipline.Distinct().ToList();
 
-            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(titleListDiscipline, disciplineList);
+            ItemsSelectorModalWindow discipline = new ItemsSelectorModalWindow(titleListDiscipline, disciplineList, true);
 
             if (discipline.ShowDialog() == DialogResult.OK)
             {
@@ -203,7 +203,7 @@ namespace Diplom
 
             kursList = allKurs.Distinct().ToList();
 
-            ItemsSelectorModalWindow kurs = new ItemsSelectorModalWindow(titleListKurs, kursList);
+            ItemsSelectorModalWindow kurs = new ItemsSelectorModalWindow(titleListKurs, kursList, true);
 
             if (kurs.ShowDialog() == DialogResult.OK)
             {
@@ -217,7 +217,7 @@ namespace Diplom
         {
             ownersList = nagr.Where(item => item.owners != null).SelectMany(item => item.owners.Where(i => i != "" & i != " ").Select(i => i.Trim())).ToList().Distinct().ToList();
 
-            ItemsSelectorModalWindow owners = new ItemsSelectorModalWindow(titleListOwners, ownersList);
+            ItemsSelectorModalWindow owners = new ItemsSelectorModalWindow(titleListOwners, ownersList, true);
 
             if (owners.ShowDialog() == DialogResult.OK)
             {
@@ -237,7 +237,7 @@ namespace Diplom
 
             facList = allFac.Distinct().ToList();
 
-            ItemsSelectorModalWindow fac = new ItemsSelectorModalWindow(titleListFac, facList);
+            ItemsSelectorModalWindow fac = new ItemsSelectorModalWindow(titleListFac, facList, true);
 
             if (fac.ShowDialog() == DialogResult.OK)
             {

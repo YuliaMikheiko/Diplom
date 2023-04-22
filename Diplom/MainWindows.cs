@@ -189,7 +189,7 @@ namespace Diplom
                         if (key != 0)
                         {
                             list.AddRange(dZanlist[key].Select(item => item.ToString()));
-                            ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list);
+                            ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list, false);
                             zanlist.ShowDialog();
                         }
                         break;
@@ -221,7 +221,7 @@ namespace Diplom
             List<string> columnItem = new List<string>();
             columnItem.AddRange(dataItem.ToString().Split('%')[(int)type].Split(';').ToList().Where(title => title != "").Select(title => title.Trim()));
 
-            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)type, activeScheduleDataModel, columnItem, 1);
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)type, activeScheduleDataModel, columnItem, true);
 
             string value = null;
 
@@ -399,59 +399,22 @@ namespace Diplom
 
         private void TeacherWishMenuItem_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Teachers, activeScheduleDataModel, new List<string>(), 2);
-
-            if (modalWindow.ShowDialog() == DialogResult.OK)
-            {
-                idsList = modalWindow.idsList;
-
-                if (idsList.Count > 0 & idsList.Count < 2)
-                {
-                    WishWindow wish = new WishWindow((int)Type.Teachers, activeScheduleDataModel, idsList);
-
-                    wish.ShowDialog();
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show(
-                    "Выберете одного преподавателя",
-                    "Сообщение",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
+            Wish((int)Type.Teachers);
         }
 
         private void GroupWishMenuItem_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Groups, activeScheduleDataModel, new List<string>(), 2);
-
-            if (modalWindow.ShowDialog() == DialogResult.OK)
-            {
-                idsList = modalWindow.idsList;
-
-                if (idsList.Count > 0 & idsList.Count < 2)
-                {
-                    WishWindow wish = new WishWindow((int)Type.Groups, activeScheduleDataModel, idsList);
-
-                    wish.ShowDialog();
-                    this.DialogResult = DialogResult.OK;
-                }
-                else
-                {
-                    MessageBox.Show(
-                    "Выберете одну группу",
-                    "Сообщение",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                }
-            }
+            Wish((int)Type.Groups);
         }
 
         private void AudsWishToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow((int)Type.Auditorys, activeScheduleDataModel, new List<string>(), 2);
+            Wish((int)Type.Auditorys);
+        }
+
+        public void Wish(int type)
+        {
+            ItemsSelectorModalWindow modalWindow = new ItemsSelectorModalWindow(type, activeScheduleDataModel, new List<string>(), false);
 
             if (modalWindow.ShowDialog() == DialogResult.OK)
             {
@@ -459,7 +422,7 @@ namespace Diplom
 
                 if (idsList.Count > 0 & idsList.Count < 2)
                 {
-                    WishWindow wish = new WishWindow((int)Type.Auditorys, activeScheduleDataModel, idsList);
+                    WishWindow wish = new WishWindow(type, activeScheduleDataModel, idsList);
 
                     wish.ShowDialog();
                     this.DialogResult = DialogResult.OK;
@@ -467,7 +430,7 @@ namespace Diplom
                 else
                 {
                     MessageBox.Show(
-                    "Выберете одну аудиторию",
+                    "Выберете однин пункт",
                     "Сообщение",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -529,6 +492,19 @@ namespace Diplom
 
         private void Reset_Click(object sender, EventArgs e)
         {
+            ResetFilter();
+        }
+
+        private void Reset_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control & e.KeyCode == Keys.Z)
+            {
+                ResetFilter();
+            }
+        }
+
+        private void ResetFilter()
+        {
             taech = new List<string>();
             group = new List<string>();
             aud = new List<string>();
@@ -550,34 +526,6 @@ namespace Diplom
             titleShortListGroups = new List<string>();
 
             (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
-        }
-
-        private void Reset_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Control & e.KeyCode == Keys.Z)
-            {
-                taech = new List<string>();
-                group = new List<string>();
-                aud = new List<string>();
-                dis = new List<string>();
-                kaf = new List<string>();
-                own = new List<string>();
-                nt = new List<string>();
-
-                titleListGroups = new List<string>();
-                titleListKafedra = new List<string>();
-                titleListTeacher = new List<string>();
-                titleListAuditorys = new List<string>();
-                titleListDiscipline = new List<string>();
-                titleListKurs = new List<string>();
-                idListNt = new List<string>();
-                titleListNt = new List<string>();
-                titleListOwners = new List<string>();
-                titleListFac = new List<string>();
-                titleShortListGroups = new List<string>();
-
-                (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).RemoveFilter();
-            }
         }
 
         private void Distribute_Click(object sender, EventArgs e)

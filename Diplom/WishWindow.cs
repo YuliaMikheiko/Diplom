@@ -261,21 +261,22 @@ namespace Diplom
 
         private void Accept_Click(object sender, EventArgs e)
         {
-            if (type == 0)
+            switch (type)
             {
-                SaveTeacher();
-                (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
+                case 0:
+                    SaveTeacher();
+                    (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
+                    break;
+                case 1:
+                    SaveGroup();
+                    (scheduleDataModel as JsonScheduleDataModel).subGroup = sub_groups_info;
+                    break;
+                case 2:
+                    (scheduleDataModel as JsonScheduleDataModel).auditory = auditories;
+                    SaveAud();
+                    break;
             }
-            if (type == 1)
-            {
-                SaveGroup();
-                (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
-            }
-            SaveGroup();
-            if (type == 2)
-                SaveAud();
 
-            (scheduleDataModel as JsonScheduleDataModel).teacher = teachers;
             scheduleDataModel.Save();
             this.DialogResult = DialogResult.OK;
         }
@@ -288,34 +289,7 @@ namespace Diplom
                 {
                     for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
                     {
-                        int wish = 0;
-                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
-                        {
-                            case "О":
-                                wish = 1;
-                                break;
-                            case "Д":
-                                wish = 11;
-                                break;
-                            case "И":
-                                wish = 12;
-                                break;
-                            case "Ф":
-                                wish = 14;
-                                break;
-                            case "С":
-                                wish = 15;
-                                break;
-                            case "К":
-                                wish = 16;
-                                break;
-                            case "В":
-                                wish = 20;
-                                break;
-                            case "":
-                                wish = 10;
-                                break;
-                        }
+                        int wish = w(i, j);
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
@@ -354,34 +328,7 @@ namespace Diplom
                 {
                     for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
                     {
-                        int wish = 0;
-                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
-                        {
-                            case "О":
-                                wish = 1;
-                                break;
-                            case "Д":
-                                wish = 11;
-                                break;
-                            case "И":
-                                wish = 12;
-                                break;
-                            case "Ф":
-                                wish = 14;
-                                break;
-                            case "С":
-                                wish = 15;
-                                break;
-                            case "К":
-                                wish = 16;
-                                break;
-                            case "В":
-                                wish = 20;
-                                break;
-                            case "":
-                                wish = 10;
-                                break;
-                        }
+                        int wish = w(i, j);
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
@@ -420,34 +367,7 @@ namespace Diplom
                 {
                     for (int j = 0; j < tableLayoutPanel1.RowCount; j++)
                     {
-                        int wish = 0;
-                        switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
-                        {
-                            case "О":
-                                wish = 1;
-                                break;
-                            case "Д":
-                                wish = 11;
-                                break;
-                            case "И":
-                                wish = 12;
-                                break;
-                            case "Ф":
-                                wish = 14;
-                                break;
-                            case "С":
-                                wish = 15;
-                                break;
-                            case "К":
-                                wish = 16;
-                                break;
-                            case "В":
-                                wish = 20;
-                                break;
-                            case "":
-                                wish = 10;
-                                break;
-                        }
+                        int wish = w(i,j);
 
                         if (tableLayoutPanel1.GetControlFromPosition(i, j).Text != "")
                         {
@@ -476,6 +396,39 @@ namespace Diplom
                     }
                 }
             }
+        }
+
+        public int w(int i, int j)
+        {
+            int wish = 0;
+            switch (tableLayoutPanel1.GetControlFromPosition(i, j).Text)
+            {
+                case "О":
+                    wish = 1;
+                    break;
+                case "Д":
+                    wish = 11;
+                    break;
+                case "И":
+                    wish = 12;
+                    break;
+                case "Ф":
+                    wish = 14;
+                    break;
+                case "С":
+                    wish = 15;
+                    break;
+                case "К":
+                    wish = 16;
+                    break;
+                case "В":
+                    wish = 20;
+                    break;
+                case "":
+                    wish = 10;
+                    break;
+            }
+            return wish;
         }
 
         private void Release_MouseMove(object sender, MouseEventArgs e)
@@ -528,177 +481,84 @@ namespace Diplom
 
         private void WishWindow_MouseMove(object sender, MouseEventArgs e)
         {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
-
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
+            ColorDay(6);
+            ColorPair(9);
         }
 
-        private void Monday_MouseMove(object sender, MouseEventArgs e)
+        private void Monday_MouseMove(object sender, MouseEventArgs e) => ColorDay(0);
+
+        private void Tuesday_MouseMove(object sender, MouseEventArgs e) => ColorDay(1);
+
+        private void Wednesday_MouseMove(object sender, MouseEventArgs e) => ColorDay(2);
+
+        private void Thursday_MouseMove(object sender, MouseEventArgs e) => ColorDay(3);
+
+        private void Friday_MouseMove(object sender, MouseEventArgs e) => ColorDay(4);
+
+        private void Saturday_MouseMove(object sender, MouseEventArgs e) => ColorDay(5);
+
+        public void ColorDay( int y)
         {
-            Monday.BackColor = Color.LightSteelBlue;
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
+            var color = new Color[6];
+            for (int i = 0; i<6; i++)
+            {
+                if (y==i)
+                {
+                    color[i] = Color.LightSteelBlue;
+                }
+                else
+                {
+                    color[i] = Color.FromArgb(255, 240, 240, 240);
+                }
+            }
+
+            Monday.BackColor = color[0];
+            Tuesday.BackColor = color[1];
+            Wednesday.BackColor = color[2];
+            Thursday.BackColor = color[3];
+            Friday.BackColor = color[4];
+            Saturday.BackColor = color[5];
         }
 
-        private void Tuesday_MouseMove(object sender, MouseEventArgs e)
-        {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.LightSteelBlue;
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair1_MouseMove(object sender, MouseEventArgs e) => ColorPair(0);
 
-        private void Wednesday_MouseMove(object sender, MouseEventArgs e)
-        {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.LightSteelBlue;
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair2_MouseMove(object sender, MouseEventArgs e) => ColorPair(1);
 
-        private void Thursday_MouseMove(object sender, MouseEventArgs e)
-        {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.LightSteelBlue;
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair3_MouseMove(object sender, MouseEventArgs e) => ColorPair(2);
 
-        private void Friday_MouseMove(object sender, MouseEventArgs e)
-        {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.LightSteelBlue;
-            Saturday.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair4_MouseMove(object sender, MouseEventArgs e) => ColorPair(3);
 
-        private void Saturday_MouseMove(object sender, MouseEventArgs e)
-        {
-            Monday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Tuesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Wednesday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Thursday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Friday.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Saturday.BackColor = Color.LightSteelBlue;
-        }
+        private void Pair5_MouseMove(object sender, MouseEventArgs e) => ColorPair(4);
 
-        private void Pair1_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.LightSteelBlue;
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair6_MouseMove(object sender, MouseEventArgs e) => ColorPair(5);
 
-        private void Pair2_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.LightSteelBlue;
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair7_MouseMove(object sender, MouseEventArgs e) => ColorPair(6);
 
-        private void Pair3_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.LightSteelBlue;
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+        private void Pair8_MouseMove(object sender, MouseEventArgs e) => ColorPair(7);
 
-        private void Pair4_MouseMove(object sender, MouseEventArgs e)
+        public void ColorPair(int y)
         {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.LightSteelBlue;
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
+            var color = new Color[8];
+            for (int i = 0; i < 8; i++)
+            {
+                if (y == i)
+                {
+                    color[i] = Color.LightSteelBlue;
+                }
+                else
+                {
+                    color[i] = Color.FromArgb(255, 240, 240, 240);
+                }
+            }
 
-        private void Pair5_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.LightSteelBlue;
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
-
-        private void Pair6_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.LightSteelBlue;
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
-
-        private void Pair7_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.LightSteelBlue;
-            Pair8.BackColor = Color.FromArgb(255, 240, 240, 240);
-        }
-
-        private void Pair8_MouseMove(object sender, MouseEventArgs e)
-        {
-            Pair1.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair2.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair3.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair4.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair5.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair6.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair7.BackColor = Color.FromArgb(255, 240, 240, 240);
-            Pair8.BackColor = Color.LightSteelBlue;
+            Pair1.BackColor = color[0];
+            Pair2.BackColor = color[1];
+            Pair3.BackColor = color[2];
+            Pair4.BackColor = color[3];
+            Pair5.BackColor = color[4];
+            Pair6.BackColor = color[5];
+            Pair7.BackColor = color[6];
+            Pair8.BackColor = color[7];
         }
     }
 }

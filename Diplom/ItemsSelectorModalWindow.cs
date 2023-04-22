@@ -20,7 +20,7 @@ namespace Diplom
         Dictionary<int, Auditory> auditories;
         Dictionary<int, SubGroup> sub_groups_info;
 
-        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText, int y)
+        internal ItemsSelectorModalWindow(int type, ScheduleDataModel scheduleDataModel, List<string> titleText, bool button)
         {
             InitializeComponent();
 
@@ -44,7 +44,7 @@ namespace Diplom
             }
 
 
-            if (y == 2)
+            if (button == false)
             {
                 Choice.Visible = false;
                 Reset.Visible = false;
@@ -53,7 +53,7 @@ namespace Diplom
             }
         }
 
-        internal ItemsSelectorModalWindow(List<string> titleText, List<string> title)
+        internal ItemsSelectorModalWindow(List<string> titleText, List<string> title, bool button)
         {
             InitializeComponent();
 
@@ -61,6 +61,12 @@ namespace Diplom
             this.titleText = titleText;
 
             ReadFilter();
+
+            if (button == false)
+            {
+                Choice.Visible = false;
+                Reset.Visible = false;
+            }
         }
 
         internal ItemsSelectorModalWindow(List<string> titleText, List<KeyValuePair<int, string>> Nt)
