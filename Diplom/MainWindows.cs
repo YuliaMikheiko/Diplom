@@ -189,9 +189,22 @@ namespace Diplom
                         if (key != 0)
                         {
                             list.AddRange(dZanlist[key].Select(item => item.ToString()));
-                            ItemsSelectorModalWindow zanlist = new ItemsSelectorModalWindow(list, list, false);
-                            zanlist.ShowDialog();
                         }
+
+                        (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+                        {
+                            bool allResult = true;
+
+                            if (list.Count() > 0)
+                            {
+                                if (list.Contains(x.Id.ToString()))
+                                    allResult = true;
+                                else
+                                    allResult = false;
+                            }
+                            return allResult;
+                        });
+
                         break;
 
                     case "OnlineColumn":
@@ -473,6 +486,20 @@ namespace Diplom
                                 case "NtColumn":
                                     nt.Add(((int)InformationDGV[e.ColumnIndex, e.RowIndex].Value).ToString());
                                     break;
+
+                                case "ZanlistColumn":
+                                    int key = 0;
+                                    foreach (var j in dZanlist.SelectMany(j => j.Value.Where(values => (int)InformationDGV["IdColumn", e.RowIndex].Value == values).Select(values => j)))
+                                    {
+                                        key = j.Key;
+                                        break;
+                                    }
+
+                                    if (key != 0)
+                                    {
+                                        list1.AddRange(dZanlist[key].Select(item => item.ToString()));
+                                    }
+                                    break;
                             }
                         }
                         break;
@@ -490,6 +517,7 @@ namespace Diplom
             }
         }
 
+        public List<string> list1 = new List<string>();
         private void Reset_Click(object sender, EventArgs e)
         {
             ResetFilter();
@@ -729,6 +757,25 @@ namespace Diplom
                     }
                     break;
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            (InformationDGV.DataSource as BindingListView<ScheduleRowDataGridRowItem>).ApplyFilter(x =>
+            {
+                bool allResult = true;
+
+                if (list1.Count() > 0)
+                {
+                    if (list1.Contains(x.Id.ToString()))
+                        allResult = true;
+                    else
+                        allResult = false;
+                }
+                return allResult;
+            });
+
+            list1.Clear();
         }
     }
 }
