@@ -1,0 +1,101 @@
+<mxfile host="app.diagrams.net" modified="2023-05-04T01:38:30.788Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Avy8YP-xbyR5ZGhme4AE" version="21.2.7" type="device">
+  <diagram name="Страница 1" id="biiNAxNrtxoNpZc9Q-lB">
+    <mxGraphModel dx="2514" dy="1269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="C8yTGcel6rQn88DSbwS--27" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="90" y="10" width="1300" height="600" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--1" value="Главное окно" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="430" y="40" width="290" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--2" value="+ Меню&lt;br&gt;+ Кнопка &quot;Сброс фильтров&quot;&lt;br&gt;+ Кнопка &quot;Распространить редактирование&quot;&lt;br&gt;+ Кнопка &quot;Объединить в лист&quot;&lt;br&gt;+ Таблица для вывода данных" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--1" vertex="1">
+          <mxGeometry y="26" width="290" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="C8yTGcel6rQn88DSbwS--1" vertex="1">
+          <mxGeometry y="120" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--4" value="+ Открытие файла&lt;br&gt;+ Добавление данных из файла&lt;br&gt;+ Открытие окна для выбора преподавателей&lt;br&gt;+ Открытие окна для выбора учебных групп&lt;br&gt;+ Открытие окна для выбора аудиторий&lt;br&gt;+ Выбор пожеланий&lt;br&gt;+ Открытие окна фильтров&lt;br&gt;+ Быстрый фильтр по таблице&lt;br&gt;+ Сброс фильтров&amp;nbsp;&lt;br&gt;+ Распространение редактирования&lt;br&gt;+ Объединение в лист&lt;br&gt;+ Сохранение данных&amp;nbsp;&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--1" vertex="1">
+          <mxGeometry y="128" width="290" height="202" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--5" value="Окна фильтров" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="760" y="345" width="260" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--6" value="+ Набор текстовых полей для вывода параметров фильтрации&lt;br&gt;+ Набор чекбоксов &quot;не&quot; для указания параметров фильтрации&lt;br&gt;+ Набор кнопок для выбора параметров фильтрации&lt;br&gt;+ Чекбокс &quot;Заочники&quot;&lt;br&gt;+ Чекбокс &quot;Очники&quot;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--5" vertex="1">
+          <mxGeometry y="26" width="260" height="124" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="C8yTGcel6rQn88DSbwS--5" vertex="1">
+          <mxGeometry y="150" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--8" value="+ Выбор преподавателей/аудиторий/ учебных групп/кафедр/названий дисциплин/типов занятий/курсов/факультетов/диспетчеров&lt;br&gt;+ Сброс параметров" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--5" vertex="1">
+          <mxGeometry y="158" width="260" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--13" value="Модальное окно" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1060" y="180" width="290" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--14" value="+ Таблица вывода информации о преподавателях/аудиториях/учебных групп&lt;br&gt;+ Текстовое поле &quot;Фильтр&quot;&lt;br&gt;+ Кнопка &quot;Выбор&quot;&lt;br&gt;+ Кнопка &quot;Сброс&quot;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--13" vertex="1">
+          <mxGeometry y="26" width="290" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--15" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="C8yTGcel6rQn88DSbwS--13" vertex="1">
+          <mxGeometry y="120" width="290" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--16" value="+ Добавление данных из файла о преподавателях/аудиториях/ учебных группах/кафедрах/названиях дисциплин/типах занятий/курсах/факультетах/диспетчерах&lt;br&gt;+ Выбор позиций списка&lt;br&gt;+ Фильтр данных&lt;br&gt;+ Сброс фильтра" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--13" vertex="1">
+          <mxGeometry y="128" width="290" height="112" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--17" value="Окно пожеланий" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="120" y="150" width="250" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--18" value="+ Набор кнопок для указания пожеланий&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;+ Кнопка &quot;Принять&quot;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--17" vertex="1">
+          <mxGeometry y="26" width="250" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--19" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="C8yTGcel6rQn88DSbwS--17" vertex="1">
+          <mxGeometry y="70" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--20" value="+ Выбор причины отмены занятия для преподавателей/аудиторий/учебных групп&lt;br&gt;+ Сохранение данных" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--17" vertex="1">
+          <mxGeometry y="78" width="250" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--22" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=0.997;exitY=0.198;exitDx=0;exitDy=0;exitPerimeter=0;startArrow=diamondThin;startFill=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="C8yTGcel6rQn88DSbwS--4" target="C8yTGcel6rQn88DSbwS--14" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="230" as="sourcePoint" />
+            <mxPoint x="1060" y="240" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="880" y="208" />
+              <mxPoint x="880" y="253" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--23" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=-0.015;entryY=0.03;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=diamondThin;startFill=0;" parent="1" source="C8yTGcel6rQn88DSbwS--4" target="C8yTGcel6rQn88DSbwS--5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="800" y="330" as="sourcePoint" />
+            <mxPoint x="850" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="740" y="270" />
+              <mxPoint x="740" y="352" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--24" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0.003;entryY=0.883;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=diamondThin;startFill=0;" parent="1" source="C8yTGcel6rQn88DSbwS--8" target="C8yTGcel6rQn88DSbwS--14" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1070" y="330" as="sourcePoint" />
+            <mxPoint x="1120" y="280" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1040" y="544" />
+              <mxPoint x="1040" y="289" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="C8yTGcel6rQn88DSbwS--25" value="" style="endArrow=diamondThin;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=-0.009;entryY=0.4;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;startArrow=none;startFill=0;endFill=0;" parent="1" source="C8yTGcel6rQn88DSbwS--18" target="C8yTGcel6rQn88DSbwS--4" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="320" as="sourcePoint" />
+            <mxPoint x="470" y="270" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="400" y="198" />
+              <mxPoint x="400" y="250" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
