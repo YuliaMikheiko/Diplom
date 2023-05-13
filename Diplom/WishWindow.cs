@@ -476,7 +476,7 @@ namespace Diplom
         private void Empty_MouseMove(object sender, MouseEventArgs e)
         {
             ToolTip toolTip = new ToolTip();
-            toolTip.SetToolTip(sender as Button, "Пусто");
+            toolTip.SetToolTip(sender as Button, "Удалить");
         }
 
         private void WishWindow_MouseMove(object sender, MouseEventArgs e)
