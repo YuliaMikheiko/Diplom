@@ -215,7 +215,7 @@ namespace Diplom
 
         private void OwnersButton_Click(object sender, EventArgs e)
         {
-            ownersList = nagr.Where(item => item.owners != null).SelectMany(item => item.owners.Where(i => i != "" & i != " ").Select(i => i.Trim())).ToList().Distinct().ToList();
+            ownersList = nagr.Where(item => item.owners != null).SelectMany(item => item.owners.Where(i => i != "" & i != " " & i != null).Select(i => i.Trim())).ToList().Distinct().ToList();
 
             ItemsSelectorModalWindow owners = new ItemsSelectorModalWindow(titleListOwners, ownersList, true);
 
