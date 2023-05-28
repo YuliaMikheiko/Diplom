@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-28T16:15:09.181Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="2jq9jDQBhuLoYxeFyegv" version="21.3.5" type="device">
+<mxfile host="app.diagrams.net" modified="2023-05-28T16:39:21.434Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="QfCZ5f7aP4ZartIvvm7X" version="21.3.5" type="device">
   <diagram name="Страница 1" id="biiNAxNrtxoNpZc9Q-lB">
-    <mxGraphModel dx="880" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="880" dy="387" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -19,7 +19,7 @@
         <mxCell id="C8yTGcel6rQn88DSbwS--4" value="+ Открытие файла&lt;br&gt;+ Добавление данных из файла&lt;br&gt;+ Открытие окна для выбора преподавателей&lt;br&gt;+ Открытие окна для выбора учебных групп&lt;br&gt;+ Открытие окна для выбора аудиторий&lt;br&gt;+ Выбор пожеланий&lt;br&gt;+ Открытие окна фильтров&lt;br&gt;+ Быстрый фильтр по таблице&lt;br&gt;+ Сброс фильтров&amp;nbsp;&lt;br&gt;+ Распространение редактирования&lt;br&gt;+ Объединение в лист&lt;br&gt;+ Сохранение данных&amp;nbsp;&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--1" vertex="1">
           <mxGeometry y="128" width="290" height="202" as="geometry" />
         </mxCell>
-        <mxCell id="C8yTGcel6rQn88DSbwS--5" value="Окна фильтров" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="C8yTGcel6rQn88DSbwS--5" value="Окно фильтров" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="760" y="345" width="260" height="240" as="geometry" />
         </mxCell>
         <mxCell id="C8yTGcel6rQn88DSbwS--6" value="+ Набор текстовых полей для вывода параметров фильтрации&lt;br&gt;+ Набор чекбоксов &quot;не&quot; для указания параметров фильтрации&lt;br&gt;+ Набор кнопок для выбора параметров фильтрации&lt;br&gt;+ Чекбокс &quot;Заочники&quot;&lt;br&gt;+ Чекбокс &quot;Очники&quot;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--5" vertex="1">
