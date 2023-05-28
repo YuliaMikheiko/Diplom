@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-05-04T01:38:30.788Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36" etag="Avy8YP-xbyR5ZGhme4AE" version="21.2.7" type="device">
+<mxfile host="app.diagrams.net" modified="2023-05-28T16:15:09.181Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36" etag="2jq9jDQBhuLoYxeFyegv" version="21.3.5" type="device">
   <diagram name="Страница 1" id="biiNAxNrtxoNpZc9Q-lB">
-    <mxGraphModel dx="2514" dy="1269" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="880" dy="444" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -31,7 +31,7 @@
         <mxCell id="C8yTGcel6rQn88DSbwS--8" value="+ Выбор преподавателей/аудиторий/ учебных групп/кафедр/названий дисциплин/типов занятий/курсов/факультетов/диспетчеров&lt;br&gt;+ Сброс параметров" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--5" vertex="1">
           <mxGeometry y="158" width="260" height="82" as="geometry" />
         </mxCell>
-        <mxCell id="C8yTGcel6rQn88DSbwS--13" value="Модальное окно" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+        <mxCell id="C8yTGcel6rQn88DSbwS--13" value="Окно выбора значений" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="1060" y="180" width="290" height="240" as="geometry" />
         </mxCell>
         <mxCell id="C8yTGcel6rQn88DSbwS--14" value="+ Таблица вывода информации о преподавателях/аудиториях/учебных групп&lt;br&gt;+ Текстовое поле &quot;Фильтр&quot;&lt;br&gt;+ Кнопка &quot;Выбор&quot;&lt;br&gt;+ Кнопка &quot;Сброс&quot;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="C8yTGcel6rQn88DSbwS--13" vertex="1">
